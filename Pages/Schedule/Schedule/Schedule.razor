@@ -18,7 +18,7 @@
                 if (дата_предыдущего != str.date_and_time.Day)
                 {
                     <Schedule_string schedule_string="str" date_show="true"></Schedule_string>
-                    дата_предыдущего = str.date_and_time.Day;                    
+                    дата_предыдущего = str.date_and_time.Day;
                 }
                 else
                 {
@@ -37,7 +37,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        schedule = SchedulesService.schedule(date);
-    }
+        int month = date.Month;
 
+        while (SchedulesService.schedule(new DateTime(date.Year, month, date.Day)).Count < 1)
+        {
+            month--;
+        }
+
+        schedule = SchedulesService.schedule(new DateTime(date.Year, month, date.Day));
+    }
 }
