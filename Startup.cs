@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using razorHramBabynino.Data;
+using razorHramBabynino.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,13 +28,30 @@ namespace razorHramBabynino
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<user, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    IConfigurationSection googleAuthNSection =
+                        Configuration.GetSection("Authentication:Google");
+
+                    options.ClientId = "690639073976-4iho06or9f2nhcmh7astsan11lvvdgb9.apps.googleusercontent.com";
+                    options.ClientSecret = "EldG9O1qTxFzACRdFgkag-PZ";
+                })
+                .AddVkontakte(options =>
+                {
+                    IConfigurationSection vkAuthNSection =
+                        Configuration.GetSection("Authentication:Vk");
+
+                    options.ClientId = "7609221";
+                    options.ClientSecret = "QGB9vZBryvr7gpEXB7vK";
+                });
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+            services.AddServerSideBlazor();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
