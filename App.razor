@@ -1,10 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
 
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="routeData" />
-    </Found>
-    <NotFound>
-        <h1>Страница не найдена!</h1>
-    </NotFound>
-</Router>
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData"/>
+        </Found>
+        <NotFound>
+            <LayoutView>
+                <p class="alert alert-info">Страница не найдена</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>

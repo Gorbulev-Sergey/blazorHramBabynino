@@ -1,0 +1,39 @@
+﻿@inject NavigationManager NavigationManager
+
+<div class="col mb-4">
+    <div class="card bg-dark text-white h-100">
+        <div class="card-header">
+            <h4 class="card-title">@post.title</h4>
+            <div class="small text-muted">@post.created.ToString("MM.dd.yyyy")</div>
+        </div>
+        @if (!String.IsNullOrEmpty(post.cover_video))
+        {
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="@post.cover_video?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        }
+        else if (!String.IsNullOrEmpty(post.cover_image))
+        {
+            <img src="@post.cover_image" class="img-fluid">
+        }
+        <div class="card-body">
+            <p class="card-text">@((MarkupString)post.description)</p>
+        </div>
+        @if (!String.IsNullOrEmpty(post.content))
+        {
+            <div class="card-footer">
+                <button class="btn btn-sm btn-dark" @onclick="()=>подробнее(post.ID)">Подробнее</button>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public post post { get; set; }
+
+    void подробнее(int id)
+    {
+        NavigationManager.NavigateTo($"/posts/details/{id}");
+    }
+}

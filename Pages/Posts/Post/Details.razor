@@ -1,0 +1,55 @@
+﻿@page "/posts/details/{id:int}"
+@inject razorHramBabynino.Services.IPostsService PostsService
+@inject NavigationManager NavigationManager
+
+<div class="card text-white bg-dark">
+    <div class="card-header">
+        <h4 class="card-title">@post.title</h4>
+        <div class="small text-muted">@post.created.ToString("MM.dd.yyyy")</div>
+    </div>
+    <div class="card-body">
+        @if (String.IsNullOrEmpty(post.content))
+        {
+            @((MarkupString)post.description)
+        }
+        else
+        {
+            @((MarkupString)post.content)
+        }
+    </div>
+    @if (String.IsNullOrEmpty(post.content)&&!String.IsNullOrEmpty(post.cover_image))
+    {
+        <img src="@post.cover_image" class="img-fluid">
+    }
+    <div class="card-footer d-flex align-items-center justify-content-between">
+        <button class="btn btn-dark" @onclick="назад">Назад</button>
+        <div>
+            <AuthorizeView>
+                <Authorized>
+                    <button class="btn btn-dark" title="Комментарии"><i class="far fa-comment-alt"></i></button>
+                    <button class="btn btn-dark" title="Лайки"><i class="far fa-heart"></i></button>
+                </Authorized>
+            </AuthorizeView>
+            @*<button class="btn btn-dark" title="Поделиться"><i class="fas fa-share-alt"></i></button>*@
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    post post = new post();
+
+    protected override async Task OnInitializedAsync()
+    {
+        post = await PostsService.post(id);
+    }
+
+    void назад()
+    {
+        NavigationManager.NavigateTo("/posts");
+    }
+}

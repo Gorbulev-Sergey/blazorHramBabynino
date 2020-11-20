@@ -1,0 +1,83 @@
+﻿@page "/"
+@page "/posts"
+
+@inject IPostsService PostsService
+@inject ITagsService TagsService
+@inject IPostTagsService PostTagsService
+
+<div class="mb-1">
+    <ul class="nav nav-pills d-flex justify-content-between">
+        <li class="nav-item mb-1">
+            <a class="btn btn-secondary active" href="#news" data-toggle="pill">Новости и объявления</a>
+            <a class="btn btn-secondary" href="#videos" data-toggle="pill">Видео</a>
+        </li>
+        <li class="nav-item mb-1">
+            <a class="btn btn-secondary" href="#o_hrame" data-toggle="pill">О храме</a>
+            <a class="btn btn-secondary" href="#o_tainstvah" data-toggle="pill">О Таинствах</a>
+            @*<a class="btn btn-secondary" href="#dlya_klirosa" data-toggle="pill">Для клироса</a>*@
+        </li>
+    </ul>
+</div>
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="news">
+        <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            @foreach (var post in posts.Where(p => p.type == type.Объявление))
+            {
+                <Post post="post"></Post>
+            }
+        </div>
+        <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            @foreach (var post in posts.Where(p => p.type == type.Новость))
+            {
+                <Post post="post"></Post>
+            }
+        </div>
+    </div>
+    <div class="tab-pane fade" id="videos">
+        <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            @foreach (var post in posts.Where(p => p.type == type.Видео))
+            {
+                <Post post="post"></Post>
+            }
+        </div>
+    </div>
+    <div class="tab-pane fade" id="o_hrame">
+        <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-2">
+            @foreach (var post in posttags.Where(p => p.tagsID == tags.FirstOrDefault(t => t.text == "о храме").ID))
+            {
+                <Post post="post.post"></Post>
+            }
+        </div>
+    </div>
+    <div class="tab-pane fade" id="o_tainstvah">
+        <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            @foreach (var post in posttags.Where(p => p.tagsID == tags.FirstOrDefault(t => t.text == "о таинствах").ID))
+            {
+                <Post post="post.post"></Post>
+            }
+        </div>
+    </div>
+    <div class="tab-pane fade" id="dlya_klirosa">
+        <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            @*@foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "для клироса"))))
+                {
+                    <Post post="post"></Post>
+                }*@
+        </div>
+    </div>
+</div>
+
+
+@code {
+    List<post> posts = new List<post>();
+    List<tag> tags = new List<tag>();
+    List<posttag> posttags = new List<posttag>();
+
+    protected override void OnInitialized()
+    {
+        posts = PostsService.posts();
+        tags = TagsService.tags();
+        posttags = PostTagsService.posttags();
+    }
+}
