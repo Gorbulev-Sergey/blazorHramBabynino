@@ -3,9 +3,13 @@
 @inject NavigationManager NavigationManager
 
 <div class="card text-white bg-dark">
-    <div class="card-header">
-        <h4 class="card-title">@post.title</h4>
-        <div class="small text-muted">@post.created.ToString("MM.dd.yyyy")</div>
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <button class="btn btn-dark" @onclick="назад" title="Вернуться назад"><i class="fas fa-chevron-left"></i></button>
+            <h4 class="card-title ml-2 mb-0">@post.title</h4>
+        </div>
+        
+        <div class="small text-muted">@post.created.ToString("MM.dd.yyyy")</div>                
     </div>
     <div class="card-body">
         @if (String.IsNullOrEmpty(post.content))
@@ -22,7 +26,7 @@
         <img src="@post.cover_image" class="img-fluid">
     }
     <div class="card-footer d-flex align-items-center justify-content-between">
-        <button class="btn btn-dark" @onclick="назад">Назад</button>
+        <button class="btn btn-dark" @onclick="назад" title="Вернуться назад"><i class="fas fa-chevron-left mr-2"></i>Назад</button>
         <div>
             <AuthorizeView>
                 <Authorized>
