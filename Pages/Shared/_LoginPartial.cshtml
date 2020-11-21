@@ -5,9 +5,9 @@
 
 
 <div class="btn-group mt-3 m-sm-0">
-    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("администратор")||User.IsInRole("редактор")))
+    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("администратор") || User.IsInRole("редактор")))
     {
-        <a class="btn btn-dark rounded mr-1" href="/Identity/Account/Manage/Index" title="Панель управления">Панель управления</a>
+        <a class="btn btn-dark rounded mr-1" href="/cpanel/posts" title="Панель управления">Панель управления</a>
     }
     <button class="btn btn-dark rounded mr-1" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-id-card-alt text-muted" style="font-size:14pt"></i>
@@ -27,28 +27,3 @@
         }
     </div>
 </div>
-
-
-
-@*<ul class="navbar-nav mt-3 m-sm-0">
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <li class="nav-item">
-                <a class="btn btn-dark text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a>
-            </li>
-            <li class="nav-item">
-                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                    <button type="submit" class="btn btn-dark text-white">Выход</button>
-                </form>
-            </li>
-        }
-        else
-        {
-            <li class="nav-item">
-                <a class="btn btn-dark text-white" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-dark text-white" asp-area="Identity" asp-page="/Account/Login">Вход</a>
-            </li>
-        }
-    </ul>*@
