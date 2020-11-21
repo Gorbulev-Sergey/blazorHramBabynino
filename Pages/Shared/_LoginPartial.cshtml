@@ -1,27 +1,54 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using razorHramBabynino.Models 
+@using razorHramBabynino.Models
 @inject SignInManager<user> SignInManager
 @inject UserManager<user> UserManager
 
-<ul class="navbar-nav mt-3 m-sm-0">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="btn btn-dark text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a>
-    </li>
-    <li class="nav-item">
-        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >
-            <button  type="submit" class="btn btn-dark text-white">Выход</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="btn btn-dark text-white" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
-    </li>
-    <li class="nav-item">
-        <a class="btn btn-dark text-white" asp-area="Identity" asp-page="/Account/Login">Вход</a>
-    </li>
-}
-</ul>
+
+<div class="btn-group mt-3 m-sm-0">
+    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("администратор")||User.IsInRole("редактор")))
+    {
+        <a class="btn btn-dark rounded mr-1" href="/Identity/Account/Manage/Index" title="Панель управления">Панель управления</a>
+    }
+    <button class="btn btn-dark rounded mr-1" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-id-card-alt text-muted" style="font-size:14pt"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-lg-right">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a class="dropdown-item" href="/Identity/Account/Manage/Index" title="Мой профиль">Мой профиль</a>
+            <form class="form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="dropdown-item">Выход</button>
+            </form>
+        }
+        else
+    {
+            <a class="dropdown-item" href="/Identity/Account/Register">Регистрация</a>
+            <a class="dropdown-item" href="/Identity/Account/Login">Вход</a>
+        }
+    </div>
+</div>
+
+
+
+@*<ul class="navbar-nav mt-3 m-sm-0">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                <a class="btn btn-dark text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="btn btn-dark text-white">Выход</button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="btn btn-dark text-white" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-dark text-white" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+            </li>
+        }
+    </ul>*@
