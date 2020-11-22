@@ -1,0 +1,11 @@
+﻿<div class="mb-3">
+    @foreach (var post in posts)
+    {
+        <razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post post="post"></razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public List<post> posts { get; set; }
+}

@@ -1,6 +1,7 @@
 ﻿@page "/cpanel/posts"
-@model razorHramBabynino.Areas.ControlPanel.Pages.Posts.PostsModel
+@attribute [Authorize(Roles = "администратор, редактор")]
 @{
+    ViewBag.Title = "Список публикаций";
 }
 
-<div class="alert alert-success">Это страница публикаций</div>
+<component type="typeof(Posts)" render-mode="ServerPrerendered" />

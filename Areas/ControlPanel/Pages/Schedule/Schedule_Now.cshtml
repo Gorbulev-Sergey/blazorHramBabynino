@@ -1,0 +1,9 @@
+﻿@page "/cpanel/schedule"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@using System.Globalization
+@{
+    ViewBag.Title = $"Расписание богослужений на {CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower()} {DateTime.Now.Year} года";
+}
+
+
+<component type="typeof(razorHramBabynino.Pages.Schedule.Schedule.Schedule)" render-mode="ServerPrerendered" param-date="DateTime.Now" />

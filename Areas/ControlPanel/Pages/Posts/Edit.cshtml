@@ -1,0 +1,12 @@
+﻿@page "/cpanel/posts/edit/{ID}"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@{
+    ViewBag.Title = "Редактировать публикацию";
+}
+
+<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Posts.Posts.Edit)" render-mode="ServerPrerendered" param-ID="ID" />
+
+@functions{
+    [BindProperty(SupportsGet = true)]
+    public int ID { get; set; }
+}

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using razorHramBabynino.Models
+@inject SignInManager<user> SignInManager
+@inject UserManager<user> UserManager
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8" />
@@ -25,54 +30,34 @@
             </div>
             <nav id="c_me" class="navbar-collapse collapse flex-column align-items-stretch bg-dark text-white rounded w-100 mt-3 mb-2">
                 @*Главная*@
-                <a class="btn btn-dark btn-block text-left m-0" href="/"><i class="fas fa-home pr-2 ico"></i>Главная</a>
-                @*Пользователи*@
-                <a class="btn btn-dark btn-block text-left m-0" href="/users"><i class="fas fa-users pr-2 ico"></i>Пользователи</a>
+                @*<a class="btn btn-dark btn-block text-left m-0" href="/"><i class="fas fa-home pr-2 ico"></i>Главная</a>*@
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("ceckbr"))
+                {
+                    @*Пользователи*@
+                    <a class="btn btn-dark btn-block text-left m-0" href="/cpanel/users"><i class="fas fa-users pr-2 ico"></i>Пользователи</a>
+
+                }
                 @*Публикации*@
                 <div class="btn-group btn-block rounded p-0 m-0">
-                    <a class="btn btn-dark btn-block text-left m-0" href="/posts"><i class="fas fa-newspaper pr-2 ico"></i>Публикации</a>
-                    <a class="btn btn-dark" href="/posts/create"><i class="fas fa-plus"></i></a>
+                    <a class="btn btn-dark btn-block text-left m-0" href="/cpanel/posts"><i class="fas fa-newspaper pr-2 ico"></i>Публикации</a>
+                    <a class="btn btn-dark" href="/cpanel/posts/create" title="Создать новую публикацию"><i class="fas fa-plus"></i></a>
                 </div>
                 @*Комментарии*@
-                <a class="btn btn-dark btn-block text-left m-0" href="/comments"><i class="far fa-comments pr-2 ico"></i>Комментарии</a>
+                @*<a class="btn btn-dark btn-block text-left m-0" href="/comments"><i class="far fa-comments pr-2 ico"></i>Комментарии</a>*@
                 @*Лайки*@
-                <a class="btn btn-dark btn-block text-left m-0" href="/likes"><i class="fas fa-heart pr-2 ico"></i>Лайки</a>
+                @*<a class="btn btn-dark btn-block text-left m-0" href="/likes"><i class="fas fa-heart pr-2 ico"></i>Лайки</a>*@
                 @*Теги*@
-                <a class="btn btn-dark btn-block text-left m-0" href="/tags"><i class="fas fa-tags pr-2"></i>Теги</a>
+                <a class="btn btn-dark btn-block text-left m-0" href="/cpanel/tags"><i class="fas fa-tags pr-2"></i>Теги</a>
                 @*Фотографии*@
                 <div class="btn-group btn-block rounded p-0 m-0">
-                    <a class="btn btn-dark btn-block text-left m-0" href="/photos"><i class="fas fa-images pr-2 ico"></i>Фотографии</a>
-                    <a class="btn btn-dark" href="/photos/create"><i class="fas fa-plus"></i></a>
+                    <a class="btn btn-dark btn-block text-left m-0" href="/cpanel/photos"><i class="fas fa-images pr-2 ico"></i>Фотографии</a>
+                    <a class="btn btn-dark" href="/cpanel/photos/create" title="Создать новый фотоальбом"><i class="fas fa-plus"></i></a>
                 </div>
                 @*Расписание*@
                 <div class="btn-group btn-block rounded p-0 m-0">
-                    <a class="btn btn-dark btn-block text-left m-0" href="/schedule"><i class="fas fa-calendar-alt pr-2 ico"></i>Расписание</a>
-                    <a class="btn btn-dark" href="/schedule/create"><i class="fas fa-plus"></i></a>
+                    <a class="btn btn-dark btn-block text-left m-0" href="/cpanel/schedule"><i class="fas fa-calendar-alt pr-2 ico"></i>Расписание</a>
+                    <a class="btn btn-dark" href="/cpanel/schedule/create" title="Добавить расписание"><i class="fas fa-plus"></i></a>
                 </div>
-
-                <div hidden class="rounded">
-                    @*Публикации*@
-                    <div class="btn-group btn-block rounded">
-                        <a class="btn btn-dark btn-block text-left m-0" href="/posts"><i class="fas fa-newspaper pr-2 ico"></i>Публикации</a>
-                        <button class="btn btn-dark" data-toggle="collapse" data-target="#c1"><span class="fas fa-chevron-down"></span></button>
-                    </div>
-                    <div class="collapse rounded" id="c1">
-                        <a class="btn btn-dark btn-block text-left m-0 pl-4" href="/posts">Все публикации</a>
-                        <a class="btn btn-dark btn-block text-left m-0 pl-4" asp-area="Control" asp-controller="posts" asp-action="Create">Создать</a>
-                    </div>
-                </div>
-                <div hidden class="rounded">
-                    @*Фотоальбомы*@
-                    <div class="btn-group btn-block rounded">
-                        <a class="btn btn-dark btn-block text-left" asp-area="Control" asp-controller="imageAlbums" asp-action="Index"><i class="fas fa-images pr-2 ico"></i>Фотоальбомы</a>
-                        <button class="btn btn-dark" data-toggle="collapse" data-target="#c2"><i class="fas fa-chevron-down"></i></button>
-                    </div>
-                    <div class="collapse rounded" id="c2">
-                        <a class="btn btn-dark btn-block text-left m-0 pl-4" asp-area="Control" asp-controller="imageAlbums" asp-action="Index">Все фотоальбомы</a>
-                        <a class="btn btn-dark btn-block text-left m-0 pl-4" asp-area="Control" asp-controller="imageAlbums" asp-action="Create">Создать</a>
-                    </div>
-                </div>
-
             </nav>
         </div>
         <div class="my_header pl-4 pr-2 pt-1 pb-1 pt-md-2 pb-md-2 bg-secondary text-white d-flex justify-content-between align-items-center">
@@ -90,49 +75,6 @@
         </div>
     </div>
 
-
-
-
-
-    @*<header class="position-fixed vw-100" style="z-index:100000; top:0;">
-        <nav class="navbar navbar-expand-sm navbar-dark navbar-toggleable-sm bg-dark box-shadow mb-3 shadow  d-flex flex-column">
-            <div class="container">
-                <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <a class="navbar-brand ml-lg-n2 font-weight-bold" style="margin-top:-1px;" href="/"><span class="text-primary">ХРАМ</span> ВОЗНЕСЕНИЯ <span class="скрыть">ГОСПОДНЯ</span></a>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1 mt-2 m-sm-0 text-white">
-                        <li class="nav-item">
-                            <a class="btn btn-dark mr-1" href="/">Новости</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-dark mr-1" href="/schedule">Расписание</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-dark mr-1" href="/photos">Фотографии</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-dark mr-1" href="/contacts">Контакты</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <div class="container mb-3" style="margin-top:80px">
-        <main role="main">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="footer bg-dark text-muted">
-        <div class="container text-center p-3">
-            <a class="text-light text-muted" target="_blank" href="https://yandex.ru/maps/-/CCUA6Paa~B">ПОС. БАБЫНИНО КАЛУЖСКОЙ ОБЛ.</a><br />
-            <span>Спасибо компании <a target="_blank" href="https://somee.com/">somee.com</a> за предоставленное место для сайта.</span>
-        </div>
-    </footer>*@
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
@@ -145,6 +87,7 @@
     <script src="_framework/blazor.server.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/my_js/modal_album.js"></script>
+    <script src="~/my_js/editor.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

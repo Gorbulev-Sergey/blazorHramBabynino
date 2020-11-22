@@ -1,0 +1,7 @@
+﻿@page "/cpanel/schedule/create"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@{
+    ViewBag.Title = "Добавить расписание";
+}
+
+<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Schedule.Schedule.Create)" render-mode="ServerPrerendered" />

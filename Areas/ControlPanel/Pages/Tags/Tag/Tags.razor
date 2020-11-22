@@ -1,0 +1,10 @@
+﻿@inject ITagsService TagsService  
+
+<TagsSearcher inserted="true" удалить="удалить"></TagsSearcher>
+
+@code {
+    void удалить(tag tag)
+    {
+        TagsService.remove(tag);
+    }
+}

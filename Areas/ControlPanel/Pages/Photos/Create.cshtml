@@ -1,0 +1,7 @@
+﻿@page "/cpanel/photos/create"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@{
+    ViewBag.Title = "Создать фотоальбом";
+}
+
+<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photos.Create)" render-mode="ServerPrerendered" />

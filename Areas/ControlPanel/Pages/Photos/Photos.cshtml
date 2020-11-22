@@ -1,0 +1,7 @@
+﻿@page "/cpanel/photos"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@{
+    ViewBag.Title = "Фотографии";
+}
+
+<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photos.Photos)" render-mode="ServerPrerendered"/>
