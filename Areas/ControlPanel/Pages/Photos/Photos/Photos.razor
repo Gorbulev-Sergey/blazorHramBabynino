@@ -45,7 +45,7 @@
 
     void изменить(imageAlbum album)
     {
-        NavigationManager.NavigateTo($"/cpanel/photos/edit/{album.ID}");
+        NavigationManager.NavigateTo($"/cpanel/photos/edit/{album.ID}", true);
     }
 
     async Task запрос_на_удаление(imageAlbum album)

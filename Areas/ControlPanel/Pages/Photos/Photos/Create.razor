@@ -79,6 +79,6 @@
     async Task сохранить()
     {
         await PhotosService.create(album);
-        NavigationManager.NavigateTo("/cpanel/photos");
+        NavigationManager.NavigateTo("/cpanel/photos", true);
     }
 }

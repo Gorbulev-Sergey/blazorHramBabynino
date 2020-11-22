@@ -2,7 +2,7 @@
 @attribute [Authorize(Roles = "администратор, редактор")]
 @using System.Globalization
 @{
-    ViewBag.Title = $"Расписание богослужений на {CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower()} {DateTime.Now.Year} года";
+    ViewBag.Title = $"Расписание на {CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower()} {DateTime.Now.Year} года";
 }
 
 
