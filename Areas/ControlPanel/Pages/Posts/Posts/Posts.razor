@@ -1,136 +1,67 @@
 ﻿@inject IPostsService PostsService
+@using razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post
 
-<div class="mb-3">
+<SortedTabs filterChanged="filter => фильтровать((Filter)filter)"></SortedTabs>
 
-    <select class="btn btn-light" @bind="видимость" title="Опубликована/Неопубликована">
-        @foreach (var t in type.GetNames(typeof(фильтр_видимость)).ToList())
-        {
-            <option class="bg-light" value="@t">@t</option>
-        }
-    </select>
+@foreach (var post in filtredPosts)
+{
+    <razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post post="post" удалить="удалить" обновить="обновить"></razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post>
+}
 
-    <select class="btn btn-light" @bind="тип" title="Тип публикации">
-        @foreach (var t in type.GetNames(typeof(фильтр_тип)).ToList())
-        {
-            <option class="bg-light" value="@t">@t</option>
-        }
-    </select>
+@code {
+    List<post> posts { get; set; } = new List<post>();
+    List<post> filtredPosts { get; set; } = new List<post>();
 
-    <select class="btn btn-light" @bind="дата" title="Порядок сортировки">
-        @foreach (var t in type.GetNames(typeof(фильтр_дата)).ToList())
-        {
-            <option class="bg-light" value="@t.Replace("_"," ")">@t.Replace("_", " ")</option>
-        }
-    </select>
+    Filter Filter = new Filter();
 
-</div>
-
-<razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Список_постов posts="filtred_posts"></razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Список_постов>
-
-
-@code{
-    List<post> posts = new List<post>();
-    List<post> filtred_posts = new List<post>();
-
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         posts = PostsService.posts();
-        фильтровать(_видимость, _тип, _дата);
+        filtredPosts = posts;
     }
 
-    enum фильтр_видимость { все, опубликованные, неопубликованные }
-    enum фильтр_тип { все, объявления, новости, статьи, видео }
-    enum фильтр_дата { сначала_новые, сначала_старые }
-
-    string _видимость = "все";
-    string _тип = "все";
-    string _дата = "сначала новые";
-
-    string видимость
+    void удалить(post post)
     {
-        get
-        {
-            return _видимость;
-        }
-        set
-        {
-            _видимость = value;
-            фильтровать(_видимость, _тип, _дата);
-        }
-    }
-    string тип
-    {
-        get
-        {
-            return _тип;
-        }
-        set
-        {
-            _тип = value;
-            фильтровать(_видимость, _тип, _дата);
-        }
-    }
-    string дата
-    {
-        get
-        {
-            return _дата;
-        }
-        set
-        {
-            _дата = value;
-            фильтровать(_видимость, _тип, _дата);
-        }
+        filtredPosts.Remove(post);
     }
 
-    void фильтровать(string видимость, string тип, string дата)
+    void обновить()
     {
-        if (видимость != "все")
+        фильтровать(Filter);
+    }
+
+    void фильтровать(Filter filter)
+    {
+        Filter = filter;
+        filtredPosts = posts;
+
+        //Первый фильтр
+        if (Filter.filter1.ToString() != "все")
         {
-            switch (видимость)
+            switch (Filter.filter1.ToString())
             {
-                case "опубликованные":
-                    filtred_posts = posts.Where(p => p.published == true).ToList();
-                    break;
-                case "неопубликованные":
-                    filtred_posts = posts.Where(p => p.published == false).ToList();
-                    break;
+                case "опубликованы": filtredPosts = posts.Where(p => p.published == true).ToList(); break;
+                case "неопубликованы": filtredPosts = posts.Where(p => p.published == false).ToList(); break;
             }
-        }
-        else
-        {
-            filtred_posts = posts;
+
         }
 
-        if (тип != "все")
+        // Второй фильтр
+        if (Filter.filter2.ToString() != "все")
         {
-            switch (тип)
+            switch (Filter.filter2.ToString())
             {
-                case "объявления":
-                    filtred_posts = filtred_posts.Where(p => p.type == type.Объявление).ToList();
-                    break;
-                case "новости":
-                    filtred_posts = filtred_posts.Where(p => p.type == type.Новость).ToList();
-                    break;
-                case "статьи":
-                    filtred_posts = filtred_posts.Where(p => p.type == type.Статья).ToList();
-                    break;
-                case "видео":
-                    filtred_posts = filtred_posts.Where(p => p.type == type.Видео).ToList();
-                    break;
+                case "объявление": filtredPosts = filtredPosts.Where(p => p.type == type.объявление).ToList(); break;
+                case "новость": filtredPosts = filtredPosts.Where(p => p.type == type.новость).ToList(); break;
+                case "статья": filtredPosts = filtredPosts.Where(p => p.type == type.статья).ToList(); break;
+                case "видео": filtredPosts = filtredPosts.Where(p => p.type == type.видео).ToList(); break;
             }
         }
 
-        if (дата == "сначала новые")
+        // Третий фильр
+        if (Filter.filter3.ToString() == "старые")
         {
-            filtred_posts = filtred_posts.OrderBy(p => p.updated).Reverse().ToList();
+            filtredPosts = filtredPosts.OrderBy(p => p.created.ToShortDateString()).Reverse().ToList();
         }
-        else
-        {
-            filtred_posts = filtred_posts.OrderBy(p => p.updated).ToList();
-        }
-
-
-        PostsService.Изменить_фильтр();
     }
 }

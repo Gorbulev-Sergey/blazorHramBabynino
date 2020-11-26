@@ -9,13 +9,13 @@ namespace razorHramBabynino.Models
     public enum type
     {
         [Display(Name = "Объявление")]
-        Объявление,
+        объявление,
         [Display(Name = "Новость")]
-        Новость,
+        новость,
         [Display(Name = "Cтатья")]
-        Статья,
+        статья,
         [Display(Name = "Видео")]
-        Видео
+        видео
         
     }
 }

@@ -1,0 +1,136 @@
+﻿@inject IPostsService PostsService
+
+<div class="mb-3">
+
+    <select class="btn btn-light" @bind="видимость" title="Опубликована/Неопубликована">
+        @foreach (var t in type.GetNames(typeof(фильтр_видимость)).ToList())
+        {
+            <option class="bg-light" value="@t">@t</option>
+        }
+    </select>
+
+    <select class="btn btn-light" @bind="тип" title="Тип публикации">
+        @foreach (var t in type.GetNames(typeof(фильтр_тип)).ToList())
+        {
+            <option class="bg-light" value="@t">@t</option>
+        }
+    </select>
+
+    <select class="btn btn-light" @bind="дата" title="Порядок сортировки">
+        @foreach (var t in type.GetNames(typeof(фильтр_дата)).ToList())
+        {
+            <option class="bg-light" value="@t.Replace("_"," ")">@t.Replace("_", " ")</option>
+        }
+    </select>
+
+</div>
+
+<razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Список_постов posts="filtred_posts"></razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Список_постов>
+
+
+@code{
+    List<post> posts = new List<post>();
+    List<post> filtred_posts = new List<post>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        posts = PostsService.posts();
+        фильтровать(_видимость, _тип, _дата);
+    }
+
+    enum фильтр_видимость { все, опубликованные, неопубликованные }
+    enum фильтр_тип { все, объявления, новости, статьи, видео }
+    enum фильтр_дата { сначала_новые, сначала_старые }
+
+    string _видимость = "все";
+    string _тип = "все";
+    string _дата = "сначала новые";
+
+    string видимость
+    {
+        get
+        {
+            return _видимость;
+        }
+        set
+        {
+            _видимость = value;
+            фильтровать(_видимость, _тип, _дата);
+        }
+    }
+    string тип
+    {
+        get
+        {
+            return _тип;
+        }
+        set
+        {
+            _тип = value;
+            фильтровать(_видимость, _тип, _дата);
+        }
+    }
+    string дата
+    {
+        get
+        {
+            return _дата;
+        }
+        set
+        {
+            _дата = value;
+            фильтровать(_видимость, _тип, _дата);
+        }
+    }
+
+    void фильтровать(string видимость, string тип, string дата)
+    {
+        if (видимость != "все")
+        {
+            switch (видимость)
+            {
+                case "опубликованные":
+                    filtred_posts = posts.Where(p => p.published == true).ToList();
+                    break;
+                case "неопубликованные":
+                    filtred_posts = posts.Where(p => p.published == false).ToList();
+                    break;
+            }
+        }
+        else
+        {
+            filtred_posts = posts;
+        }
+
+        if (тип != "все")
+        {
+            switch (тип)
+            {
+                case "объявления":
+                    filtred_posts = filtred_posts.Where(p => p.type == type.объявление).ToList();
+                    break;
+                case "новости":
+                    filtred_posts = filtred_posts.Where(p => p.type == type.новость).ToList();
+                    break;
+                case "статьи":
+                    filtred_posts = filtred_posts.Where(p => p.type == type.статья).ToList();
+                    break;
+                case "видео":
+                    filtred_posts = filtred_posts.Where(p => p.type == type.видео).ToList();
+                    break;
+            }
+        }
+
+        if (дата == "сначала новые")
+        {
+            filtred_posts = filtred_posts.OrderBy(p => p.updated).Reverse().ToList();
+        }
+        else
+        {
+            filtred_posts = filtred_posts.OrderBy(p => p.updated).ToList();
+        }
+
+
+        PostsService.Изменить_фильтр();
+    }
+}
