@@ -33,7 +33,18 @@
     <div class="m-3 d-flex flex-column justify-content-center">
         <a class="btn btn-sm btn-outline-light mb-1" href="/cpanel/posts/details/@post.ID"><i class="fas fa-eye"></i></a>
         <a class="btn btn-sm btn-outline-light mb-1" title="Изменить" href="/cpanel/posts/edit/@post.ID"><i class="fas fa-pencil-alt"></i></a>
-        <button class="btn btn-sm btn-danger" @onclick="() => удалить.InvokeAsync(post)"><i class="fas fa-trash"></i></button>
+        <div class="btn-group dropleft">
+            <button class="btn btn-sm btn-danger rounded" data-toggle="dropdown"><i class="fas fa-trash"></i></button>
+            <div class="dropdown-menu">
+                <div class="ml-2 mr-2">
+                    <h6 class="text-danger text-center">Удалить эту публикацию?</h6>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-sm btn-danger mr-1" @onclick="() => удалить.InvokeAsync(post)">Удалить</button>
+                        <button class="btn btn-sm btn-outline-dark">Отмена</button>
+                    </div>                    
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
