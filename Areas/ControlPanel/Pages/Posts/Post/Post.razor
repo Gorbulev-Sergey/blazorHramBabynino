@@ -31,7 +31,7 @@
     }
 
     <div class="m-3 d-flex flex-column justify-content-center">
-        <a class="btn btn-sm btn-outline-light mb-1"><i class="fas fa-eye"></i></a>
+        <a class="btn btn-sm btn-outline-light mb-1" href="/cpanel/posts/details/@post.ID"><i class="fas fa-eye"></i></a>
         <a class="btn btn-sm btn-outline-light mb-1" title="Изменить" href="/cpanel/posts/edit/@post.ID"><i class="fas fa-pencil-alt"></i></a>
         <button class="btn btn-sm btn-danger" @onclick="() => удалить.InvokeAsync(post)"><i class="fas fa-trash"></i></button>
     </div>

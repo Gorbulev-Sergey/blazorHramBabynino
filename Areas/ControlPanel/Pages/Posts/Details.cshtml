@@ -1,0 +1,12 @@
+﻿@page "/cpanel/posts/details/{ID}"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@{
+    ViewBag.Title = "Подробнее";
+}
+
+<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Posts.Posts.Details)" render-mode="ServerPrerendered" param-id="ID" />
+
+@functions{ 
+    [BindProperty(SupportsGet =true)]
+    public int ID { get; set; }
+}

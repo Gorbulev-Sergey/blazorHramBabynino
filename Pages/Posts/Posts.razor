@@ -1,7 +1,7 @@
 ﻿@page "/"
 @page "/posts"
 
-@inject IPostsService PostsService
+@inject ICRUD<post> PostsService
 @inject ITagsService TagsService
 @inject IPostTagsService PostTagsService
 
@@ -76,7 +76,7 @@
 
     protected override void OnInitialized()
     {
-        posts = PostsService.posts();
+        posts = PostsService.get();
         tags = TagsService.tags();
         posttags = PostTagsService.posttags();
     }

@@ -1,4 +1,4 @@
-﻿@inject IPostsService PostsService
+﻿@inject ICRUD<post> PostsService
 @inject ITagsService TagsService 
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
@@ -104,13 +104,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        post = await PostsService.post(ID);
+        post = await PostsService.itemByIdAsync(ID);
     }
 
     async Task сохранить()
     {      
         post.content = await JSRuntime.InvokeAsync<string>("editor_html", "#editor");
-        await PostsService.update(post);
+        await PostsService.updateAsync(post);
         NavigationManager.NavigateTo("/cpanel/posts", true);
     }
 

@@ -1,5 +1,5 @@
 ﻿@page "/posts/details/{id:int}"
-@inject razorHramBabynino.Services.IPostsService PostsService
+@inject ICRUD<post> PostsService
 @inject NavigationManager NavigationManager
 
 <div class="card text-white bg-dark">
@@ -49,7 +49,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        post = await PostsService.post(id);
+        post = await PostsService.itemByIdAsync(id);
     }
 
     void назад()

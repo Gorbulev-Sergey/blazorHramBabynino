@@ -1,5 +1,5 @@
 ﻿@page "/cpanel/posts/create"
-@inject IPostsService PostsService
+@inject ICRUD<post> PostsService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 
@@ -101,7 +101,7 @@
     async Task сохранить()
     {
         post.content = await JSRuntime.InvokeAsync<string>("editor_html", "#editor");
-        PostsService.create(post);
+        PostsService.add(post);
         NavigationManager.NavigateTo("/cpanel/posts",true);
     }
 }

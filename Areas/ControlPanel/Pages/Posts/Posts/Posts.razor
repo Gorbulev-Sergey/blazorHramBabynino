@@ -1,4 +1,4 @@
-﻿@inject IPostsService PostsService
+﻿@inject ICRUD<post> PostsService
 @using razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post
 
 <SortedTabs filterChanged="filter => фильтровать((Filter)filter)"></SortedTabs>
@@ -16,12 +16,13 @@
 
     protected override void OnInitialized()
     {
-        posts = PostsService.posts();
+        posts = PostsService.get();
         filtredPosts = posts;
     }
 
     void удалить(post post)
     {
+        PostsService.delete(post);
         filtredPosts.Remove(post);
     }
 

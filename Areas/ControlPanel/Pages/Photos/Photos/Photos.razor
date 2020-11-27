@@ -1,4 +1,4 @@
-﻿@inject IPhotosService PhotosService
+﻿@inject ICRUD<imageAlbum> PhotosService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 
@@ -26,7 +26,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        albums = await PhotosService.imageAlbums();
+        albums = await PhotosService.getAsync();
     }
 
     async Task показать(imageAlbum album)
@@ -56,7 +56,7 @@
 
     async Task удалить(imageAlbum album)
     {
-        await PhotosService.delete(album.ID);
+        await PhotosService.deleteAsync(album);
         albums.Remove(album);
         await JSRuntime.InvokeAsync<string>("Hide_Ask_remove_album", "modal_remove_album");
     }

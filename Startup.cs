@@ -54,13 +54,13 @@ namespace razorHramBabynino
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddTransient<IPostsService, PostsServices>();
+            services.AddTransient<ICRUD<post>, PostsService>();
             services.AddTransient<ITagsService, TagsService>();
             services.AddTransient<IPostTagsService, PostTagsService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<ILikesService, LikesService>();
             services.AddTransient<ISchedulesService, ScheduleService>();
-            services.AddTransient<IPhotosService, PhotosService>();
+            services.AddTransient<ICRUD<imageAlbum>, PhotosService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-﻿@inject IPhotosService PhotosService
+﻿@inject ICRUD<imageAlbum> PhotosService
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
@@ -78,7 +78,7 @@
 
     async Task сохранить()
     {
-        await PhotosService.create(album);
+        await PhotosService.addAsync(album);
         NavigationManager.NavigateTo("/cpanel/photos", true);
     }
 }

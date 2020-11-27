@@ -1,0 +1,46 @@
+﻿@inject ICRUD<post> PostsService
+@inject NavigationManager NavigationManager
+
+<div class="card text-white bg-dark">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <a class="btn btn-dark" href="/cpanel/posts" title="Вернуться назад"><i class="fas fa-chevron-left"></i></a>
+            <h4 class="card-title ml-2 mb-0">@post.title</h4>
+        </div>
+
+        <div class="small text-muted">@post.created.ToString("MM.dd.yyyy")</div>
+    </div>
+    <div class="card-body">
+        @if (String.IsNullOrEmpty(post.content))
+        {
+            @((MarkupString)post.description)
+        }
+        else
+        {
+            @((MarkupString)post.content)
+        }
+    </div>
+    @if (String.IsNullOrEmpty(post.content) && !String.IsNullOrEmpty(post.cover_image))
+    {
+        <img src="@post.cover_image" class="img-fluid">
+    }
+    <div class="card-footer d-flex align-items-center justify-content-between">
+        <a class="btn btn-dark" href="/cpanel/posts" title="Вернуться назад"><i class="fas fa-chevron-left mr-2"></i>Назад</a>        
+    </div>
+</div>
+
+
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    post post = new post();
+
+    protected override async Task OnInitializedAsync()
+    {
+        post = await PostsService.itemByIdAsync(id);
+    }
+}
+
+

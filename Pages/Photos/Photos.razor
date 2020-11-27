@@ -1,5 +1,5 @@
 ﻿@page "/photos"
-@inject IPhotosService PhotosService
+@inject ICRUD<imageAlbum> PhotosService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 
@@ -26,7 +26,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        albums = await PhotosService.imageAlbums();
+        albums = await PhotosService.getAsync();
     }
 
     async Task показать(imageAlbum album)
