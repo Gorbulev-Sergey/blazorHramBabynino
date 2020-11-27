@@ -76,7 +76,7 @@
 
     protected override void OnInitialized()
     {
-        posts = PostsService.get();
+        posts = PostsService.get().OrderBy(p=>p.created).Where(p=>p.published=true).Reverse().ToList();
         tags = TagsService.tags();
         posttags = PostTagsService.posttags();
     }

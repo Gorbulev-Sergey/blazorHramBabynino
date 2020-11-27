@@ -45,7 +45,7 @@
     public EventCallback<post> удалить { get; set; }
 
     [Parameter]
-    public EventCallback обновить { get; set; }
+    public EventCallback<post> обновить { get; set; }
 
     string type
     {
@@ -53,7 +53,7 @@
         set
         {
             post.type = (type) Enum.Parse(typeof(type), value);
-            обновить.InvokeAsync("");
+            обновить.InvokeAsync(post);
         }
     }
 
@@ -63,7 +63,7 @@
         set
         {
             post.published = Boolean.Parse(value);
-            обновить.InvokeAsync("");
+            обновить.InvokeAsync(post);
         }
     }
 }
