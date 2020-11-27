@@ -3,13 +3,24 @@
 @inject IJSRuntime JSRuntime
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
-    @foreach (var album in albums.OrderByDescending(d => d.updated).Reverse())
+    @foreach (var album in albums)
     {
         <razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Album album="album">
             <Navigation>
                 <button class="btn btn-light mr-1" @onclick="()=>показать(album)"><i class="far fa-eye"></i></button>
                 <button class="btn btn-light mr-1" @onclick="()=>изменить(album)"><i class="fas fa-pencil-alt"></i></button>
-                <button class="btn btn-light" @onclick="()=>запрос_на_удаление(album)"><i class="fas text-danger fa-trash-alt"></i></button>
+                <div class="btn-group dropright">
+                    <button class="btn btn-light rounded" data-toggle="dropdown"><i class="fas text-danger fa-trash-alt"></i></button>
+                    <div class="dropdown-menu">
+                        <div class="ml-2 mr-2">
+                            <h6 class="text-danger text-center">Удалить этот фотоальбом?</h6>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-sm btn-danger mr-1" @onclick="()=>удалить(album)">Удалить</button>
+                                <button class="btn btn-sm btn-outline-dark">Отмена</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </Navigation>
         </razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Album>
     }
@@ -26,7 +37,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        albums = await PhotosService.getAsync();
+        albums = PhotosService.get().OrderBy(a=>a.updated).Reverse().ToList();
     }
 
     async Task показать(imageAlbum album)
@@ -48,16 +59,9 @@
         NavigationManager.NavigateTo($"/cpanel/photos/edit/{album.ID}", true);
     }
 
-    async Task запрос_на_удаление(imageAlbum album)
-    {
-        selectedAlbum = album;
-        await JSRuntime.InvokeAsync<string>("Show_Ask_remove_album", "modal_remove_album");
-    }
-
     async Task удалить(imageAlbum album)
     {
         await PhotosService.deleteAsync(album);
         albums.Remove(album);
-        await JSRuntime.InvokeAsync<string>("Hide_Ask_remove_album", "modal_remove_album");
     }
 }
