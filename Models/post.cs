@@ -12,7 +12,7 @@ namespace razorHramBabynino.Models
     public class post
     {
         public int ID { get; set; }
-        [Required(ErrorMessage ="Добавьте, пожалуйста, название публикации"), Display(Name ="Название")]
+        [Required(ErrorMessage = "Добавьте, пожалуйста, название публикации"), Display(Name = "Название")]
         public string title { get; set; }
         [Display(Name = "Url обложки"), DataType(DataType.ImageUrl)]
         public string cover_image { get; set; }
@@ -31,8 +31,7 @@ namespace razorHramBabynino.Models
         [Display(Name = "Дата обновления"), DataType(DataType.Date)]
         public DateTime updated { get; set; } = DateTime.Now;
         [Display(Name = "Теги")]
-        //public virtual List<tag> tags { get; set; } = new List<tag>();
-        public List<posttag> posttags { get; set; } = new List<posttag>();
+        public List<tag> tags { get; set; } = new List<tag>();
         [Display(Name = "Комментарии")]
         public virtual IList<comment> comments { get; set; } = new List<comment>();
         [Display(Name = "Нравится")]

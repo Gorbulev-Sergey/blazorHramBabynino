@@ -21,9 +21,12 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
+                var newTags = item.tags;
+                item.tags = null;
                 context.posts.Add(item);
-                //await context.SaveChangesAsync();
-                //context.posts.Include(t => t.tags).FirstOrDefault(p => p.Equals(post)).tags.AddRange(tags);
+                context.SaveChanges();
+
+                context.posts.Include(p => p.tags).FirstOrDefault(p => p.Equals(item)).tags.AddRange(newTags);
                 context.SaveChanges();
             }
         }
@@ -32,9 +35,12 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                await context.posts.AddAsync(item);
-                //await context.SaveChangesAsync();
-                //context.posts.Include(t => t.tags).FirstOrDefault(p => p.Equals(post)).tags.AddRange(tags);
+                var newTags = item.tags;
+                item.tags = null;
+                context.posts.Add(item);
+                await context.SaveChangesAsync();
+
+                context.posts.Include(p => p.tags).FirstOrDefault(p => p.Equals(item)).tags.AddRange(newTags);
                 await context.SaveChangesAsync();
             }
         }
@@ -61,7 +67,7 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                var posts = context.posts.Include(pt => pt.posttags).Include(p => p.comments).Include(p => p.likes).ToList();
+                var posts = context.posts.Include(p => p.tags).Include(p => p.comments).Include(p => p.likes).ToList();
                 return posts.OrderBy(p => p.created).ToList();
             }
         }
@@ -70,7 +76,7 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                var posts = await context.posts.Include(pt => pt.posttags).Include(p => p.comments).Include(p => p.likes).ToListAsync();
+                var posts = await context.posts.Include(p => p.tags).Include(p => p.comments).Include(p => p.likes).ToListAsync();
                 return posts.OrderBy(p => p.created).ToList();
             }
         }
@@ -79,7 +85,7 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                return context.posts.Include(pt => pt.posttags).Include(p => p.comments).Include(p => p.likes).FirstOrDefault(p => p.ID == id);
+                return context.posts.Include(p => p.tags).Include(p => p.comments).Include(p => p.likes).FirstOrDefault(p => p.ID == id);
             }
         }
 
@@ -87,7 +93,7 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                return await context.posts.Include(pt => pt.posttags).Include(p => p.comments).Include(p => p.likes).FirstOrDefaultAsync(p => p.ID == id);
+                return await context.posts.Include(p => p.tags).Include(p => p.comments).Include(p => p.likes).FirstOrDefaultAsync(p => p.ID == id);
             }
         }
 
@@ -96,68 +102,66 @@ namespace razorHramBabynino.Services
             // Обновляем всё, кроме тегов
             using (var context = new ApplicationDbContext(options))
             {
-                //var tags = post.tags;
-                //post.tags = null;
+                var tags = item.tags;
+                item.tags = null;
                 context.Update(item);
                 context.SaveChanges();
 
-                //post.tags = tags;
+                item.tags = tags;
             }
 
             // Обновляем теги
             using (var context = new ApplicationDbContext(options))
             {
-                //post postDB = context.posts.Include(t => t.tags).FirstOrDefault(p => p.ID == post.ID);
+                post postDB = context.posts.Include(t => t.tags).FirstOrDefault(p => p.ID == item.ID);
 
-                //// Работаем с тегами
-                //List<tag> новыеТеги = post.tags;
-                //List<tag> старыеТеги = postDB.tags;
-                //List<tag> наДобавление = новыеТеги.Where(t => t.posts.Count == 0).ToList();
-                //List<tag> наУдаление = старыеТеги.Where(x => новыеТеги.All(a => a.ID != x.ID)).ToList();
+                // Работаем с тегами
+                List<tag> новыеТеги = item.tags;
+                List<tag> старыеТеги = postDB.tags;
+                List<tag> наДобавление = новыеТеги.Where(t => t.posts.Count == 0).ToList();
+                List<tag> наУдаление = старыеТеги.Where(x => новыеТеги.All(a => a.ID != x.ID)).ToList();
 
-                //postDB.tags.AddRange(наДобавление);
-                //foreach (var t in наУдаление)
-                //{
-                //    postDB.tags.Remove(t);
-                //}
+                postDB.tags.AddRange(наДобавление);
+                foreach (var t in наУдаление)
+                {
+                    postDB.tags.Remove(t);
+                }
 
-                //await context.SaveChangesAsync();
+                context.SaveChanges();
             }
         }
 
         public async Task updateAsync(post item)
         {
-
-
             // Обновляем всё, кроме тегов
             using (var context = new ApplicationDbContext(options))
             {
-                //var tags = post.tags;
-                //post.tags = null;
+                var tags = item.tags;
+                item.tags = null;
                 context.Update(item);
                 await context.SaveChangesAsync();
 
-                //post.tags = tags;
+                item.tags = tags;
             }
 
             // Обновляем теги
             using (var context = new ApplicationDbContext(options))
             {
-                //post postDB = context.posts.Include(t => t.tags).FirstOrDefault(p => p.ID == post.ID);
+                post postDB = context.posts.Include(t => t.tags).FirstOrDefault(p => p.ID == item.ID);
 
-                //// Работаем с тегами
-                //List<tag> новыеТеги = post.tags;
-                //List<tag> старыеТеги = postDB.tags;
-                //List<tag> наДобавление = новыеТеги.Where(t => t.posts.Count == 0).ToList();
-                //List<tag> наУдаление = старыеТеги.Where(x => новыеТеги.All(a => a.ID != x.ID)).ToList();
+                // Работаем с тегами
+                List<tag> новыеТеги = item.tags;
+                List<tag> старыеТеги = postDB.tags;
+                List<tag> наДобавление = новыеТеги.Where(t => t.posts.Count == 0).ToList();
+                List<tag> наУдаление = старыеТеги.Where(x => новыеТеги.All(a => a.ID != x.ID)).ToList();
 
-                //postDB.tags.AddRange(наДобавление);
-                //foreach (var t in наУдаление)
-                //{
-                //    postDB.tags.Remove(t);
-                //}
+                postDB.tags.AddRange(наДобавление);
+                foreach (var t in наУдаление)
+                {
+                    postDB.tags.Remove(t);
+                }
 
-                //await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
         }
     }

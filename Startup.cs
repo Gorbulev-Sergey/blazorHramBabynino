@@ -56,7 +56,6 @@ namespace razorHramBabynino
 
             services.AddTransient<ICRUD<post>, PostsService>();
             services.AddTransient<ITagsService, TagsService>();
-            services.AddTransient<IPostTagsService, PostTagsService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<ILikesService, LikesService>();
             services.AddTransient<ISchedulesService, ScheduleService>();
@@ -69,7 +68,6 @@ namespace razorHramBabynino
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {

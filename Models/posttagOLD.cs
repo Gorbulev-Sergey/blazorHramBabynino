@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Models
 {
-    [Table(name: "posttag")]
-    public class posttag
+    [Table(name: "posttagOLD")]
+    public class posttagOLD
     {
         [Key]
         public int postsID { get; set; }

@@ -1,5 +1,4 @@
-﻿@page "/cpanel/posts/create"
-@inject ICRUD<post> PostsService
+﻿@inject ICRUD<post> PostsService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 
@@ -16,71 +15,71 @@
     </ul>
     @*Кнопки сохранения и отмены*@
     <div class="form-group mb-0">
-        <a class="btn btn-secondary" href="/cpanel/posts">Отмена</a>
+        <a class="btn btn-secondary" href="/posts">Отмена</a>
         <input type="button" value="Сохранить" class="btn btn-primary" @onclick="()=>сохранить()" />
     </div>
 </div>
 
 
-    <div class="tab-content" id="nav-tabContent">
-        @*Обложка публикации*@
-        <div class="tab-pane fade show active" id="list-home">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <input @bind="post.title" class="form-control" placeholder="Название" />
+<div class="tab-content" id="nav-tabContent">
+    @*Обложка публикации*@
+    <div class="tab-pane fade show active" id="list-home">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <input @bind="post.title" class="form-control" placeholder="Название" />
+                </div>
+                <div class="form-group">
+                    <textarea @bind="post.description" rows="4" class="form-control" placeholder="Краткое описание" />
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input id="is_published" class="form-check-input bg-dark" type="checkbox" value="false" @bind="post.published">
+                        <label for="is_published" class="form-check-label">Опубликовать</label>
                     </div>
-                    <div class="form-group">
-                        <textarea @bind="post.description" rows="4" class="form-control" placeholder="Краткое описание" />
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input id="is_published" class="form-check-input bg-dark" type="checkbox" value="false" @bind="post.published">
-                            <label for="is_published" class="form-check-label">Опубликовать</label>
+                </div>
+                <div class="form-group">
+                    <razorHramBabynino.Areas.ControlPanel.Pages.Tags.Tag.TagsSearcher addedTags="post.tags"></razorHramBabynino.Areas.ControlPanel.Pages.Tags.Tag.TagsSearcher>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select class="form-control" @bind="тип_публикации" title="Тип публикации">
+                        @foreach (var t in type.GetNames(typeof(type)).ToList())
+                        {
+                            <option class="bg-light">@t</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input @bind="post.cover_image" class="form-control" placeholder="Обложка (url картинки)" />
+                    @if (!String.IsNullOrEmpty(post.cover_image))
+                    {
+                        <img class="card-img mt-3" src="@post.cover_image" />
+                    }
+                </div>
+                <div class="form-group">
+                    <input @bind="post.cover_video" class="form-control" placeholder="Обложка (url видео)" />
+                    @if (!String.IsNullOrEmpty(post.cover_video))
+                    {
+                        <div class="embed-responsive embed-responsive-16by9 mt-3">
+                            <iframe class="embed-responsive-item" src="@post.cover_video?rel=0" frameborder="0" allowfullscreen></iframe>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        @*<TagsSearcher @bind-addedTags="post.tags"></TagsSearcher>*@
-                    </div>
+                    }
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <select class="form-control" @bind="тип_публикации" title="Тип публикации">
-                            @foreach (var t in type.GetNames(typeof(type)).ToList())
-                            {
-                                <option class="bg-light">@t</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input @bind="post.cover_image" class="form-control" placeholder="Обложка (url картинки)" />
-                        @if (!String.IsNullOrEmpty(post.cover_image))
-                        {
-                            <img class="card-img mt-3" src="@post.cover_image" />
-                        }                        
-                    </div>
-                    <div class="form-group">
-                        <input @bind="post.cover_video" class="form-control" placeholder="Обложка (url видео)" />
-                        @if (!String.IsNullOrEmpty(post.cover_video))
-                        {
-                            <div class="embed-responsive embed-responsive-16by9 mt-3">
-                                <iframe class="embed-responsive-item" src="@post.cover_video?rel=0" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        }                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        @*Содержимое публикации*@
-        <div class="tab-pane fade" id="list-content">
-            <div class="form-group">
-                <Editor></Editor>
-            </div>
-            <div class="form-group">
-                <div id="editor" class="form-control h-auto" style="min-height:300px" contenteditable="true"></div>
             </div>
         </div>
     </div>
+    @*Содержимое публикации*@
+    <div class="tab-pane fade" id="list-content">
+        <div class="form-group">
+            <Editor></Editor>
+        </div>
+        <div class="form-group">
+            <div id="editor" class="form-control h-auto" style="min-height:300px" contenteditable="true"></div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -101,7 +100,7 @@
     async Task сохранить()
     {
         post.content = await JSRuntime.InvokeAsync<string>("editor_html", "#editor");
-        PostsService.add(post);
-        NavigationManager.NavigateTo("/cpanel/posts",true);
+        await PostsService.addAsync(post);
+        NavigationManager.NavigateTo("/cpanel/posts");
     }
 }

@@ -2,8 +2,6 @@
 @page "/posts"
 
 @inject ICRUD<post> PostsService
-@inject ITagsService TagsService
-@inject IPostTagsService PostTagsService
 
 <div class="mb-1">
     <ul class="nav nav-pills d-flex justify-content-between">
@@ -44,26 +42,26 @@
     </div>
     <div class="tab-pane fade" id="o_hrame">
         <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-2">
-            @foreach (var post in posttags.Where(p => p.tagsID == tags.FirstOrDefault(t => t.text == "о храме").ID))
+            @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "о храме"))))
             {
-                <Post post="post.post"></Post>
+                <Post post="post"></Post>
             }
         </div>
     </div>
     <div class="tab-pane fade" id="o_tainstvah">
         <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            @foreach (var post in posttags.Where(p => p.tagsID == tags.FirstOrDefault(t => t.text == "о таинствах").ID))
+            @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "о таинствах"))))
             {
-                <Post post="post.post"></Post>
+                <Post post="post"></Post>
             }
         </div>
     </div>
     <div class="tab-pane fade" id="dlya_klirosa">
         <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            @*@foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "для клироса"))))
-                {
-                    <Post post="post"></Post>
-                }*@
+            @*@foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "о для клироса"))))
+        {
+            <Post post="post"></Post>
+        }*@
         </div>
     </div>
 </div>
@@ -71,13 +69,9 @@
 
 @code {
     List<post> posts = new List<post>();
-    List<tag> tags = new List<tag>();
-    List<posttag> posttags = new List<posttag>();
 
     protected override void OnInitialized()
     {
-        posts = PostsService.get().OrderBy(p=>p.created).Where(p=>p.published=true).Reverse().ToList();
-        tags = TagsService.tags();
-        posttags = PostTagsService.posttags();
+        posts = PostsService.get().OrderBy(p=>p.created).Where(p=>p.published==true).Reverse().ToList();
     }
 }
