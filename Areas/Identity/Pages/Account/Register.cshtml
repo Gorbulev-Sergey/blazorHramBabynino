@@ -1,15 +1,15 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Регистрация";
 }
 
 <h1>@ViewData["Title"]</h1>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
+            <h4>Создайте новый аккаунт.</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
@@ -27,12 +27,19 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            </div>            
+            <div class="form-group">
+                <p>
+                    <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Или войдите в систему если у вас уже есть аккаунт</a>
+                </p>
+            </div>
         </form>
     </div>
-    <div class="col-md-6 col-md-offset-2">
+    <div class="col-md-4 col-md-offset-2">
         <section>
-            <h4>Use another service to register.</h4>
+            <h4>Используйте другие сервисы для регистрации.</h4>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -51,7 +58,7 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Войдите в систему используя @provider.DisplayName">@provider.DisplayName</button>
                                 }
                             </p>
                         </div>

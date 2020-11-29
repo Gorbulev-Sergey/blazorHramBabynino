@@ -23,8 +23,9 @@ namespace razorHramBabynino.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            return Redirect("/");
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)

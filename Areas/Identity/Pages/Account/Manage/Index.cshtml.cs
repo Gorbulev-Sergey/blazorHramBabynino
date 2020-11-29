@@ -23,6 +23,7 @@ namespace razorHramBabynino.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
+        [Display(Name = "Имя пользователя")]
         public string Username { get; set; }
 
         [TempData]
@@ -34,7 +35,7 @@ namespace razorHramBabynino.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Номер телефона")]
             public string PhoneNumber { get; set; }
         }
 
