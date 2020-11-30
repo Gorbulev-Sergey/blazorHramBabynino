@@ -42,6 +42,8 @@ namespace razorHramBabynino
 
                     options.ClientId = "690639073976-4iho06or9f2nhcmh7astsan11lvvdgb9.apps.googleusercontent.com";
                     options.ClientSecret = "EldG9O1qTxFzACRdFgkag-PZ";
+                    //options.ClientId = googleAuthNSection["ClientId"];                    
+                    //options.ClientSecret = googleAuthNSection["ClientSecret"];
                 })
                 .AddVkontakte(options =>
                 {
@@ -50,6 +52,8 @@ namespace razorHramBabynino
 
                     options.ClientId = "7609221";
                     options.ClientSecret = "QGB9vZBryvr7gpEXB7vK";
+                    //options.ClientId = vkAuthNSection["ClientId"];
+                    //options.ClientSecret = vkAuthNSection["ClientSecret"];
                 });
             services.AddRazorPages();
             services.AddServerSideBlazor();

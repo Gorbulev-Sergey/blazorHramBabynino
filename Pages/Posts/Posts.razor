@@ -3,7 +3,7 @@
 
 @inject ICRUD<post> PostsService
 
-<div class="mb-1">
+<div class="mb-3">
     <ul class="nav nav-pills d-flex justify-content-between">
         <li class="nav-item mb-1">
             <a class="btn btn-secondary active" href="#news" data-toggle="pill">Новости и объявления</a>
@@ -19,12 +19,12 @@
 
 <div class="tab-content">
     <div class="tab-pane fade show active" id="news">
-        <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
+        <div class="mb-4">
             @foreach (var post in posts.Where(p => p.type == type.объявление))
             {
-                <Post post="post"></Post>
+                <PostNotification post="post"></PostNotification>
             }
-        </div>
+        </div>            
         <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
             @foreach (var post in posts.Where(p => p.type == type.новость))
             {
