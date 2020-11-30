@@ -1,0 +1,15 @@
+﻿<div class="btn-group m-3">
+    <input class="btn btn-light" @bind="text" />
+    <button class="btn btn-dark" @onclick="()=>добавить.InvokeAsync(text)">Добавить</button>
+</div>
+
+@code {
+    [Parameter]
+    public string text { get; set; }
+
+    [Parameter]
+    public EventCallback<string> textChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<string> добавить { get; set; }
+}
