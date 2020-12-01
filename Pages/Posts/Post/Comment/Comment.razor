@@ -1,9 +1,7 @@
-﻿<div class="media mb-3">
-    <img src="..." class="align-self-start mr-3">
-    <div class="media-body">
-        <h5 class="mt-0">@comment.userName</h5>
-        <p>@comment.text</p>
-    </div>
+﻿<div class="alert alert-light mb-3">
+    <span class="badge badge-dark">@comment.userName </span>
+    <span class="text-muted small">@comment.created.ToShortDateString() </span>
+    @comment.text
 </div>
 
 @code {
