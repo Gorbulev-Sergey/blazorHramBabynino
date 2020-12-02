@@ -1,6 +1,9 @@
-﻿<div class="btn-group m-3">
-    <input class="btn btn-light" @bind="text" />
-    <button class="btn btn-dark" @onclick="()=>добавить.InvokeAsync(text)">Добавить</button>
+﻿
+<div class="input-group mb-1">
+    <input type="text" class="form-control" placeholder="Добавьте комментарий" @bind="text">
+    <div class="input-group-append">
+        <button class="btn btn-dark" @onclick="()=> { добавить.InvokeAsync(text); text = String.Empty; }">Добавить</button>
+    </div>
 </div>
 
 @code {

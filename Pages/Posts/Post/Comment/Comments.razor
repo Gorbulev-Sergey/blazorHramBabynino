@@ -1,21 +1,29 @@
-﻿<AuthorizeView>
-    <Authorized>
-        <CreateComment добавить="(text)=>добавить.InvokeAsync(text)"></CreateComment>
-    </Authorized>
-    <NotAuthorized>
-        <p>Зарегистрируйтесь и оставьте комментарий.</p>
-    </NotAuthorized>
-</AuthorizeView>
+﻿<div class="bg-secondary rounded-bottom p-3">
+    <AuthorizeView>
+        <Authorized>
+            <CreateComment добавить="(text)=>добавить.InvokeAsync(text)"></CreateComment>
+        </Authorized>
+        <NotAuthorized>
+            <p><a href="/">Зарегистрируйтесь</a> и оставьте комментарий.</p>
+        </NotAuthorized>
+    </AuthorizeView>
 
-@foreach (var comment in comments)
-{
-    <Comment comment="comment"></Comment>
-}
+    @foreach (var comment in comments.Reverse<comment>())
+    {
+        <Comment comment="comment" удалить="comment=>удалить.InvokeAsync(comment)" userName="@userName"></Comment>
+    }
+</div>
 
 @code {
+    [Parameter]
+    public string userName { get; set; }
+
     [Parameter]
     public List<comment> comments { get; set; }
 
     [Parameter]
     public EventCallback<string> добавить { get; set; }
+
+    [Parameter]
+    public EventCallback<comment> удалить { get; set; }
 }
