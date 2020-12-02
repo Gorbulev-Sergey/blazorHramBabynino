@@ -101,6 +101,6 @@
     {
         post.content = await JSRuntime.InvokeAsync<string>("editor_html", "#editor");
         await PostsService.addAsync(post);
-        NavigationManager.NavigateTo("/cpanel/posts");
+        NavigationManager.NavigateTo("/cpanel/posts", true);
     }
 }

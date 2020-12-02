@@ -27,7 +27,7 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                return context.tags.Include(t=>t.posts).ToList();
+                return context.tags.ToList();
             }
         }
         public async Task add(tag tag)
