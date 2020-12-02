@@ -4,7 +4,7 @@
             <CreateComment добавить="(text)=>добавить.InvokeAsync(text)"></CreateComment>
         </Authorized>
         <NotAuthorized>
-            <div class="m-3"><a class="card-link" href="/Identity/Account/Register">Зарегистрируйтесь</a> и оставьте комментарий.</div>
+            <div class="text-center"><a href="/Identity/Account/Register?ReturnUrl=/posts/details/@postId">Зарегистрируйтесь</a> и оставьте свой комментарий.</div>
         </NotAuthorized>
     </AuthorizeView>
 
@@ -15,6 +15,9 @@
 </div>
 
 @code {
+    [Parameter]
+    public int postId{ get; set; }
+
     [Parameter]
     public string userName { get; set; }
 

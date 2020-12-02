@@ -12,7 +12,7 @@
         <li class="nav-item mb-1">
             <a class="btn btn-secondary" href="#o_hrame" data-toggle="pill">О храме</a>
             <a class="btn btn-secondary" href="#o_tainstvah" data-toggle="pill">О Таинствах</a>
-            @*<a class="btn btn-secondary" href="#dlya_klirosa" data-toggle="pill">Для клироса</a>*@
+            <a class="btn btn-secondary" href="#dlya_klirosa" data-toggle="pill">Для клироса</a>
         </li>
     </ul>
 </div>
@@ -24,7 +24,7 @@
             {
                 <PostNotification post="post"></PostNotification>
             }
-        </div>            
+        </div>
         <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
             @foreach (var post in posts.Where(p => p.type == type.новость))
             {
@@ -34,7 +34,7 @@
     </div>
     <div class="tab-pane fade" id="videos">
         <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            @foreach (var post in posts.Where(p => p.type == type.видео))
+            @foreach (var post in posts.Where(p => p.type == type.видео && !p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "о храме")) && !p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "о таинствах")) && !p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "для клироса"))))
             {
                 <Post post="post"></Post>
             }
@@ -58,10 +58,10 @@
     </div>
     <div class="tab-pane fade" id="dlya_klirosa">
         <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            @*@foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "о для клироса"))))
-        {
-            <Post post="post"></Post>
-        }*@
+            @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.text == "для клироса"))))
+            {
+                <Post post="post"></Post>
+            }
         </div>
     </div>
 </div>
@@ -72,6 +72,6 @@
 
     protected override void OnInitialized()
     {
-        posts = PostsService.get().OrderBy(p=>p.created).Where(p=>p.published==true).Reverse().ToList();
+        posts = PostsService.get().OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
     }
 }
