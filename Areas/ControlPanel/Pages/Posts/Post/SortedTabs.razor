@@ -5,23 +5,45 @@
             <option>@item</option>
         }
     </select>
-    <select class="btn btn-sm btn-dark" @bind="filter2">
-        @foreach (var item in Enum.GetValues(typeof(filter2)))
-        {
-            <option>@item</option>
-        }
-    </select>
-    <select class="btn btn-sm btn-dark" @bind="filter3">
-        @foreach (var item in Enum.GetValues(typeof(filter3)))
-        {
-            <option>@item</option>
-        }
-    </select>    
+
+    <div class="btn-group btn-group-sm">
+        <div class="btn btn-sm btn-secondary mb-0">тип:</div>
+        <select class="btn btn-sm btn-dark" @bind="filter2">
+            @foreach (var item in Enum.GetValues(typeof(filter2)))
+            {
+                <option>@item</option>
+            }
+        </select>
+    </div>
+
+    <div class="btn-group btn-group-sm">
+        <div class="btn btn-sm btn-secondary mb-0">дата:</div>
+        <select class="btn btn-sm btn-dark" @bind="filter3">
+            @foreach (var item in Enum.GetValues(typeof(filter3)))
+            {
+                <option>@item</option>
+            }
+        </select>
+    </div>
+
+    <div class="btn-group btn-group-sm">
+        <div class="btn btn-sm btn-secondary mb-0">теги:</div>
+        <select class="btn btn-sm btn-dark" @bind="filter4">
+            <option></option>
+            @foreach (var item in tags)
+            {
+                <option>@item.text</option>
+            }
+        </select>
+    </div>
 </div>
 
 
 @code {
     Filter Filter { get; set; } = new Filter();
+
+    [Parameter]
+    public List<tag> tags { get; set; } = new List<tag>();
 
     [Parameter]
     public EventCallback<Filter> filterChanged { get; set; }
@@ -52,6 +74,16 @@
         set
         {
             Filter.filter3 = (filter3)Enum.Parse(typeof(filter3), value);
+            filterChanged.InvokeAsync(Filter);
+        }
+    }
+
+    string filter4
+    {
+        get => Filter.filter4;
+        set
+        {
+            Filter.filter4 = value;
             filterChanged.InvokeAsync(Filter);
         }
     }

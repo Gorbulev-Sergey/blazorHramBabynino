@@ -14,7 +14,7 @@ namespace razorHramBabynino.Models
         // Для сортировки по дате
         public filter3 filter3 { get; set; } = new filter3();
         // Для тегов
-        public List<string> filter4 { get; set; } = new List<string>();
+        public string filter4 { get; set; }
     }
 
     public enum filter1

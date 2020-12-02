@@ -1,8 +1,9 @@
 ﻿@inject ICRUD<post> PostsService
+@inject ITagsService TagsService
 @using razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post
 @inject IJSRuntime JSRuntime  
 
-<SortedTabs filterChanged="filter => фильтровать((Filter)filter)"></SortedTabs>
+<SortedTabs tags="tags" filterChanged="filter => фильтровать((Filter)filter)"></SortedTabs>
 
 @foreach (var post in filtredPosts)
 {
@@ -12,6 +13,7 @@
 @code {
     List<post> posts { get; set; } = new List<post>();
     List<post> filtredPosts { get; set; } = new List<post>();
+    List<tag> tags { get; set; } = new List<tag>();
 
     Filter Filter = new Filter ();
 
@@ -19,6 +21,7 @@
     {
         posts = PostsService.get().OrderBy(p => p.created).Reverse().ToList();
         filtredPosts = posts;
+        tags = TagsService.tags();
     }
 
     void удалить(post post)
@@ -65,6 +68,12 @@
         if (Filter.filter3.ToString() == "старые")
         {
             filtredPosts = filtredPosts.OrderBy(p => p.created.ToShortDateString()).Reverse().ToList();
+        }
+
+        // Четвёртый фильтр
+        if (!String.IsNullOrEmpty(Filter.filter4))
+        {
+            filtredPosts = filtredPosts.Where(p=>p.tags.Where(t=>t.text==Filter.filter4).Count()>0).ToList();
         }
     }
 }
