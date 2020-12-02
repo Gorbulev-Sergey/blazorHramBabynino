@@ -11,7 +11,7 @@ namespace razorHramBabynino.Services
     public interface ICommentsService
     {
         Task<List<comment>> comments(int postId);
-        Task add(comment comment);
+        void add(comment comment);
         void delete(comment comment);
 
     }
@@ -30,14 +30,14 @@ namespace razorHramBabynino.Services
                 return await context.comments.Where(p => p.postID == postId).ToListAsync();
             }            
         }
-        public async Task add(comment comment)
+        public void add(comment comment)
         {
             using (var context = new ApplicationDbContext(options))
             {
                 if (comment != null)
                 {
                     context.comments.Add(comment);
-                    await context.SaveChangesAsync();
+                    context.SaveChanges();
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace razorHramBabynino.Services
                 if (comment != null)
                 {
                     context.comments.Remove(comment);
-                    context.SaveChangesAsync();
+                    context.SaveChanges();
                 }
             }
         }

@@ -64,7 +64,7 @@
     void добавитьКомментарий(string text)
     {
         CommentsService.add(new comment { postID = post.ID, text = text, userId = user.Id, userName = user.UserName });
-        post.comments.Add(new comment { postID = post.ID, text = text, userId = user.Id, userName = user.UserName });
+        post = PostsService.itemById(id);
     }
 
     void удалитьКомментарий(comment comment)
@@ -76,6 +76,11 @@
     async Task<user> userIdentity()
     {
         var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        return await UserManager.FindByNameAsync(state.User.Identity.Name);
+
+        if (state.User.Identity.IsAuthenticated)
+        {
+            return await UserManager.FindByNameAsync(state.User.Identity.Name);
+        }
+        else return new user();
     }
 }
