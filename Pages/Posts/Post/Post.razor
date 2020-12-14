@@ -25,14 +25,7 @@
         <div class=" d-flex align-items-center justify-content-between">
             <button class="btn btn-sm btn-dark" @onclick="()=>подробнее(post.ID)">Подробнее<i class="fas fa-chevron-right ml-2"></i></button>
             <div>
-                @if (post.comments.Count() > 0)
-                {
-                    <button class="btn btn-dark" data-toggle="collapse" data-target="#comments" title="Комментарии" @onclick='()=>подробнее(post.ID)'><i class="far fa-comment-alt"></i> @post.comments.Count()</button>
-                }
-                else
-                {
-                    <button class="btn btn-dark" data-toggle="collapse" data-target="#comments" title="Комментарии" @onclick='()=>подробнее(post.ID)'><i class="far fa-comment-alt"></i></button>
-                }
+                <button class="btn btn-dark" data-toggle="collapse" data-target="#comments" title="Комментарии" @onclick='()=>подробнее(post.ID)'><i class="far fa-comment-alt"></i>@{if (post.comments.Count() > 0) {<span class="ml-2">@post.comments.Count()</span> } }</button>             
             </div>
         </div>
     </div>

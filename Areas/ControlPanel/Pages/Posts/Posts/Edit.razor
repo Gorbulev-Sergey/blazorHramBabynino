@@ -82,8 +82,6 @@
 </div>
 @*</EditForm>*@
 
-
-
 @code {
     [Parameter]
     public int ID { get; set; }
@@ -108,7 +106,7 @@
 
     async Task сохранить()
     {
-        post.content = await JSRuntime.InvokeAsync<string>("editor_html", "#editor");
+        post.content = (await JSRuntime.InvokeAsync<string>("editor_html", "#editor"));
         await PostsService.updateAsync(post);
         NavigationManager.NavigateTo("/cpanel/posts", true);
     }

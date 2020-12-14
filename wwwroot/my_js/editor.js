@@ -1,10 +1,10 @@
 ﻿// Функция, которая возвращает содержимое элемента редактора (div contenteditable=true)
 var editor_html = function (editor_id) {
-    return $(editor_id).html();
+    return $(editor_id).html().replace("<!--!--> ", "");
 };
 // Функция, которая возвращает содержимое элемента редактора (div contenteditable=true)
 var editor_html = function () {
-    return $("#editor").html();
+    return $("#editor").html().replace("<!--!--> ", "");
 };
 
 

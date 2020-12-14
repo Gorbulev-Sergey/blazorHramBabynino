@@ -32,14 +32,7 @@
         <div class=" d-flex align-items-center justify-content-between">
             <button class="btn btn-dark" @onclick="назад" title="Вернуться назад"><i class="fas fa-chevron-left mr-2"></i>Назад</button>
             <div id="commentbtn">
-                @if (post.comments.Count() > 0)
-                {
-                    <button class="btn btn-dark" data-toggle="collapse" data-target="#comments" title="Комментарии"><i class="far fa-comment-alt"></i> @post.comments.Count()</button>
-                }
-                else
-                {
-                    <button class="btn btn-dark" data-toggle="collapse" data-target="#comments" title="Комментарии"><i class="far fa-comment-alt"></i></button>
-                }
+                <button class="btn btn-dark" data-toggle="collapse" data-target="#comments" title="Комментарии"><i class="far fa-comment-alt"></i>@{if (post.comments.Count() > 0) {<span class="ml-2">@post.comments.Count()</span> } }</button>
             </div>
         </div>        
     </div>

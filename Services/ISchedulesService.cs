@@ -38,39 +38,36 @@ namespace razorHramBabynino.Services
             using (var context = new ApplicationDbContext(_options))
             {
                 foreach (var str in schedule)
-            {
-                // сохраняем или меняем
-                if (!String.IsNullOrEmpty(str.description) || !String.IsNullOrWhiteSpace(str.description) || str.prayer != тип_службы.пусто || str.date_and_time.ToString() == "0:00")
-                {                    
-                    try
-                    {
-                        context.Update(str);
-                    }
-                    catch
-                    {
-                        context.schedule.Add(str);
-                    }
-                }
-            }
-                await context.SaveChangesAsync();
-                
-                foreach (var str in context.schedule)
-            {
-                // Очищаем пустые строки в бд, которые могли попасть после обновления данных
-                if (String.IsNullOrEmpty(str.description) && str.prayer == тип_службы.пусто && str.date_and_time.ToShortTimeString() == "0:00")
                 {
-                    try
+                    // сохраняем или меняем
+                    if (!String.IsNullOrEmpty(str.description) || str.prayer != тип_службы.пусто || str.date_and_time.ToString() != "0:00")
+                    {
+                        if (str.ID==0)
+                        {
+                            context.schedule.Add(str);
+                        }
+                        else
+                        {
+                            context.Update(str);
+                        }
+                    }
+                    
+                }
+                await context.SaveChangesAsync();
+            }
+
+            using (var context = new ApplicationDbContext(_options))
+            {
+                foreach (var str in context.schedule)
+                {
+                    // Очищаем пустые строки в бд, которые могли попасть после обновления данных
+                    if (String.IsNullOrWhiteSpace(str.description) && str.prayer == тип_службы.пусто && str.date_and_time.ToLongTimeString() == "0:00:00")
                     {
                         context.Remove(str);
                     }
-                    catch
-                    {
-
-                    }
                 }
-            }
                 await context.SaveChangesAsync();
-            }            
+            }
         }
         public async Task delete(List<schedule_string> schedule)
         {
