@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
+
+<div class="row mb-3">
+    <div class="col">@user.UserName</div>
+    <div class="col">@user.Email</div>
+    <div class="col">@user.EmailConfirmed</div>
+    <div class="col">@user.PhoneNumber</div>
+    <div class="col">
+        @foreach (var role in userRoles)
+        {
+            @role
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public user user { get; set; }
+
+    public List<string> userRoles { get; set; } = new List<string>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        userRoles = (await UserManager.GetRolesAsync(user)).ToList();
+    }
+}

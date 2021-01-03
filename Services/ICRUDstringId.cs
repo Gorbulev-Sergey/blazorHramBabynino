@@ -19,5 +19,7 @@ namespace razorHramBabynino.Services
         Task addAsync(Type item);
         Task updateAsync(Type item);
         Task deleteAsync(Type item);
+
+        Task<List<string>> getUserRolesAsync(user user);
     }
 }

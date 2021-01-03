@@ -64,6 +64,7 @@ namespace razorHramBabynino
             services.AddTransient<ILikesService, LikesService>();
             services.AddTransient<ISchedulesService, ScheduleService>();
             services.AddTransient<ICRUD<imageAlbum>, PhotosService>();
+            services.AddTransient<ICRUDstringId<user>, UsersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

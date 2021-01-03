@@ -61,7 +61,7 @@ namespace razorHramBabynino.Services
                 foreach (var str in context.schedule)
                 {
                     // Очищаем пустые строки в бд, которые могли попасть после обновления данных
-                    if (String.IsNullOrWhiteSpace(str.description) && str.prayer == тип_службы.пусто && str.date_and_time.ToLongTimeString() == "0:00:00")
+                    if (String.IsNullOrEmpty(str.description) && str.prayer == тип_службы.пусто)
                     {
                         context.Remove(str);
                     }

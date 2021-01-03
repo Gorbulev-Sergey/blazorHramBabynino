@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using razorHramBabynino.Data;
 using razorHramBabynino.Models;
 using System;
@@ -10,96 +11,65 @@ namespace razorHramBabynino.Services
 {
     public class UsersService : ICRUDstringId<user>
     {
-        DbContextOptions<ApplicationDbContext> options;
+        UserManager<user> userManager;
 
-        public UsersService(DbContextOptions<ApplicationDbContext> options)
+        public UsersService(UserManager<user> userManager)
         {
-            this.options = options;
+            this.userManager = userManager;
         }
         public void add(user item)
         {
-            using (var context = new ApplicationDbContext(options))
-            {
-                context.Users.Add(item);
-                context.SaveChanges();
-            }
+            userManager.CreateAsync(item);
         }
 
         public async Task addAsync(user item)
         {
-            using (var context = new ApplicationDbContext(options))
-            {
-                await context.Users.AddAsync(item);
-                await context.SaveChangesAsync();
-            }
+            await userManager.CreateAsync(item);
         }
 
         public void delete(user item)
         {
-            using (var context = new ApplicationDbContext(options))
-            {
-                context.Users.Remove(item);
-                context.SaveChanges();
-            }
+            userManager.DeleteAsync(item);
         }
 
         public async Task deleteAsync(user item)
         {
-            using (var context = new ApplicationDbContext(options))
-            {
-                context.Users.Remove(item);
-                await context.SaveChangesAsync();
-            }
+            await userManager.DeleteAsync(item);
         }
 
         public List<user> get()
         {
-            using (var context=new ApplicationDbContext(options))
-            {
-                return context.Users.ToList();
-            }
+            return userManager.Users.ToList();
         }
 
         public async Task<List<user>> getAsync()
         {
-            using (var context = new ApplicationDbContext(options))
-            {
-                return await context.Users.ToListAsync();
-            }
+            return await userManager.Users.ToListAsync();
         }
 
         public user itemById(string id)
         {
-            using (var context= new ApplicationDbContext(options))
-            {
-                return context.Users.FirstOrDefault(u=>u.Id==id);
-            }
+            return userManager.FindByIdAsync(id).Result;
         }
 
         public async Task<user> itemByIdAsync(string id)
         {
-            using (var context = new ApplicationDbContext(options))
-            {
-                return await context.Users.FirstOrDefaultAsync(u => u.Id == id);
-            }
+            return await userManager.FindByIdAsync(id);
         }
 
         public void update(user item)
         {
-            using (var context = new ApplicationDbContext(options))
-            {
-                context.Users.Update(item);
-                context.SaveChanges();
-            }
+            userManager.UpdateAsync(item);
         }
 
         public async Task updateAsync(user item)
         {
-            using (var context = new ApplicationDbContext(options))
-            {
-                context.Users.Update(item);
-                await context.SaveChangesAsync();
-            }
+            await userManager.UpdateAsync(item);
+        }
+
+        public async Task<List<string>> getUserRolesAsync(user user)
+        {
+            return (await userManager.GetRolesAsync(user)).ToList();
         }
     }
 }
