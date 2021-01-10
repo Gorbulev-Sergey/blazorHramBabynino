@@ -96,7 +96,7 @@ namespace razorHramBabynino.Areas.Identity.Pages.Account.Manage
             var result = await _userManager.AddLoginAsync(user, info);
             if (!result.Succeeded)
             {
-                StatusMessage = "The external login was not added. External logins can only be associated with one account.";
+                StatusMessage = "Внешний логин не был добавлен. Внешние логины могут быть связаны только с одной учетной записью.";
                 return RedirectToPage();
             }
 

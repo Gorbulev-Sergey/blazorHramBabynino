@@ -2,6 +2,7 @@
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
+@inject NavigationManager NavigationManager
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     @*Заголовок страницы*@
@@ -66,10 +67,12 @@
 
 @code {
     public imageAlbum album = new imageAlbum();
+    user user = new user();
 
     protected override async Task OnInitializedAsync()
     {
-        album.userId = (await UserManager.FindByNameAsync((await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity.Name)).Id;
+        //album.userId = (await UserManager.FindByNameAsync((await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity.Name)).Id;
+        user = await userIdentity();
     }
 
     void добавить()
@@ -84,7 +87,19 @@
 
     async Task сохранить()
     {
+        album.userId = user.Id;
         await PhotosService.addAsync(album);
         NavigationManager.NavigateTo("/cpanel/photos", true);
+    }
+
+    async Task<user> userIdentity()
+    {
+        var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        if (state.User.Identity.IsAuthenticated)
+        {
+            return await UserManager.FindByNameAsync(state.User.Identity.Name);
+        }
+        else return new user();
     }
 }

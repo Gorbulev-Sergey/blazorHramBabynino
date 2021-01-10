@@ -1,6 +1,9 @@
 ﻿@inject ICRUD<post> PostsService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
+@inject NavigationManager NavigationManager
 
 
 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -59,7 +62,7 @@
                     <input @bind-value="post.cover_image" class="form-control" placeholder="Обложка (url картинки)" />
                     @if (!String.IsNullOrEmpty(post.cover_image))
                     {
-                        <img class="card-img mt-3" src="@post.cover_image"/>
+                        <img class="card-img mt-3" src="@post.cover_image" />
                     }
                 </div>
                 <div class="form-group">
@@ -89,6 +92,7 @@
 
 @code {
     public post post = new post();
+    user user = new user();
     string тип_публикации
     {
         get
@@ -101,10 +105,27 @@
         }
     }
 
+    protected override async Task OnInitializedAsync()
+    {
+        user = await userIdentity();
+    }
+
     async Task сохранить()
     {
         post.content = await JSRuntime.InvokeAsync<string>("editor_html", "#editor");
+        post.userId = user.Id;
         await PostsService.addAsync(post);
         NavigationManager.NavigateTo("/cpanel/posts", true);
+    }
+
+    async Task<user> userIdentity()
+    {
+        var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        if (state.User.Identity.IsAuthenticated)
+        {
+            return await UserManager.FindByNameAsync(state.User.Identity.Name);
+        }
+        else return new user();
     }
 }
