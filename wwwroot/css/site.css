@@ -94,7 +94,7 @@ body > center {
     color: white !important;
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width:779px) {
     body {
         margin: 0;
         padding: 0;
@@ -104,7 +104,7 @@ body > center {
         position: fixed;
         top: 0;
         z-index: 10010;
-        width: 280px;
+        width: 260px;
         height: 100%;
         color: white;
         margin-right: 280px;
@@ -114,12 +114,12 @@ body > center {
         position: fixed;
         top: 0;
         right: 0;
-        left: 280px;
+        left: 260px;
         z-index: 10000;
     }
 
     .my_content {
-        margin-left: 280px;
+        margin-left: 260px;
         margin-top: 56px;
         flex-grow: 1;
     }
