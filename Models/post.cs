@@ -28,8 +28,6 @@ namespace razorHramBabynino.Models
         public bool published { get; set; } = false;
         [Display(Name = "Дата создания"), DataType(DataType.Date)]
         public DateTime created { get; set; } = DateTime.Now;
-        [Display(Name = "Дата обновления"), DataType(DataType.Date)]
-        public DateTime updated { get; set; } = DateTime.Now;
         [Display(Name = "Теги")]
         public List<tag> tags { get; set; } = new List<tag>();
         [Display(Name = "Комментарии")]

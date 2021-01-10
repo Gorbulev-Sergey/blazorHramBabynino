@@ -16,8 +16,6 @@ namespace razorHramBabynino.Models
 
         [DataType(DataType.Date)]
         public DateTime created { get; set; } = DateTime.Now;
-        [DataType(DataType.Date)]
-        public DateTime updated { get; set; } = DateTime.Now;
 
         public int? postID { get; set; }
     }

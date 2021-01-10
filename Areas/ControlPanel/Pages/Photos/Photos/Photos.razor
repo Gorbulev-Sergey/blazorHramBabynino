@@ -37,7 +37,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        albums = PhotosService.get().OrderBy(a=>a.updated).Reverse().ToList();
+        albums = PhotosService.get().OrderBy(a=>a.created).Reverse().ToList();
     }
 
     async Task показать(imageAlbum album)
