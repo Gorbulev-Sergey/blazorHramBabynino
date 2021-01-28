@@ -1,0 +1,27 @@
+﻿@layout Layout
+@page "/"
+@page "/posts"
+@page "/news"
+@inject ICRUD<post> PostsService
+
+<div class="mb-4">
+    @foreach (var post in posts.Where(p => p.type == type.объявление))
+    {
+        <PostNotification post="post"></PostNotification>
+    }
+</div>
+<div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
+    @foreach (var post in posts.Where(p => p.type == type.новость))
+    {
+        <Post post="post"></Post>
+    }
+</div>
+
+@code {
+    List<post> posts = new List<post>();
+
+    protected override void OnInitialized()
+    {
+        posts = PostsService.get().OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
+    }
+}
