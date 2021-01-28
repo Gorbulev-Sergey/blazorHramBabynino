@@ -2,8 +2,7 @@
 @attribute [Authorize(Roles = "администратор, редактор")]
 @using System.Globalization
 @{
-    ViewBag.Title = $"Расписание на {CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower()} {DateTime.Now.Year} года";
+    ViewBag.Title = $"Расписание богослужений";
 }
 
-
-<component type="typeof(razorHramBabynino.Pages.Schedule.Schedule.Schedule)" render-mode="ServerPrerendered" param-date="DateTime.Now" />
+<component type="typeof(razorHramBabynino.Pages.Schedule.ScheduleNow)" render-mode="ServerPrerendered" /> 
