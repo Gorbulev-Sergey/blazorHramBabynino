@@ -1,32 +1,48 @@
 ﻿@page "/schedule"
-@using System.Globalization 
+@using System.Globalization
 @inject ISchedulesService SchedulesService
 
-<h3 class="mb-3">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower() @DateTime.Now.Year года</h3>
-<Schedule date="DateTime.Now"></Schedule>
-
-
-
-
-
+@if (естьРасписаиниеНаТекущийМесяц)
+{
+    if (естьРасписаиниеНаСледующийМесяц)
+    {
+        <h3 class="mb-3">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(nextDate.Month).ToLower() @nextDate.Year года</h3>
+        <Schedule date="nextDate"></Schedule>
+        <br />
+        <br />
+    }
+    <h3 class="mb-3">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower() @DateTime.Now.Year года</h3>
+    <Schedule date="DateTime.Now"></Schedule>
+}
+else if (естьРасписаиниеНаПредыдущийМесяц)
+{
+    <h3 class="mb-3">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(prevDate.Month).ToLower() @prevDate.Year года</h3>
+    <Schedule date="prevDate"></Schedule>
+}
+else
+{
+    <div class="alert alert-info"><b>Расписание на данный момент отсутствует</b></div>
+}
 
 
 
 
 
 @code {
-    bool естьРасписаиниеНаТекущийМесяц=false;
-    bool естьРасписаиниеНаСледующийМесяц=false;
-    bool естьРасписаиниеНаПредыдущийМесяц=false;
+    bool естьРасписаиниеНаТекущийМесяц = false;
+    bool естьРасписаиниеНаСледующийМесяц = false;
+    bool естьРасписаиниеНаПредыдущийМесяц = false;
+    DateTime nextDate;
+    DateTime prevDate;
 
     protected override void OnInitialized()
     {
         // Текущий месяц
         if (SchedulesService.has_schedule_in_this_date(DateTime.Now)) естьРасписаиниеНаТекущийМесяц = true;
         // Следующий месяц
-        if (DateTime.Now.Month!=12)
+        if (DateTime.Now.Month != 12)
         {
-            DateTime nextDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1);
+            nextDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1);
             if (SchedulesService.has_schedule_in_this_date(nextDate))
             {
                 естьРасписаиниеНаСледующийМесяц = true;
@@ -34,7 +50,7 @@
         }
         else
         {
-            DateTime nextDate = new DateTime(DateTime.Now.Year+1, 1, 1);
+            nextDate = new DateTime(DateTime.Now.Year + 1, 1, 1);
             if (SchedulesService.has_schedule_in_this_date(nextDate))
             {
                 естьРасписаиниеНаСледующийМесяц = true;
@@ -43,7 +59,7 @@
         // Предыдущий месяц
         if (DateTime.Now.Month != 1)
         {
-            DateTime prevDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month - 1, 1);
+            prevDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month - 1, 1);
             if (SchedulesService.has_schedule_in_this_date(prevDate))
             {
                 естьРасписаиниеНаПредыдущийМесяц = true;
@@ -51,7 +67,7 @@
         }
         else
         {
-            DateTime prevDate = new DateTime(DateTime.Now.Year - 1, 12, 1);
+            prevDate = new DateTime(DateTime.Now.Year - 1, 12, 1);
             if (SchedulesService.has_schedule_in_this_date(prevDate))
             {
                 естьРасписаиниеНаПредыдущийМесяц = true;
