@@ -37,7 +37,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        int month = date.Month;
+        int month = date.Month+1;
 
         while (SchedulesService.schedule(new DateTime(date.Year, month, date.Day)).Count < 1)
         {

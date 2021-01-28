@@ -15,6 +15,7 @@ namespace razorHramBabynino.Services
         List<schedule_string> schedule(DateTime schedule_year_and_month);
         Task update_or_create(List<schedule_string> schedule);
         Task delete(List<schedule_string> schedule);
+        bool has_schedule_in_this_date(DateTime date);
     }
 
     public class ScheduleService : ISchedulesService
@@ -80,6 +81,11 @@ namespace razorHramBabynino.Services
                 }
                 await context.SaveChangesAsync();
             }            
-        }        
+        }
+
+        public bool has_schedule_in_this_date(DateTime date)
+        {
+            if (schedule(date).Count > 0) return true; else return false;
+        }
     }
 }
