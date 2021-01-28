@@ -1,6 +1,7 @@
 ﻿@page "/posts/details/{id:int}"
 @inject ICRUD<post> PostsService
 @inject ICommentsService CommentsService
+@inject ViewBagService ViewBagService  
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
 @inject NavigationManager NavigationManager
@@ -58,7 +59,7 @@
 
     void назад()
     {
-        NavigationManager.NavigateTo("/posts");
+        NavigationManager.NavigateTo(ViewBagService.BackUrl);
     }
 
     void добавитьКомментарий(string text)
