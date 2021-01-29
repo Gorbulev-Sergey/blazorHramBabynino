@@ -27,11 +27,11 @@ namespace razorHramBabynino.Services
             //_context = context;
             _options = options;
         }
-        public List<schedule_string> schedule(DateTime schedule_year_and_month) 
+        public List<schedule_string> schedule(DateTime schedule_year_and_month)
         {
             using (var context = new ApplicationDbContext(_options))
             {
-                return context.schedule.Where(s => s.date_and_time.Year == schedule_year_and_month.Year && s.date_and_time.Month == schedule_year_and_month.Month).OrderBy(d=>d.date_and_time).ToList();
+                return context.schedule.Where(s => s.date_and_time.Year == schedule_year_and_month.Year && s.date_and_time.Month == schedule_year_and_month.Month).OrderBy(d => d.date_and_time).ToList();
             }
         }
         public async Task update_or_create(List<schedule_string> schedule)
@@ -43,7 +43,7 @@ namespace razorHramBabynino.Services
                     // сохраняем или меняем
                     if (!String.IsNullOrEmpty(str.description) || str.prayer != тип_службы.пусто || str.date_and_time.ToString() != "0:00")
                     {
-                        if (str.ID==0)
+                        if (str.ID == 0)
                         {
                             context.schedule.Add(str);
                         }
@@ -52,7 +52,7 @@ namespace razorHramBabynino.Services
                             context.Update(str);
                         }
                     }
-                    
+
                 }
                 await context.SaveChangesAsync();
             }
@@ -80,12 +80,19 @@ namespace razorHramBabynino.Services
                     catch { }
                 }
                 await context.SaveChangesAsync();
-            }            
+            }
         }
 
         public bool has_schedule_in_this_date(DateTime date)
         {
-            if (schedule(date).Count > 0) return true; else return false;
+            using (var context = new ApplicationDbContext(_options))
+            {
+                if (context.schedule.FirstOrDefault(str => str.date_and_time.Year == date.Year && str.date_and_time.Month == date.Month) != null)
+                {
+                    return true;
+                }
+                else return false;
+            }
         }
     }
 }
