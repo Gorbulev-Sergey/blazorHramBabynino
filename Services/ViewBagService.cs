@@ -7,14 +7,7 @@ namespace razorHramBabynino.Services
 {
     public class ViewBagService
     {
-        string _PageTitle="";
-        public string PageTitle {
-            get => _PageTitle;
-            set
-            {
-                _PageTitle = value;
-            }
-        }
+        public string PageTitle { get; set; }
         public string BackUrl { get; set; }
     }
 }
