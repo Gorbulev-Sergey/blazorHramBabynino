@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @inject ViewBagService ViewBagService
+@inject NavigationManager NavigationManager 
 
 <div class="mb-3">
     <div class="d-flex justify-content-between align-items-end">
@@ -22,11 +23,20 @@
 
 @code{
     public string PageTitle { get; set; }
+    string uri;
+    string baseuri;
 
-    protected override void OnInitialized()
+    protected override void OnParametersSet()
     {
-        if (ViewBagService.PageTitle == "") ViewBagService.PageTitle = "Новости и объявления";
-        PageTitle = ViewBagService.PageTitle;
+        base.OnParametersSet();
+        if (NavigationManager.Uri == NavigationManager.BaseUri)
+        {
+            PageTitle = ViewBagService.PageTitle = "Новости и объявления";
+        }
+        else
+        {
+            PageTitle = ViewBagService.PageTitle;
+        }
     }
 
     void setTitle(string title, string backUrl = "/news")
