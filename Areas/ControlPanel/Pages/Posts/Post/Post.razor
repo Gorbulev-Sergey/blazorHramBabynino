@@ -22,7 +22,7 @@
     @if (!string.IsNullOrEmpty(post.cover_video))
     {
         <div class="embed-responsive embed-responsive-16by9 w-25">
-            <iframe class="embed-responsive-item" src="@post.cover_video"></iframe>
+            <iframe class="embed-responsive-item" src='@post.cover_video.Replace("youtu.be","youtube.com/embed")'></iframe>
         </div>
     }
     else if (!string.IsNullOrEmpty(post.cover_image))
