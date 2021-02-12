@@ -34,7 +34,7 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                if (tag != null && !String.IsNullOrWhiteSpace(tag.text))
+                if (tag != null && !String.IsNullOrWhiteSpace(tag.name))
                 {
                     context.tags.Add(tag);
                     await context.SaveChangesAsync();

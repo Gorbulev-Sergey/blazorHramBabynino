@@ -73,7 +73,7 @@
         // Четвёртый фильтр
         if (!String.IsNullOrEmpty(Filter.filter4))
         {
-            filtredPosts = filtredPosts.Where(p=>p.tags.Where(t=>t.text==Filter.filter4).Count()>0).ToList();
+            filtredPosts = filtredPosts.Where(p=>p.tags.Where(t=>t.name==Filter.filter4).Count()>0).ToList();
         }
     }
 }

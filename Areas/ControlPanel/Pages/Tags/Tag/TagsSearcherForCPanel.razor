@@ -6,7 +6,7 @@
         <div class="dropdown-menu w-100">
             @foreach (var tag in tags)
             {
-                <span class="dropdown-item" role="button" @onclick="()=>value=tag.text">@tag.text</span>
+                <span class="dropdown-item" role="button" @onclick="()=>value=tag.name">@tag.name</span>
             }
         </div>
         <div class="input-group-append">
@@ -25,18 +25,18 @@
     List<tag> tags = new List<tag>();
     void добавить(string tag_text)
     {
-        if (tags.FirstOrDefault(t => t.text == tag_text) != null)
+        if (tags.FirstOrDefault(t => t.name == tag_text) != null)
         {
-            if (addedTags.FirstOrDefault(t => t.text == tag_text) == null)
+            if (addedTags.FirstOrDefault(t => t.name == tag_text) == null)
             {
-                addedTags.Add(tags.FirstOrDefault(t => t.text == tag_text));
+                addedTags.Add(tags.FirstOrDefault(t => t.name == tag_text));
             }
         }
         else
         {
             if (!String.IsNullOrWhiteSpace(tag_text))
             {
-                var tag = new tag { text = tag_text.ToLower() };
+                var tag = new tag { name = tag_text.ToLower() };
                 TagsService.add(tag);
                 tags.Add(tag);
                 addedTags.Add(tag);
