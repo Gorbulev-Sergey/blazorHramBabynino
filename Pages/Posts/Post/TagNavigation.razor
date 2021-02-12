@@ -1,11 +1,12 @@
 ﻿@inject ITagsService TagsService
+@inject ViewBagService ViewBagService
 
 <div class="mb-3 d-flex align-items-center">
-    <h3 class="flex-grow-1 mb-1 text-nowrap" style="padding-right:.5em">@selectedTag.description</h3>
+    <h3 class="flex-grow-1 mb-1 text-nowrap" style="padding-right:.5em; white-space:nowrap">@selectedTag.description</h3>
     <div class="btn-group btn-group-sm overflow-hidden">
         @foreach (var tag in tags)
         {
-            <a class="btn btn-@tag.bg_color text-@tag.text_color" href="/posts/@tag.name" @onclick="() => selectedTag = tag">@tag.name</a>
+            <a class="btn btn-@tag.bg_color text-@tag.text_color" href="/posts/@tag.name" style="white-space:nowrap" @onclick="() => SelectTag(tag)">@tag.name</a>
         }
         <div hidden></div>
     </div>
@@ -14,7 +15,7 @@
         <div class="dropdown-menu dropdown-menu-right bg-secondary">
             @foreach (var tag in tags)
             {
-                <a class="btn d-block btn-sm btn-@tag.bg_color text-@tag.text_color rounded-0" href="/posts/@tag.name" style="width:100%; text-align:left;padding-left:1em;padding-right:1em" @onclick="() => selectedTag = tag">@tag.name</a>
+                <a class="btn d-block btn-sm btn-@tag.bg_color text-@tag.text_color rounded-0" href="/posts/@tag.name" style="width:100%; text-align:left;padding-left:1em;padding-right:1em; white-space:nowrap" @onclick="() => selectedTag = tag">@tag.name</a>
             }
         </div>
     </div>
@@ -28,5 +29,11 @@
     {
         tags = TagsService.tags();
         selectedTag = tags.FirstOrDefault();
+    }
+
+    void SelectTag(tag tag)
+    {
+        selectedTag = tag;
+        ViewBagService.BackUrl = "/posts/" + tag.name;
     }
 }

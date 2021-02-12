@@ -1,4 +1,5 @@
 ﻿@layout Layout
+@page "/"
 @page "/posts/{Tag}"
 @inject ICRUD<post> PostsService
 
@@ -17,5 +18,6 @@
     protected override void OnInitialized()
     {
         posts = PostsService.get().OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
+        if (Tag==null) Tag = "новости и объявления";
     }
 }
