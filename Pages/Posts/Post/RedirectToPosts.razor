@@ -1,0 +1,11 @@
+﻿@page "/redirect"
+@inject ViewBagService ViewBagService
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override void OnInitialized()
+    {
+        ViewBagService.BackUrl = $"/posts/новости и объявления";
+        NavigationManager.NavigateTo("/posts/новости и объявления");
+    }
+}

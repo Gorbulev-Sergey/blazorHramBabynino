@@ -8,6 +8,6 @@ namespace razorHramBabynino.Services
     public class ViewBagService
     {
         public string PageTitle { get; set; }
-        public string BackUrl { get; set; } = "/";
+        public string BackUrl { get; set; } = "/posts/новости и объявления";
     }
 }

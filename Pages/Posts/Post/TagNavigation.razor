@@ -3,19 +3,19 @@
 
 <div class="mb-3 d-flex align-items-center">
     <h3 class="flex-grow-1 mb-1 text-nowrap" style="padding-right:.5em; white-space:nowrap">@selectedTag.description</h3>
-    <div class="btn-group btn-group-sm overflow-hidden">
+    <div class="btn-group overflow-hidden">
         @foreach (var tag in tags)
         {
             <a class="btn btn-@tag.bg_color text-@tag.text_color" href="/posts/@tag.name" style="white-space:nowrap" @onclick="() => SelectTag(tag)">@tag.name</a>
         }
         <div hidden></div>
     </div>
-    <div class="btn-group btn-group-sm">
+    <div class="btn-group">
         <button class="btn btn-dark" style="border-radius:0 .2em .2em 0" data-toggle="dropdown">...</button>
         <div class="dropdown-menu dropdown-menu-right bg-secondary">
             @foreach (var tag in tags)
             {
-                <a class="btn d-block btn-sm btn-@tag.bg_color text-@tag.text_color rounded-0" href="/posts/@tag.name" style="width:100%; text-align:left;padding-left:1em;padding-right:1em; white-space:nowrap" @onclick="() => selectedTag = tag">@tag.name</a>
+                <a class="btn d-block btn-@tag.bg_color text-@tag.text_color rounded-0" href="/posts/@tag.name" style="width:100%; text-align:left;padding-left:1em;padding-right:1em; white-space:nowrap" @onclick="() => selectedTag = tag">@tag.name</a>
             }
         </div>
     </div>
@@ -23,17 +23,18 @@
 
 @code {
     List<tag> tags = new List<tag>();
-    tag selectedTag = new tag();
+    [Parameter]
+    public tag selectedTag { get; set; } = new tag();
 
     protected override void OnInitialized()
     {
         tags = TagsService.tags();
-        selectedTag = tags.FirstOrDefault();
+        selectedTag = TagsService.tags().FirstOrDefault();
     }
 
     void SelectTag(tag tag)
     {
         selectedTag = tag;
-        ViewBagService.BackUrl = "/posts/" + tag.name;
+        ViewBagService.BackUrl = $"/posts/{tag.name}";
     }
 }
