@@ -1,7 +1,8 @@
 ﻿@using System.Globalization
 @inject ISchedulesService SchedulesService
 
-<div class="table-responsive">
+<div class="table-responsive border-0 shadow" 
+     style="border-radius: .5rem !important; backdrop-filter: blur(25px); background: rgba(255,255,255,.75);">
     <table class="table ">
         <thead>
             <tr class="bg-secondary border-secondary text-white">
@@ -20,7 +21,7 @@
                     <Schedule_string schedule_string="str" date_show="true"></Schedule_string>
                     дата_предыдущего = str.date_and_time.Day;
                 }
-                else 
+                else
                 {
                     <Schedule_string schedule_string="str" date_show="false"></Schedule_string>
                 }

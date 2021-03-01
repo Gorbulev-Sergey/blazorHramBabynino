@@ -61,8 +61,9 @@ html {
 }
 
 body {
+    background: linear-gradient(165deg, rgba(255, 255, 255, 1) 25%, rgba(185, 43, 39, 0.2), rgba(255, 255, 255, 1) 100%);
     /* Margin bottom by footer height */
-    margin-bottom: 90px!important;
+    margin-bottom: 90px !important;
 }
 
 .footer {
@@ -165,6 +166,17 @@ body > center {
 
 button:hover .название_альбома {
     background: rgba(0,0,0,0.4)
+}
+
+
+/*blur*/
+.card {
+    border-radius: .5rem !important;
+    border: none;
+}
+
+h1,h2,h3,h4,h5 {
+    text-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
 
 /*Конец моих стилей*/
