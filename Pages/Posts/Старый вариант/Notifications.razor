@@ -1,0 +1,22 @@
+﻿@layout Layout
+@page "/объявления"
+@inject ICRUD<post> PostsService
+
+@if (posts.Where(p => p.type == type.объявление).Count() > 0)
+{
+    <div class="mb-4">
+        @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.name == "объявления"))))
+        {
+            <PostNotification post="post"></PostNotification>
+        }
+    </div>
+}
+
+@code {
+    List<post> posts = new List<post>();
+
+    protected override void OnInitialized()
+    {
+        posts = PostsService.get().OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
+    }
+}

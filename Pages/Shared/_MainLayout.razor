@@ -1,0 +1,50 @@
+﻿@inherits LayoutComponentBase 
+
+<header class="position-fixed vw-100" style="z-index:100000; top:0;">
+    <nav class="navbar navbar-expand-xl navbar-dark navbar-toggleable-xl bg-dark box-shadow mb-3 shadow d-flex flex-column">
+        <div class="container ml-0 mr-0 pr-2">
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <a class="navbar-brand ml-xl-n2 font-weight-bold" style="margin-top:-1px;" href="/posts/@selectedTag.name" @onclick='()=>selectedTag.name="объявления"'><span class="text-danger">ХРАМ</span> ВОЗНЕСЕНИЯ <span class="скрыть">ГОСПОДНЯ</span></a>
+            <div class="navbar-collapse collapse d-xl-inline-flex flex-xl-row-reverse">
+                <partial name="_LoginPartial" />
+                <ul class="navbar-nav flex-grow-1 mt-2 m-xl-0 text-white">
+                    <li class="nav-item">
+                        <a class="btn btn-dark mr-1" href="/posts/@selectedTag.name" @onclick='()=>selectedTag.name="объявления"'>Публикации</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-dark mr-1" href="/schedule">Расписание</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-dark mr-1" href="/photos">Фотографии</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-dark mr-1" href="/contacts">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container mb-3" style="margin-top:80px;">
+    <main role="main">
+        <CascadingValue Name="selectedTag" Value="selectedTag">
+            @Body
+        </CascadingValue>        
+    </main>
+</div>
+
+<footer class="footer bg-dark text-muted">
+    <div class="container text-center p-3">
+        <a class="text-light text-muted" target="_blank" href="https://yandex.ru/maps/-/CCUA6Paa~B">ПОС. БАБЫНИНО КАЛУЖСКОЙ ОБЛ.</a><br />
+        <span>Спасибо компании <a target="_blank" href="https://somee.com/">somee.com</a> за предоставленное место для сайта.</span>
+    </div>
+</footer>
+
+@code{
+    tag selectedTag = new tag { name="объявления" };
+}
+
+
+
+

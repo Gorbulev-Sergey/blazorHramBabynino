@@ -15,7 +15,7 @@
         <div class="dropdown-menu dropdown-menu-right bg-secondary">
             @foreach (var tag in tags)
             {
-                <a class="btn d-block btn-@tag.bg_color text-@tag.text_color rounded-0" href="/posts/@tag.name" style="width:100%; text-align:left;padding-left:1em;padding-right:1em; white-space:nowrap" @onclick="() => selectedTag = tag">@tag.name</a>
+                <a class="btn d-block btn-@tag.bg_color text-@tag.text_color rounded-0" href="/posts/@tag.name" style="width:100%; text-align:left;padding-left:1em;padding-right:1em; white-space:nowrap" @onclick="() => SelectTag(tag)">@tag.name</a>
             }
         </div>
     </div>
@@ -23,13 +23,14 @@
 
 @code {
     List<tag> tags = new List<tag>();
-    [Parameter]
-    public tag selectedTag { get; set; } = new tag();
+    [CascadingParameter(Name = "selectedTag")]
+    tag selectedTag { get; set; }
 
     protected override void OnInitialized()
     {
         tags = TagsService.tags();
-        selectedTag = TagsService.tags().FirstOrDefault();
+        selectedTag = tags.FirstOrDefault(t=>t.name==selectedTag.name);
+        ViewBagService.BackUrl = $"/posts/{selectedTag.name}";
     }
 
     void SelectTag(tag tag)

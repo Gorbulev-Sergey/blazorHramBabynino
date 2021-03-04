@@ -3,6 +3,7 @@
 @page "/posts/{Tag}"
 @inject ICRUD<post> PostsService
 
+
 <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
     @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.name == Tag))))
     {
@@ -18,6 +19,6 @@
     protected override void OnInitialized()
     {
         posts = PostsService.get().OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
-        if (Tag==null) Tag = "новости и объявления";
+        if (string.IsNullOrEmpty(Tag)) Tag = "объявления";
     }
 }

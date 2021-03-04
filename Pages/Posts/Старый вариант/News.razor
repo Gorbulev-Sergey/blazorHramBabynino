@@ -2,18 +2,8 @@
 @page "/news"
 @inject ICRUD<post> PostsService
 
-@if (posts.Where(p => p.type == type.объявление).Count() > 0)
-{
-    <div class="mb-4">
-        @foreach (var post in posts.Where(p => p.type == type.объявление))
-        {
-            <PostNotification post="post"></PostNotification>
-        }
-    </div>
-}
-
 <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
-    @foreach (var post in posts.Where(p => p.type == type.новость))
+    @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.name == "новости"))))
     {
         <Post post="post"></Post>
     }

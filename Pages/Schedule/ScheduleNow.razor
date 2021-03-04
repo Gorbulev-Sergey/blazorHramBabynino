@@ -6,17 +6,17 @@
 {
     if (естьРасписаиниеНаСледующийМесяц)
     {
-        <h3 class="mb-3">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(nextDate.Month).ToLower() @nextDate.Year года</h3>
+        <h3 class="mb-4 text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(nextDate.Month).ToLower() @nextDate.Year года</h3>
         <Schedule date="nextDate"></Schedule>
         <br />
         <br />
     }
-    <h3 class="mb-3">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower() @DateTime.Now.Year года</h3>
+    <h3 class="mb-4 text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower() @DateTime.Now.Year года</h3>
     <Schedule date="DateTime.Now"></Schedule>
 }
 else if (естьРасписаиниеНаПредыдущийМесяц)
 {
-    <h3 class="mb-3">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(prevDate.Month).ToLower() @prevDate.Year года</h3>
+    <h3 class="mb-4 text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(prevDate.Month).ToLower() @prevDate.Year года</h3>
     <Schedule date="prevDate"></Schedule>
 }
 else

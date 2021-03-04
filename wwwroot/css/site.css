@@ -179,4 +179,9 @@ h1,h2,h3,h4,h5 {
     text-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
 
+.card .bg-dark{
+    background:rgba(0,0,0,.75)!important;
+    backdrop-filter:blur(25px)!important;
+}
+
 /*Конец моих стилей*/

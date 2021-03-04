@@ -1,38 +1,48 @@
 ﻿@using System.Globalization
 @inject ISchedulesService SchedulesService
 
-<div class="table-responsive border-0 shadow" 
-     style="border-radius: .5rem !important; backdrop-filter: blur(25px); background: rgba(255,255,255,.75);">
-    <table class="table ">
-        <thead>
-            <tr class="bg-secondary border-secondary text-white">
-                <th scope="col" class="mr-1">Дата</th>
-                <th scope="col">Праздник</th>
-                <th scope="col">Время</th>
-                <th scope="col">Богослужение</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{int дата_предыдущего = 0; }
-            @foreach (var str in schedule)
-            {
-                if (дата_предыдущего != str.date_and_time.Day)
-                {
-                    <Schedule_string schedule_string="str" date_show="true"></Schedule_string>
-                    дата_предыдущего = str.date_and_time.Day;
-                }
-                else
-                {
-                    <Schedule_string schedule_string="str" date_show="false"></Schedule_string>
-                }
-            }
-        </tbody>
-    </table>
+
+<div class="card h-100 border-0 rounded-0 mb-3 shadow" style="backdrop-filter: blur(25px); background: rgba(255,255,255,.75); border-radius:.3rem">
+    <div class="card-body">
+        <div class="table-responsive border-0">
+            <table class="table" style="border-radius:.3rem">
+                <thead>
+                    <tr class="bg-secondary border-secondary text-white">
+                        <th scope="col" class="mr-1">Дата</th>
+                        <th scope="col">Праздник</th>
+                        <th scope="col">Время</th>
+                        <th scope="col">Богослужение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int дата_предыдущего = 0; }
+                    @foreach (var str in schedule)
+                    {
+                        if (дата_предыдущего != str.date_and_time.Day)
+                        {
+                            <Schedule_string schedule_string="str" date_show="true"></Schedule_string>
+                            дата_предыдущего = str.date_and_time.Day;
+                        }
+                        else
+                        {
+                            <Schedule_string schedule_string="str" date_show="false"></Schedule_string>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+
+
 
 @code {
     [Parameter]
     public DateTime date { get; set; }
+
+    [Parameter]
+    public string title { get; set; }
 
     public List<schedule_string> schedule { get; set; }
 

@@ -3,7 +3,7 @@
 <div class="col mb-4">
     <div class="card bg-dark text-white h-100 shadow">
         <div class="card-header">
-            <h4 class="card-title">@post.title</h4>
+            <h5 class="card-title">@post.title</h5>
             <div class="small text-muted">@post.created.ToString("MM.dd.yyyy")</div>
         </div>
         @if (!String.IsNullOrEmpty(post.cover_video))
@@ -14,21 +14,25 @@
         }
         else if (!String.IsNullOrEmpty(post.cover_image))
         {
-            <img src="@post.cover_image" class="img-fluid">
+            <div class="img-fluid" style="background:url(@post.cover_image); background-size:cover; height:220px"></div>
+            <img src="@post.cover_image" class="img-fluid" hidden>
         }
-        <div class="card-body">
+        <div class="card-body" style="font-size:.9rem">
             <p class="card-text">@((MarkupString)post.description)</p>
         </div>
         @if (!String.IsNullOrEmpty(post.content))
         {
-    <div class="card-footer">
-        <div class=" d-flex align-items-center justify-content-between">
-            <button class="btn btn-sm btn-dark" @onclick="()=>подробнее(post.ID)">Подробнее<i class="fas fa-chevron-right ml-2"></i></button>
-            <div>
-                <button class="btn btn-dark" data-toggle="collapse" data-target="#comments" title="Комментарии" @onclick='()=>подробнее(post.ID)'><i class="far fa-comment-alt"></i>@{if (post.comments.Count() > 0) {<span class="ml-2">@post.comments.Count()</span> } }</button>             
+            <div class="card-footer">
+                <div class=" d-flex align-items-center justify-content-between">
+                    <button class="btn btn-sm btn-dark" @onclick="()=>подробнее(post.ID)">Подробнее<i class="fas fa-chevron-right ml-2"></i></button>
+                    <div>
+                        <button class="btn btn-dark" data-toggle="collapse" data-target="#comments" title="Комментарии" @onclick='()=>подробнее(post.ID)'>
+                            <i class="far fa-comment-alt"></i>@{if (post.comments.Count() > 0)
+                                {<span class="ml-2">@post.comments.Count()</span> } }
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
         }
     </div>
 </div>

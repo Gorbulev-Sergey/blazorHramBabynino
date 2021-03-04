@@ -1,0 +1,58 @@
+
+/*Цвет фона*/
+.bg-white{
+    background:  rgba(255, 255, 255,0.8) !important;
+}
+.bg-black{
+    background:  rgba(0, 0, 0,0.8) !important;
+}
+.bg-red{
+    background:  rgba(246, 79, 89,0.8) !important;
+}
+.bg-orange{
+    background:  rgba(243, 115, 53,0.8) !important;
+}
+.bg-yellow{
+    background:  rgba(247, 255, 0,0.8) !important;
+}
+.bg-green{
+    background:  rgba(29, 151, 108,0.8) !important;
+}
+.bg-blue{
+    background:  rgba(18, 194, 233,.8) !important;
+}
+.bg-blue-dark{
+    background:  rgba(66, 134, 244,.8) !important;
+}
+.bg-pink{
+    background:  rgba(128, 0, 128,.8) !important;
+}
+
+/*Цвет текста*/
+.text-white{
+    color:  rgba(255, 255, 255,1) !important;
+}
+.text-black{
+    color:  rgba(0, 0, 0,0.8) !important;
+}
+.text-red{
+    color:  rgba(246, 79, 89,0.8) !important;
+}
+.text-orange{
+    color:  rgba(243, 115, 53,0.8) !important;
+}
+.text-yellow{
+    color:  rgba(247, 255, 0,0.8) !important;
+}
+.text-green{
+    color:  rgba(29, 151, 108,0.8) !important;
+}
+.text-blue{
+    color:  rgba(18, 194, 233,.8) !important;
+}
+.text-blue-dark{
+    color:  rgba(66, 134, 244,.8) !important;
+}
+.text-pink{
+    color:  rgba(128, 0, 128,.8) !important;
+}
