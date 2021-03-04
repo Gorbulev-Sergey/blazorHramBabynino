@@ -7,7 +7,7 @@
             <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <a class="navbar-brand ml-xl-n2 font-weight-bold" style="margin-top:-1px;" href="/posts/@Tag.name" @onclick='()=>Tag.description="Объявления"'><span class="text-danger">ХРАМ</span> ВОЗНЕСЕНИЯ <span class="скрыть">ГОСПОДНЯ</span></a>
             <div class="navbar-collapse collapse d-xl-inline-flex flex-xl-row-reverse">
-                <partial name="_LoginPartial" />
+                <Login></Login>
                 <ul class="navbar-nav flex-grow-1 mt-2 m-xl-0 text-white">
                     <li class="nav-item">
                         <a class="btn btn-dark mr-1" href="/posts/@Tag.name" @onclick='() => Tag.description = "Объявления"'>Публикации</a>

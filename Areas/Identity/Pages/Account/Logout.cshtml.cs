@@ -25,6 +25,8 @@ namespace razorHramBabynino.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnGet()
         {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
             return Redirect("/");
         }
 
