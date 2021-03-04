@@ -1,6 +1,7 @@
 ﻿@page "/cpanel/tags"
-@{ 
+@attribute [Authorize(Roles = "администратор, редактор")]
+@{
     ViewBag.Title = "Доступные теги";
 }
 
-<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Tags.Tag.Tags)" render-mode="ServerPrerendered"/>
+<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Tags.Tag.Tags)" render-mode="ServerPrerendered" />

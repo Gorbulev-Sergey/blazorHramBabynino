@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino.CascadinModels
+namespace razorHramBabynino.Models
 {
-    public class TagNavigationParameters
+    public class TagParameters
     {
+        public string name { get; set; }
         public string Title { get; set; }
     }
 }

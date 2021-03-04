@@ -2,7 +2,7 @@
 @inject ViewBagService ViewBagService
 
 <div class="mb-3 d-flex align-items-center">
-    <h3 class="flex-grow-1 mb-1 text-nowrap" style="padding-right: .5em; white-space: nowrap">@selectedTag.description</h3>
+    <h3 class="flex-grow-1 mb-1 text-nowrap" style="padding-right: .5em; white-space: nowrap">@Tag.description</h3>
     <div class="btn-group btn-group-sm overflow-hidden shadow">
         @foreach (var tag in tags)
         {
@@ -23,19 +23,19 @@
 
 @code {
     List<tag> tags = new List<tag>();
-    [CascadingParameter(Name = "selectedTag")]
-    tag selectedTag { get; set; }
+
+    [CascadingParameter(Name = "Tag")]
+    public tag Tag { get; set; }
 
     protected override void OnInitialized()
     {
         tags = TagsService.tags();
-        selectedTag = tags.FirstOrDefault(t=>t.name==selectedTag.name);
-        ViewBagService.BackUrl = $"/posts/{selectedTag.name}";
+        ViewBagService.BackUrl = $"/posts/{Tag.name}";
     }
 
     void SelectTag(tag tag)
     {
-        selectedTag = tag;
+        Tag.description = tag.description;  // Не правильно, но работает
         ViewBagService.BackUrl = $"/posts/{tag.name}";
     }
 }
