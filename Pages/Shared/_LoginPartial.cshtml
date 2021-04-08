@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using razorHramBabynino.Models
+@inject SignInManager<user> SignInManager
+@inject UserManager<user> UserManager
+
+
+<div class="btn-group mt-3 m-xl-0">
+    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("администратор") || User.IsInRole("редактор")))
+    {
+        <a class="btn btn-dark rounded mr-1" href="/cpanel/posts" title="Панель управления">Панель управления</a>
+    }
+    <button class="btn btn-dark rounded mr-1" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-id-card-alt text-muted" style="font-size:14pt"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-xl-right">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a class="dropdown-item" href="/Identity/Account/Manage/Index" title="Мой профиль">Мой профиль</a>
+            <form class="form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="dropdown-item">Выход</button>
+            </form>
+        }
+        else
+        {
+            <a class="dropdown-item" href="/Identity/Account/Login">Вход</a>
+            <a class="dropdown-item" href="/Identity/Account/Register">Регистрация</a>
+        }
+    </div>
+</div>
