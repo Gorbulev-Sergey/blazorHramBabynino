@@ -61,7 +61,7 @@ html {
 }
 
 body {
-    background: linear-gradient(165deg, rgba(255, 255, 255, 1) 25%, rgba(185, 43, 39, 0.2), rgba(255, 255, 255, 1) 100%);
+    /*background: linear-gradient(165deg, rgba(255, 255, 255, 1) 25%, rgba(185, 43, 39, 0.2), rgba(255, 255, 255, 1) 100%);*/
     /* Margin bottom by footer height */
     margin-bottom: 90px !important;
 }
@@ -171,7 +171,7 @@ button:hover .название_альбома {
 
 /*blur*/
 .card {
-    border-radius: .5rem !important;
+    border-radius: .25rem !important;
     border: none;
 }
 

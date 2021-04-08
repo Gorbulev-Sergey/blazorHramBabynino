@@ -2,16 +2,15 @@
 @inject ISchedulesService SchedulesService
 
 
-<div class="card h-100 border-0 rounded-0 mb-3 shadow" style="backdrop-filter: blur(25px); background: rgba(255,255,255,.75); border-radius:.3rem">
-    <div class="card-body">
-        <div class="table-responsive border-0">
-            <table class="table" style="border-radius:.3rem">
-                <thead>
-                    <tr class="bg-secondary border-secondary text-white">
-                        <th scope="col" class="mr-1">Дата</th>
-                        <th scope="col">Праздник</th>
-                        <th scope="col">Время</th>
-                        <th scope="col">Богослужение</th>
+  
+        <div class="table-responsive border-0 shadow-sm" style="border-radius:.25rem">
+            <table class="table border-0 table-dark m-0" style="border-radius:.25rem">
+                <thead class="border-0">
+                    <tr class="text-white border-0">
+                        <th scope="col" class="mr-1"><span class="badge badge-primary">Дата</span></th>
+                        <th scope="col"><span class="badge badge-primary">Праздник</span></th>
+                        <th scope="col"><span class="badge badge-primary">Время</span></th>
+                        <th scope="col"><span class="badge badge-primary">Богослужение</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,10 +30,8 @@
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
 
-
+<br />
 
 
 @code {

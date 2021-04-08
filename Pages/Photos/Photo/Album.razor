@@ -1,8 +1,8 @@
 ﻿<div class="col mb-4">
-    <div class="card bg-dark text-white border-0 shadow" style="border-radius:.5rem !important">
-        <div class="card-img" style="border-radius:.5rem !important; background:url(@album.cover_image); background-size:cover; height:300px"></div>
+    <div class="card bg-dark text-white border-0 shadow-sm" style="border-radius:.25rem !important">
+        <div class="card-img  shadow-sm" style="border-radius:.25rem !important; background:url(@album.cover_image); background-size:cover; height:300px"></div>
         @*<img src="@album.cover_image" class="card-img" style="border-radius:.5em !important">*@
-        <div class="card-img-overlay" style="background-color:rgba(0,0,0,.3); border-radius:.5rem !important">
+        <div class="card-img-overlay" style="background-color:rgba(0,0,0,.3); border-radius:.25rem !important">
             <h4>@album.title</h4>
             <div>@album.description</div>
             <div class="badge badge-secondary badge-pill">фотографий в альбоме: <span class="badge badge-light badge-pill">@album.images.Count</span></div>
