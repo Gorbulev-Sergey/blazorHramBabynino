@@ -1,0 +1,74 @@
+﻿@page "/jsontest"
+@inject IContactsService ContactsService
+@using Newtonsoft.Json 
+
+<div class="row">
+    <div class="col">
+        <h5>Расписание:</h5>
+        @foreach (var schedule_string in contacts.schedule)
+        {
+            <div class="btn-group mb-3">
+                <div class="btn btn-outline-dark">@schedule_string.Key</div>
+                <div class="btn btn-dark">@schedule_string.Value</div>
+            </div>
+            <br />
+        }
+
+        <div>
+            <input @bind="pare1.Item1" />
+            <input @bind="pare1.Item2" />
+            <button @onclick="()=>Добавить_строку_в_расписание()">Добавить расписание</button>
+        </div>
+    </div>
+    <div class="col">
+        <h5>Телефоны:</h5>
+        @foreach (var phones_string in contacts.phones)
+        {
+            <div class="btn-group mb-3">
+                <div class="btn btn-outline-dark">@phones_string.Key</div>
+                <div class="btn btn-dark">@phones_string.Value</div>
+            </div>
+            <br />
+        }
+
+        <div>
+            <input @bind="pare2.Item1" />
+            <input @bind="pare2.Item2" />
+            <button @onclick="()=>Добавить_строку_в_телефоны()">Добавить телефон</button>
+        </div>
+    </div>
+</div>
+<div class="mb-3">
+    <h5>Адрес: @contacts.map.Key</h5>
+    <iframe class="rounded border-dark border" src="@contacts.map.Value" width="100%" height="338" frameborder="0"></iframe>
+    @*((MarkupString)contacts.map.Value)*@
+       
+</div>
+
+
+
+
+
+@code{
+    contacts contacts = new contacts();
+    (string, string) pare1, pare2;
+
+    protected override void OnInitialized()
+    {
+        contacts = ContactsService.contacts;
+    }
+
+    void Добавить_строку_в_расписание()
+    {
+        ContactsService.addScheduleString(new KeyValuePair<string, string>(pare1.Item1, pare1.Item2));
+        contacts.schedule[pare1.Item1] = pare1.Item2;
+        pare1 = ("","");
+    }
+
+    void Добавить_строку_в_телефоны()
+    {
+        ContactsService.addPhonesString(new KeyValuePair<string, string>(pare2.Item1, pare2.Item2));
+        contacts.phones[pare2.Item1] = pare2.Item2;
+        pare2 = ("","");
+    }
+}

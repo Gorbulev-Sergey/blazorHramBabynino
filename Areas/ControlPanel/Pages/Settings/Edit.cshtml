@@ -1,0 +1,7 @@
+﻿@page "/cpanel/settings/edit"
+@attribute [Authorize(Roles = "администратор")]
+@{
+    ViewBag.Title = "Изменение общих настроек сайта";
+}
+
+<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Settings.Blazor.Edit)" render-mode="ServerPrerendered" />

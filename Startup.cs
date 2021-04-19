@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using razorHramBabynino.Data;
 using razorHramBabynino.Models;
+using razorHramBabynino.Pages.Tests;
 using razorHramBabynino.Services;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace razorHramBabynino
 
                     options.ClientId = "690639073976-4iho06or9f2nhcmh7astsan11lvvdgb9.apps.googleusercontent.com";
                     options.ClientSecret = "EldG9O1qTxFzACRdFgkag-PZ";
-                    //options.ClientId = googleAuthNSection["ClientId"];                    
+                    //options.ClientId = googleAuthNSection["ClientId"];
                     //options.ClientSecret = googleAuthNSection["ClientSecret"];
                 })
                 .AddVkontakte(options =>
@@ -74,6 +75,8 @@ namespace razorHramBabynino
             services.AddTransient<ICRUD<imageAlbum>, PhotosService>();
             services.AddTransient<ICRUDstringId<user>, UsersService>();
             services.AddSingleton<ViewBagService>();
+            services.AddTransient<IContactsService, ContactsService>();
+            services.AddTransient<IAppSettingsService, AppSettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

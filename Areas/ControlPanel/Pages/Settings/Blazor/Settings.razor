@@ -1,0 +1,29 @@
+﻿@inject IAppSettingsService AppSettingsService
+
+
+    <div class="mb-3">
+        <label>Название сайта:</label>
+        <div class="form-control h-auto">@appsettings.SiteSettings.site_name</div>
+    </div>
+    <div class="mb-3">
+        <label>Описание сайта:</label>
+        <div class="form-control h-auto">@appsettings.SiteSettings.site_description</div>
+    </div>
+    <div class="mb-3">
+        <label>Подвал сайта:</label>
+        <div class="form-control h-auto">@appsettings.SiteSettings.site_footer</div>
+    </div>
+    <div class="mb-3">
+        <label>Строка подключения:</label>
+        <div class="form-control h-auto">@appsettings.ConnectionStrings.FirstOrDefault().Value</div>
+    </div>
+
+
+
+@code {
+    appsettings appsettings { get; set; }
+    protected override void OnInitialized()
+    {
+        appsettings = AppSettingsService.settings;
+    }
+}
