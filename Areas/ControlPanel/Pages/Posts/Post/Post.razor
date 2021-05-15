@@ -6,12 +6,12 @@
             <p>@((MarkupString)post.description)</p>
         </div>
         <div>
-            <select class="btn btn-sm btn-outline-light" @bind="type">
+            @*<select class="btn btn-sm btn-outline-light" @bind="type">
                 @foreach (var item in Enum.GetValues(typeof(type)))
                 {
                     <option>@item</option>
                 }
-            </select>
+            </select>*@
             <select class="btn btn-sm btn-outline-light" @bind="published">
                 <option value="True">опубликован</option>
                 <option value="False">неопубликован</option>

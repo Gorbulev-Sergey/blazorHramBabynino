@@ -50,14 +50,14 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-group">
+                @*<div class="form-group">
                     <select class="form-control" @bind="тип_публикации" title="Тип публикации">
                         @foreach (var t in type.GetNames(typeof(type)).ToList())
                         {
                             <option class="bg-light">@t</option>
                         }
                     </select>
-                </div>
+                </div>*@
                 <div class="form-group">
                     <input @bind-value="post.cover_image" @bind-value:event="oninput" class="form-control" placeholder="Обложка (url картинки)" />
                     @if (!String.IsNullOrEmpty(post.cover_image))
