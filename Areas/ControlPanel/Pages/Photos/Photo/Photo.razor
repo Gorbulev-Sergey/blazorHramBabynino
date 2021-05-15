@@ -1,6 +1,6 @@
 ﻿<div class="form-row mb-2">
     <div class="col-9">
-        <input class="form-control" @bind="image.url" placeholder="Url изображения" />
+        <input class="form-control" @bind-value="image.url" @bind-value:event="oninput" placeholder="Url изображения" />
         <input class="form-control mt-1 form-control-sm border-0" @bind="image.title" placeholder="Название изображения" />
     </div>
     <div class="col-2">

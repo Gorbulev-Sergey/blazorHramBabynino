@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input class="form-control" placeholder="Url обложки" @bind="album.cover_image" />
+                    <input class="form-control" placeholder="Url обложки" @bind-value="album.cover_image" @bind-value:event="oninput" />
                     <img class="card-img w-100 mt-3" src="@album.cover_image" />
                 </div>
             </div>
