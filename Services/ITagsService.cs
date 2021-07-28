@@ -27,7 +27,11 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                return context.tags.ToList();
+                List<tag> newListTags = new List<tag>();
+                newListTags.AddRange(context.tags);
+                newListTags.Insert(0, newListTags.Last());
+                newListTags.RemoveAt(newListTags.Count-1);
+                return newListTags;
             }
         }
         public async Task add(tag tag)
