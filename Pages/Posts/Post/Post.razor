@@ -1,10 +1,10 @@
 ﻿@inject NavigationManager NavigationManager
 
 <div class="col mb-4">
-    <div class="card bg-dark text-white h-100 shadow-sm">
-        <div class="card-header">
+    <div class="card bg-white text-dark h-100 border-0">
+        <div class="card-header bg-white border-0">
             <h5 class="card-title">@post.title</h5>
-            <div class="small text-muted">@post.created.ToString("dd.MM.yyyy")</div>
+            <div class="small text-info">@post.created.ToString("dd.MM.yyyy")</div>
         </div>
         @if (!String.IsNullOrEmpty(post.cover_video))
         {
@@ -17,16 +17,16 @@
             <div class="img-fluid" style="background:url(@post.cover_image); background-size:cover; height:220px"></div>
             <img src="@post.cover_image" class="img-fluid" hidden>
         }
-        <div class="card-body" style="font-size:.9rem">
+        <div class="card-body" style="font-size:1em">
             <p class="card-text">@((MarkupString)post.description)</p>
         </div>
         @if (!String.IsNullOrEmpty(post.content))
         {
-            <div class="card-footer">
+            <div class="card-footer bg-white border-0">
                 <div class=" d-flex align-items-center justify-content-between">
-                    <button class="btn btn-sm btn-dark" @onclick="()=>подробнее(post.ID)">Подробнее<i class="fas fa-chevron-right ml-2"></i></button>
+                    <button class="btn btn-sm btn-light bg-transparent" @onclick="()=>подробнее(post.ID)">Подробнее<i class="fas fa-chevron-right ml-2"></i></button>
                     <div>
-                        <button class="btn btn-dark" data-toggle="collapse" data-target="#comments" title="Комментарии" @onclick='()=>подробнее(post.ID)'>
+                        <button class="btn btn-light bg-transparent" data-toggle="collapse" data-target="#comments" title="Комментарии" @onclick='()=>подробнее(post.ID)'>
                             <i class="far fa-comment-alt"></i>@{if (post.comments.Count() > 0)
                                 {<span class="ml-2">@post.comments.Count()</span> } }
                         </button>

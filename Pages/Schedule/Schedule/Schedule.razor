@@ -3,8 +3,8 @@
 
 
   
-        <div class="table-responsive border-0 shadow-sm" style="border-radius:.25rem">
-            <table class="table border-0 table-dark m-0" style="border-radius:.25rem;">
+        <div class="table-responsive border-0" style="border-radius:.25rem">
+            <table class="table border-0 table-light bg-white m-0" style="border-radius:.25rem;">
                 <thead class="border-0">
                     <tr class="text-white border-0">
                         <th scope="col" class="mr-1"><span class="badge badge-primary">Дата</span></th>
@@ -13,7 +13,7 @@
                         <th scope="col"><span class="badge badge-primary">Время</span></th>                        
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="border-0">
                     @{int дата_предыдущего = 0; }
                     @foreach (var str in schedule)
                     {

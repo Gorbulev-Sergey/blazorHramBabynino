@@ -1,10 +1,10 @@
-﻿<div class="bg-secondary rounded-bottom p-3">
+﻿<div class="bg-white text-dark rounded-bottom p-3">
     <AuthorizeView>
         <Authorized>
             <CreateComment добавить="(text)=>добавить.InvokeAsync(text)"></CreateComment>
         </Authorized>
         <NotAuthorized>
-            <div class="text-center"><a href="/Identity/Account/Register?ReturnUrl=/posts/details/@postId">Зарегистрируйтесь</a> и оставьте свой комментарий.</div>
+            <div class="text-center">Пройдите <a href="/Identity/Account/Register?ReturnUrl=/posts/details/@postId">регистрацию</a> на нашем сайте и оставьте свой комментарий.</div>
         </NotAuthorized>
     </AuthorizeView>
 
