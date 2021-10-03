@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 
-<tr class="@цвет_фона">
+<tr class="@цвет_фона border-top-0">
     @if (date_show)
     {
         <th scope="row" width="15%" class="mr-1 font-weight-normal">
@@ -52,7 +52,7 @@
     {
         if (schedule_string.date_and_time.DayOfWeek == DayOfWeek.Sunday)
         {
-            цвет_фона = "bg-primary";
+            цвет_фона = "bg-light text-danger";
         }
     }
 }
