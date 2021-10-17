@@ -8,19 +8,74 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="yandex-verification" content="36bacd69ee29c13d" /> @*Для Яндекс поисковика*@
-    <meta name="google-site-verification" content="kbCLyv5tdgvDxUtwXDmjoVrjwTU9L3n5iPjYyeRGPX4" /> @*Для Гугл поисковика*@
-    <meta name="keywords" content="храм бабынино Вознесения Господня поселок калуга калужская область бабынинский район Вознесение Господне" />
-    <meta name="keywords" content="храм бабынино, храм Вознесения Господня, храм поселок бабынино, калуга храм, калужская область храм, бабынинский район храм, Вознесение Господне" />
-    <meta name="description" content="Сайт храма Вознесения Господня пос. Бабынино Калужской обл." />
-    <title>@ViewData["Title"] - Храм Вознесения Господня</title>
-    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>Храм Вознесения Господня</title>
+    <link id="bootstrap" href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/font-awesome/css/all.min.css" rel="stylesheet" />
     <base href="~/" />
+    <style>
+        /*Уменьшаем размер заголовка сайта для маленьких смартфонов*/
+        .site-title {
+            font-size: 1.25em !important;
+        }
+
+        @@media (max-width: 420px) and (min-width: 0) {
+            .site-title {
+                font-size: .9em !important;
+            }
+        }
+    </style>
+
 </head>
-<body style="background:rgba(0,0,0,.041)">
-    <div class="my_sidebar bg-dark noprint">
+<body class="bg-secondary">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light text-dark mb-3 align-items-center" style="z-index:100000;">
+        <button class="navbar-toggler btn-light text-dark border-0" data-toggle="collapse" data-target=".navbar-collapse"><i class="fas fa-bars"></i></button>
+        <a class="card-link font-weight-bold text-uppercase ml-2 mr-2 mr-lg-4 site-title" href="cpanel/posts"><span class="text-dark">Панель управления</span></a>
+        <div class="navbar-collapse collapse">
+            <div class="navbar-nav mt-1 m-lg-0">
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/posts/">Публикации</a>
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/schedule">Расписание</a>
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/tags">Теги</a>
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/photos">Фотографии</a>
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/contacts">Контакты</a>
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/settings">Настройки</a>
+            </div>
+            <div class="flex-grow-1 d-flex justify-content-between mt-1 mt-lg-0">
+                <div class="dropdown">
+                    <button class="btn btn-light text-dark mr-1" data-toggle="dropdown">
+                        <i class="fas fa-plus-circle" style="font-size:1.1em"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-left bg-light p-0 border-0">
+                        <div class="d-flex flex-column">
+                            <span class="badge badge-dark text-light rounded-0 text-left pl-3">Добавить:</span>
+                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/posts/create">Публикацию</a>
+                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/photos/create">Фотоальбом</a>
+                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/tags/create">Тег</a>
+                            <span class="badge badge-dark text-light rounded-0 text-left pl-3">Редактировать:</span>
+                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/schedule/create">Расписание</a>
+                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/contacts/edit">Контакты</a>
+                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/settings/edit">Настройки</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <a class="btn btn-light text-dark mr-1" href="/" title="Вернуться на сайт"><i class="fas fa-home"></i></a>
+                    <button class="btn btn-light text-dark mr-1" onclick="$('#bootstrap').attr('href') == '/bootstrap/css/bootstrap.min.css' ? $('#bootstrap').attr('href','/bootstrap/css/invert/bootstrap.min.css') : $('#bootstrap').attr('href','/bootstrap/css/bootstrap.min.css')"><i class="far fa-sun"></i></button>
+                    <div class="dropdown">
+                        <button class="btn btn-light text-dark" data-toggle="dropdown">
+                            <i class="fas fa-id-card-alt"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right bg-light p-0 border-0">
+                            <div class="d-flex flex-column">
+                                <a class="btn btn-light text-dark text-left" href="/Identity/Account/Manage/Index" title="Мой профиль">Мой профиль</a>
+                                <a class="btn btn-light text-dark text-left" href="/Identity/Account/Logout">Выход</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="my_sidebar bg-dark noprint" hidden>
         <div class="navbar navbar-expand-md bg-dark flex-column align-items-stretch" style="max-width:300px">
             <div class="navbar-brand text-white w-100 pt-1 pl-md-3" style="margin-top:-1px;">
                 <button class="navbar-toggler text-white" data-toggle="collapse" data-target="#c_me"><i class="fas fa-bars"></i></button>
@@ -77,18 +132,18 @@
         </div>
     </div>
 
-    <div class="my_content">
-        <div class="p-3 p-sm-4">
-            @RenderBody()
-        </div>
+    <div class="container" style="margin-top:5em;">
+        <h3 class="mb-4 text-dark">@ViewBag.Title</h3>
+        @RenderBody()
     </div>
 
 
-    <script src="~/jquery/jquery.slim.min.js"></script>
-    <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/jquery/jquery.slim.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/font-awesome/js/all.min.js"></script>
     <script src="_framework/blazor.server.js"></script>
-    <script src="~/my_js/modal_album.js"></script>
-    <script src="~/my_js/editor.js"></script>
+    <script src="/my_js/modal_album.js"></script>
+    <script src="/my_js/editor.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

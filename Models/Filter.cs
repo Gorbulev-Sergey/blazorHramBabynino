@@ -20,8 +20,8 @@ namespace razorHramBabynino.Models
     public enum filter1
     {
         все,
-        опубликованы,
-        неопубликованы
+        опубликованые,
+        неопубликованые
     }
 
     public enum filter2
