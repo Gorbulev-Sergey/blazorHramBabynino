@@ -7,7 +7,6 @@
         @foreach (var tag in tags)
         {
             <a class="btn btn-light text-dark" href="/posts/@tag.name" style="white-space:nowrap" @onclick="() => SelectTag(tag)">@tag.name</a>
-
             @*<a class="btn btn-@tag.bg_color text-@tag.text_color" href="/posts/@tag.name" style="white-space:nowrap" @onclick="() => SelectTag(tag)">@tag.name</a>*@
         }
         <div hidden></div>
@@ -17,7 +16,7 @@
         <div class="dropdown-menu dropdown-menu-right bg-dark text-light">
             @foreach (var tag in tags)
             {
-                <a class="btn d-block btn-@tag.bg_color text-@tag.text_color rounded-0" href="/posts/@tag.name" style="width:100%; text-align:left;padding-left:1em;padding-right:1em; white-space:nowrap" @onclick="() => SelectTag(tag)">@tag.name</a>
+                <a class="btn d-block btn-dark text-light rounded-0" href="/posts/@tag.name" style="width:100%; text-align:left;padding-left:1em;padding-right:1em; white-space:nowrap" @onclick="() => SelectTag(tag)">@tag.name</a>
             }
         </div>
     </div>

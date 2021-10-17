@@ -1,35 +1,33 @@
 ﻿@using System.Globalization
 @inject ISchedulesService SchedulesService
 
-
-  
-        <div class="table-responsive border-0" style="border-radius:.25rem">
-            <table class="table border-0 table-light bg-white m-0" style="border-radius:.25rem;">
-                <thead class="border-0">
-                    <tr class="text-white border-0">
-                        <th scope="col" class="mr-1"><span class="badge badge-light">Дата</span></th>
-                        <th scope="col"><span class="badge badge-light">Праздник</span></th>
-                        <th scope="col"><span class="badge badge-light float-right">Богослужение</span></th>
-                        <th scope="col"><span class="badge badge-light">Время</span></th>                        
-                    </tr>
-                </thead>
-                <tbody class="border-0">
-                    @{int дата_предыдущего = 0; }
-                    @foreach (var str in schedule)
-                    {
-                        if (дата_предыдущего != str.date_and_time.Day)
-                        {
-                            <Schedule_string schedule_string="str" date_show="true"></Schedule_string>
-                            дата_предыдущего = str.date_and_time.Day;
-                        }
-                        else
-                        {
-                            <Schedule_string schedule_string="str" date_show="false"></Schedule_string>
-                        }
-                    }
-                </tbody>
-            </table>
-        </div>
+<div class="table-responsive border-0" style="border-radius:.25rem">
+    <table class="table border-0 table-borderless bg-light text-dark m-0" style="border-radius:.25rem;">
+        <thead class="border-0">
+            <tr class="text-light border-0">
+                <th scope="col" class="mr-1"><span class="badge badge-secondary">Дата</span></th>
+                <th scope="col"><span class="badge badge-secondary">Праздник</span></th>
+                <th scope="col"><span class="badge badge-secondary float-right">Богослужение</span></th>
+                <th scope="col"><span class="badge badge-secondary">Время</span></th>
+            </tr>
+        </thead>
+        <tbody class="border-0">
+            @{int дата_предыдущего = 0; }
+            @foreach (var str in schedule)
+            {
+                if (дата_предыдущего != str.date_and_time.Day)
+                {
+                    <Schedule_string schedule_string="str" date_show="true"></Schedule_string>
+                    дата_предыдущего = str.date_and_time.Day;
+                }
+                else
+                {
+                    <Schedule_string schedule_string="str" date_show="false"></Schedule_string>
+                }
+            }
+        </tbody>
+    </table>
+</div>
 
 <br />
 
