@@ -2,7 +2,7 @@
 @inject ViewBagService ViewBagService
 
 <div class="mb-3 d-flex align-items-center">
-    <h3 class="flex-grow-1 mb-1 text-nowrap" style="padding-right: .5em; white-space: nowrap">@Tag.description</h3>
+    <h3 class="text-dark flex-grow-1 mb-1 text-nowrap" style="padding-right: .5em; white-space: nowrap">@Tag.description</h3>
     <div class="btn-group btn-group-sm overflow-hidden">
         @foreach (var tag in tags)
         {
@@ -14,7 +14,7 @@
     </div>
     <div class="btn-group btn-group-sm">
         <button class="btn btn-dark" style="border-radius:0 .2em .2em 0" data-toggle="dropdown">...</button>
-        <div class="dropdown-menu dropdown-menu-right bg-secondary">
+        <div class="dropdown-menu dropdown-menu-right bg-dark text-light">
             @foreach (var tag in tags)
             {
                 <a class="btn d-block btn-@tag.bg_color text-@tag.text_color rounded-0" href="/posts/@tag.name" style="width:100%; text-align:left;padding-left:1em;padding-right:1em; white-space:nowrap" @onclick="() => SelectTag(tag)">@tag.name</a>
