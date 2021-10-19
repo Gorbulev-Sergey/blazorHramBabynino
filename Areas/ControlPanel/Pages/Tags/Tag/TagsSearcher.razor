@@ -1,16 +1,20 @@
 ﻿@inject ITagsService TagsService
 
 <div class="mb-3">
-    <div class="input-group input-group-sm w-25 dropdown mr-3 mb-2 d-inline-flex justify-content-start">
-        <input type="text" class="form-control" @bind-value="value" data-toggle="dropdown" placeholder="Добавить тег">
-        <div class="dropdown-menu w-100">
-            @foreach (var tag in tags)
-            {
-                <span class="dropdown-item" role="button" @onclick="()=>value=tag.name">@tag.name</span>
-            }
+    <div class="input-group input-group-sm mr-3 mb-3">
+        <div class="dropdown">
+            <input class="bg-light text-dark form-control form-control-sm border-0" @bind-value="value" data-toggle="dropdown" placeholder="Добавить тег">
+            <div class="dropdown-menu bg-light p-0 border-0">
+                <div class="d-flex flex-column">
+                    @foreach (var tag in tags.OrderBy(t => t.name).OrderBy(t => t.name))
+                    {
+                        <div class="btn btn-light text-dark text-left w-100" @onclick="()=>value=tag.name">@tag.name</div>
+                    }
+                </div>
+            </div>
         </div>
         <div class="input-group-append">
-            <button class="btn btn-secondary" @onclick="()=>добавить(value)"><i class="fas fa-plus"></i></button>
+            <button class="btn btn-tertiary text-dark" @onclick="()=>добавить(value)"><i class="fas fa-plus"></i></button>
         </div>
     </div>
     @foreach (var tag in addedTags)

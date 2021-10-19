@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Храм Вознесения Господня</title>
     <link id="bootstrap" href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="/my_js/loadBootstrap.js"></script>
     <link href="/font-awesome/css/all.min.css" rel="stylesheet" />
     <base href="~/" />
     <style>
@@ -24,7 +25,6 @@
             }
         }
     </style>
-
 </head>
 <body class="bg-secondary">
     <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light text-dark mb-3 align-items-center" style="z-index:100000;">
@@ -36,7 +36,7 @@
                 <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/schedule">Расписание</a>
                 <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/tags">Теги</a>
                 <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/photos">Фотографии</a>
-                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/contacts">Контакты</a>
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/contacts" hidden>Контакты</a>
                 <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/settings">Настройки</a>
             </div>
             <div class="flex-grow-1 d-flex justify-content-between mt-1 mt-lg-0">
@@ -46,20 +46,18 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-left bg-light p-0 border-0">
                         <div class="d-flex flex-column">
-                            <span class="badge badge-dark text-light rounded-0 text-left pl-3">Добавить:</span>
-                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/posts/create">Публикацию</a>
+                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/posts/create">Публикация</a>
                             <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/photos/create">Фотоальбом</a>
-                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/tags/create">Тег</a>
-                            <span class="badge badge-dark text-light rounded-0 text-left pl-3">Редактировать:</span>
+                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/tags">Тег</a>
                             <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/schedule/create">Расписание</a>
-                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/contacts/edit">Контакты</a>
+                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/contacts/edit" hidden>Контакты</a>
                             <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/settings/edit">Настройки</a>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex">
                     <a class="btn btn-light text-dark mr-1" href="/" title="Вернуться на сайт"><i class="fas fa-home"></i></a>
-                    <button class="btn btn-light text-dark mr-1" onclick="$('#bootstrap').attr('href') == '/bootstrap/css/bootstrap.min.css' ? $('#bootstrap').attr('href','/bootstrap/css/invert/bootstrap.min.css') : $('#bootstrap').attr('href','/bootstrap/css/bootstrap.min.css')"><i class="far fa-sun"></i></button>
+                    <button class="btn btn-light text-dark mr-1" onclick="changeBootstrap(document.querySelector('#bootstrap'))"><i class="far fa-sun"></i></button>
                     <div class="dropdown">
                         <button class="btn btn-light text-dark" data-toggle="dropdown">
                             <i class="fas fa-id-card-alt"></i>
@@ -137,11 +135,15 @@
         @RenderBody()
     </div>
 
+    <footer class="footer bg-light text-muted" style="margin-top: 4em">
+    </footer>
+
 
     <script src="/jquery/jquery.slim.min.js"></script>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/font-awesome/js/all.min.js"></script>
     <script src="_framework/blazor.server.js"></script>
+    <script src="/my_js/changeBootstrap.js"></script>
     <script src="/my_js/modal_album.js"></script>
     <script src="/my_js/editor.js"></script>
     @RenderSection("Scripts", required: false)

@@ -1,5 +1,5 @@
 ﻿<div class="mb-3">
-    <div class="btn-group btn-group-sm">
+    <div class="btn-group btn-group-sm mb-1">
         <div class="btn btn-sm btn-tertiary text-dark mb-0">тип:</div>
         <select class="btn btn-sm btn-light text-dark" @bind="filter1">
             @foreach (var item in Enum.GetValues(typeof(filter1)))
@@ -18,7 +18,7 @@
         </select>
     </div>*@
 
-    <div class="btn-group btn-group-sm">
+    <div class="btn-group btn-group-sm mb-1">
         <div class="btn btn-sm btn-tertiary text-dark mb-0">дата:</div>
         <select class="btn btn-sm btn-light text-dark" @bind="filter3">
             @foreach (var item in Enum.GetValues(typeof(filter3)))
@@ -28,7 +28,7 @@
         </select>
     </div>
 
-    <div class="btn-group btn-group-sm">
+    <div class="btn-group btn-group-sm mb-1">
         <div class="btn btn-sm btn-tertiary text-dark mb-0">тег:</div>
         <select class="btn btn-sm btn-light text-dark" @bind="filter4">
             <option></option>

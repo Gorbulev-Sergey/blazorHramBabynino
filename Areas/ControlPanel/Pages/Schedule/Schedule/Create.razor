@@ -1,12 +1,13 @@
 ﻿@inject ISchedulesService SchedulesService
+@inject NavigationManager NavigationManager
 
 <div class="d-flex justify-content-between mb-3">
     <div>
-        <input id="select_date" type="month" class="btn btn-light" placeholder="месяц" @bind="месяц_и_год_расписания" title="Выберите дату" />
+        <input id="select_date" type="month" class="btn btn-light text-dark" placeholder="месяц" @bind="месяц_и_год_расписания" title="Выберите дату" />
     </div>
     <div>
-        <a class="btn btn-secondary" href="/cpanel/schedule">Отмена</a>
-        <button class="btn btn-primary" @onclick="()=>сохранить_данные()">Сохранить</button>
+        <button class="btn btn-tertiary text-dark" @onclick="()=>сохранить_данные()">Сохранить</button>
+        <a class="btn btn-secondary text-dark" href="/cpanel/schedule">Отмена</a>        
     </div>
 </div>
 
@@ -71,5 +72,6 @@
     async Task сохранить_данные()
     {
         await SchedulesService.update_or_create(schedule);
+        NavigationManager.NavigateTo("cpanel/schedule");
     }
 }

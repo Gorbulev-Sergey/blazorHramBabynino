@@ -2,22 +2,22 @@
 
 
     <div class="mb-3">
-        <label>Название сайта:</label>
-        <div class="form-control h-auto">@appsettings.SiteSettings.site_name</div>
+        <label class="text-dark">Название сайта:</label>
+        <div class="form-control bg-light text-dark border-0 h-auto">@appsettings.SiteSettings.site_name</div>
     </div>
     <div class="mb-3">
-        <label>Описание сайта:</label>
-        <div class="form-control h-auto">@appsettings.SiteSettings.site_description</div>
+        <label class="text-dark">Описание сайта:</label>
+        <div class="form-control bg-light text-dark border-0 h-auto">@appsettings.SiteSettings.site_description</div>
     </div>
     <div class="mb-3">
-        <label>Подвал сайта:</label>
-        <div class="form-control h-auto">@appsettings.SiteSettings.site_footer</div>
+        <label class="text-dark">Подвал сайта:</label>
+        <div class="form-control bg-light text-dark border-0 h-auto">@appsettings.SiteSettings.site_footer</div>
     </div>
     <div class="mb-3">
-        <label>Строка подключения:</label>
-        <div class="form-control h-auto">@appsettings.ConnectionStrings.FirstOrDefault().Value</div>
+        <label class="text-dark">Строка подключения:</label>
+        <div class="form-control bg-light text-dark border-0 h-auto">@appsettings.ConnectionStrings.FirstOrDefault().Value</div>
     </div>
-
+    <a class="btn btn-tertiary text-dark" href="cpanel/settings/edit">Редактировать</a>
 
 
 @code {

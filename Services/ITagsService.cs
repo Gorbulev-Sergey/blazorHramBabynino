@@ -12,6 +12,7 @@ namespace razorHramBabynino.Services
     {
         List<tag> tags();
         Task add(tag tag);
+        Task edit(tag tag);
         Task remove(tag tag);
     }
 
@@ -25,14 +26,14 @@ namespace razorHramBabynino.Services
 
         public List<tag> tags()
         {
+            List<tag> ListTags = new List<tag>();
             using (var context = new ApplicationDbContext(options))
-            {
-                List<tag> newListTags = new List<tag>();
-                newListTags.AddRange(context.tags);
-                newListTags.Insert(0, newListTags.Last());
-                newListTags.RemoveAt(newListTags.Count-1);
-                return newListTags;
+            {                
+                ListTags.AddRange(context.tags);
+                //ListTags.Insert(0, ListTags.Last());
+                //ListTags.RemoveAt(ListTags.Count-1);                
             }
+            return ListTags;
         }
         public async Task add(tag tag)
         {
@@ -40,9 +41,19 @@ namespace razorHramBabynino.Services
             {
                 if (tag != null && !String.IsNullOrWhiteSpace(tag.name))
                 {
+                    tag.description = tag.name;
                     context.tags.Add(tag);
                     await context.SaveChangesAsync();
                 }
+            }
+        }
+
+        public async Task edit(tag tag)
+        {
+            using (var context = new ApplicationDbContext(options))
+            {
+                context.tags.Update(tag);
+                await context.SaveChangesAsync();
             }
         }
 
