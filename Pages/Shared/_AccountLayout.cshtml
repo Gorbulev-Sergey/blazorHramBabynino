@@ -5,20 +5,40 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="yandex-verification" content="36bacd69ee29c13d" /> @*Для Яндекс поисковика*@
-    <meta name="google-site-verification" content="S6OK-HEPvpJ8qLXQ3S9DnN4KZTMXAX7qbLrb7I7dXwA" /> @*Для Гугл поисковика*@
-    <meta name="keywords" content="храм бабынино Вознесения Господня церковь поселок калуга калужская область бабынинский район Вознесение Господне" />
-    <meta name="keywords" content="храм бабынино, храм Вознесения Господня, церковь бабынино, храм поселок бабынино, калуга храм, калужская область храм, бабынинский район храм, Вознесение Господне" />
-    <meta name="description" content="Сайт храма Вознесения Господня пос. Бабынино Калужской обл." />
     <title>Храм Вознесения Господня</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
-    <link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/css/colors.css" rel="stylesheet" />
+    <link id="bootstrap" href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="/my_js/loadBootstrap.js"></script>
+    <link href="/font-awesome/css/all.min.css" rel="stylesheet" />
     <base href="~/" />
 </head>
-<body style="background:rgba(0,0,0,.041)">
-    <header class="position-fixed vw-100" style="z-index:100000; top:0;">
+<body class="bg-secondary">
+    <style>
+        /*Уменьшаем размер заголовка сайта для маленьких смартфонов*/
+        .site-title {
+            font-size: 1.25em !important;
+        }
+
+        @@media (max-width: 420px) and (min-width: 0) {
+            .site-title {
+                font-size: .9em !important;
+            }
+        }
+    </style>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light text-dark mb-3 align-items-center" style="z-index:100000;">
+        <button class="navbar-toggler btn-light text-dark border-0" data-toggle="collapse" data-target=".navbar-collapse"><i class="fas fa-bars"></i></button>
+        <a class="card-link font-weight-bold text-uppercase ml-2 mr-2 mr-lg-4 site-title" href="/posts/объявления"><span class="text-danger">ХРАМ</span> <span class="text-dark">ВОЗНЕСЕНИЯ ГОСПОДНЯ</span></a>
+        <div class="navbar-collapse collapse">
+            <div class="navbar-nav flex-grow-1 mt-1 m-lg-0">
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="/posts/объявления">Публикации</a>
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="/schedule">Расписание</a>
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="/photos">Фотографии</a>
+                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="/contacts">Контакты</a>
+            </div>
+            <partial name="_LoginPartial" />
+        </div>
+    </nav>
+    <header class="position-fixed vw-100" style="z-index:100000; top:0;" hidden>
         <nav class="navbar navbar-expand-xl navbar-dark navbar-toggleable-xl bg-dark box-shadow mb-3 shadow d-flex flex-column">
             <div class="container ml-0 mr-0 pr-2">
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -44,34 +64,15 @@
         </nav>
     </header>
 
-    <div class="container mb-3" style="margin-top:80px;">
-        <main role="main">
-            <CascadingValue Name="Tag" Value="Tag">
-                @RenderBody()
-            </CascadingValue>
-        </main>
+    <div class="container" style="margin-top:5em;">
+        @RenderBody()
     </div>
 
-    <footer class="footer bg-dark text-muted">
-        <div class="container text-center p-3">
-            <a class="text-light text-muted" target="_blank" href="https://yandex.ru/maps/-/CCUA6Paa~B">ПОС. БАБЫНИНО КАЛУЖСКОЙ ОБЛ.</a><br />
-            <span>Спасибо компании <a target="_blank" href="https://somee.com/">somee.com</a> за предоставленное место для сайта.</span>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-    <script src="_framework/blazor.server.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/my_js/remove_somee.js"></script>
-    <script src="~/my_js/modal_album.js"></script>
+    <script src="/jquery/jquery.slim.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/font-awesome/js/all.min.js"></script>
+    <script src="/my_js/changeBootstrap.js"></script>
+    <script src="/my_js/remove_somee.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

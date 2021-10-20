@@ -8,32 +8,31 @@
         <Authorized>
             @if (SignInManager.IsSignedIn(context.User) && (context.User.IsInRole("администратор") || context.User.IsInRole("редактор")))
             {
-                <a class="btn btn-light text-dark mr-1" href="/cpanel/posts" title="Панель управления"><i class="fas fa-feather"></i></a>
+                <a class="btn btn-light text-dark mr-1" href="/cpanel/posts" title="Панель управления">Панель управления</a>
             }
-            <button class="btn btn-light text-dark mr-1" onclick="changeBootstrap(document.querySelector('#bootstrap'))"><i class="far fa-sun"></i></button>
+            <button class="btn btn-light text-dark mr-1" onclick="changeBootstrap(document.querySelector('#bootstrap'))"  title="Поменять тему"><i class="far fa-sun"></i></button>
             <div class="dropdown">
-                <button class="btn btn-light text-dark" data-toggle="dropdown">
+                <button class="btn btn-light text-dark" data-toggle="dropdown" title="Профиль">
                     <i class="fas fa-id-card-alt"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right bg-light p-0 border-0">
                     <div class="d-flex flex-column">
-                        <a class="btn btn-light text-dark text-left" href="/Identity/Account/Manage/Index" title="Мой профиль">Мой профиль</a>
-                        <a class="btn btn-light text-dark text-left" href="/Identity/Account/Logout">Выход</a>
+                        <a class="btn btn-light text-dark text-left" href="/Identity/Account/Manage/Index" title="Профиль">Профиль</a>
+                        <a class="btn btn-light text-dark text-left" href="/Identity/Account/Logout" title="Выход">Выход</a>
                     </div>
                 </div>
             </div>            
         </Authorized>
         <NotAuthorized>
-            @*<button class="btn btn-light text-dark mr-1" onclick="$('#bootstrap').attr('href') == '/bootstrap/css/bootstrap.min.css' ? $('#bootstrap').attr('href','/bootstrap/css/invert/bootstrap.min.css') : $('#bootstrap').attr('href','/bootstrap/css/bootstrap.min.css')"><i class="far fa-sun"></i></button>*@
-            <button class="btn btn-light text-dark mr-1" onclick="changeBootstrap(document.querySelector('#bootstrap'))"><i class="far fa-sun"></i></button>
+            <button class="btn btn-light text-dark mr-1" onclick="changeBootstrap(document.querySelector('#bootstrap'))" title="Поменять тему"><i class="far fa-sun"></i></button>
             <div class="dropdown">
-                <button class="btn btn-light text-dark" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-light text-dark" data-toggle="dropdown" title="Профиль">
                     <i class="fas fa-id-card-alt"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right bg-light mt-n1 p-0 border-0">
                     <div class="d-flex flex-column">
-                        <a class="btn btn-light text-dark text-left" href="/Identity/Account/Login">Вход</a>
-                        <a class="btn btn-light text-dark text-left" href="/Identity/Account/Register">Регистрация</a>
+                        <a class="btn btn-light text-dark text-left" href="/Identity/Account/Login" title="Вход">Вход</a>
+                        <a class="btn btn-light text-dark text-left" href="/Identity/Account/Register" title="Регистрация">Регистрация</a>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 ﻿<div class="form-row mb-2">
     <div class="col-9">
-        <input class="form-control" @bind-value="image.url" @bind-value:event="oninput" placeholder="Url изображения" />
-        <input class="form-control mt-1 form-control-sm border-0" @bind="image.title" placeholder="Название изображения" />
+        <input class="form-control border-0 bg-light text-dark" @bind-value="image.url" @bind-value:event="oninput" placeholder="Url изображения" />
+        <input class="form-control mt-1 form-control-sm border-0 bg-light text-dark" @bind="image.title" placeholder="Название изображения" />
     </div>
     <div class="col-2">
         <img class="card-img" src="@image.url" />

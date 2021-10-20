@@ -6,18 +6,14 @@
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     @*Заголовок страницы*@
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="pill" href="#list-home">Обложка</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" href="#list-images">Фотографии</a>
-        </li>
-    </ul>
+    <div class="nav nav-pills">
+        <a class="btn btn-secondary active mr-1" data-toggle="pill" href="#list-home">Обложка</a>
+        <a class="btn btn-secondary" data-toggle="pill" href="#list-images">Фотографии</a>
+    </div>
     @*Кнопки сохранения и отмены*@
     <div class="form-group mb-0">
-        <a class="btn btn-secondary" href="/cpanel/photos">Отмена</a>
-        <input type="button" value="Сохранить" class="btn btn-primary" @onclick="()=>сохранить()" />
+        <button class="btn btn-tertiary text-dark" @onclick="()=>сохранить()">Сохранить</button>
+        <a class="btn btn-secondary text-dark" href="/cpanel/photos">Отмена</a>        
     </div>
 </div>
 
@@ -27,21 +23,21 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="form-group">
-                    <input class="form-control" placeholder="Название" @bind="album.title" />
+                    <input class="form-control border-0 bg-light text-dark" placeholder="Название" @bind="album.title" />
                 </div>
                 <div class="form-group">
-                    <textarea rows="4" class="form-control" placeholder="Описание" @bind="album.description" />
+                    <textarea rows="4" class="form-control border-0 bg-light text-dark" placeholder="Описание" @bind="album.description" />
                 </div>
                 <div class="form-group d-flex justify-content-end align-items-center">
                     <div class="d-flex align-items-center">
-                        <div class="mr-1">Дата публикации:</div>
-                        <input type="date" class="btn btn-light" placeholder="месяц" @bind="album.created" title="Выберите дату" />
+                        <div class="mr-1 text-dark">Дата публикации:</div>
+                        <input type="date" class="btn border-0 bg-light text-dark" placeholder="месяц" @bind="album.created" title="Выберите дату" />
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input class="form-control" placeholder="Url обложки" @bind-value="album.cover_image" @bind-value:event="oninput" />
+                    <input class="form-control border-0 bg-light text-dark" placeholder="Url обложки" @bind-value="album.cover_image" @bind-value:event="oninput" />
                     <img class="card-img w-100 mt-3" src="@album.cover_image" />
                 </div>
             </div>
@@ -50,7 +46,7 @@
     @*Содержимое публикации*@
     <div class="tab-pane fade" id="list-images">
         <div class="mb-3">
-            <button class="btn btn-secondary" @onclick="()=>добавить()">Добавить фотографию <i class="fas fa-plus-circle text-white"></i></button>
+            <button class="btn btn-secondary text-dark" @onclick="()=>добавить()">Добавить фотографию <i class="fas fa-plus-circle text-dark"></i></button>
         </div>
         @foreach (var image in album.images)
         {

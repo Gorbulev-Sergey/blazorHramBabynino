@@ -5,41 +5,36 @@
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     @*Заголовок страницы*@
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link active" id="list-home-list" data-toggle="pill" href="#list-home">Обложка</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="list-content-list" data-toggle="pill" href="#list-content">Содержимое</a>
-        </li>
-    </ul>
+    <div class="nav nav-pills">
+        <a class="btn btn-secondary mr-1 active" id="list-home-list" data-toggle="pill" href="#list-home">Обложка</a>
+        <a class="btn btn-secondary" id="list-content-list" data-toggle="pill" href="#list-content">Содержимое</a>
+    </div>
     @*Кнопки сохранения и отмены*@
     <div class="form-group mb-0">
-        <a class="btn btn-secondary" href="/cpanel/posts">Отмена</a>
-        <input type="button" value="Сохранить" class="btn btn-primary" @onclick="()=>сохранить()" />
+        <button class="btn btn-tertiary text-dark" @onclick="()=>сохранить()">Сохранить</button>
+        <a class="btn btn-secondary" href="/cpanel/posts">Отмена</a>        
     </div>
 </div>
 
-@*<EditForm Model="post">*@
 <div class="tab-content" id="nav-tabContent">
     @*Обложка публикации*@
     <div class="tab-pane fade show active" id="list-home">
         <div class="row">
             <div class="col-md-8">
                 <div class="form-group">
-                    <input @bind="post.title" class="form-control" placeholder="Название" />
+                    <input @bind="post.title" class="form-control border-0 bg-light text-dark" placeholder="Название" />
                 </div>
                 <div class="form-group">
-                    <textarea @bind="post.description" rows="4" class="form-control" placeholder="Краткое описание" />
+                    <textarea @bind="post.description" rows="4" class="form-control border-0  bg-light text-dark" placeholder="Краткое описание" />
                 </div>
                 <div class="form-group d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
-                        <input id="publish" class="bg-dark" type="checkbox" value="false" @bind="post.published" />
-                        <label for="publish" class="ml-1 mb-0">Опубликовать</label>
+                        <input id="publish" class="bg-dark text-light" type="checkbox" value="false" @bind="post.published" />
+                        <label for="publish" class="ml-1 mb-0 text-dark">Опубликовать</label>
                     </div>
                     <div class="d-flex align-items-center">
-                        <div class="mr-1">Дата публикации:</div>
-                        <input type="date" class="btn btn-light" placeholder="месяц" @bind="post.created" title="Выберите дату" />
+                        <div class="mr-1 text-dark">Дата публикации:</div>
+                        <input type="date" class="btn btn-light text-dark border-0" placeholder="месяц" @bind="post.created" title="Выберите дату" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -47,23 +42,15 @@
                 </div>
             </div>
             <div class="col-md-4">
-                @*<div class="form-group">
-                    <select class="form-control" @bind="тип_публикации" title="Тип публикации">
-                        @foreach (var t in type.GetNames(typeof(type)).ToList())
-                        {
-                            <option class="bg-light">@t</option>
-                        }
-                    </select>
-                </div>*@
                 <div class="form-group">
-                    <input @bind-value="post.cover_image" @bind-value:event="oninput" class="form-control" placeholder="Обложка (url картинки)" />
+                    <input @bind-value="post.cover_image" @bind-value:event="oninput" class="form-control border-0 bg-light text-dark" placeholder="Обложка (url картинки)" />
                     @if (!String.IsNullOrEmpty(post.cover_image))
                     {
                         <img class="card-img mt-3" src="@post.cover_image" />
                     }
                 </div>
                 <div class="form-group">
-                    <input @bind-value="post.cover_video" @bind-value:event="oninput" class="form-control" placeholder="Обложка (url видео)" />
+                    <input @bind-value="post.cover_video" @bind-value:event="oninput" class="form-control border-0 bg-light text-dark" placeholder="Обложка (url видео)" />
                     @if (!String.IsNullOrEmpty(post.cover_video))
                     {
                         <div class="embed-responsive embed-responsive-16by9 mt-3">
@@ -80,11 +67,10 @@
             <Editor></Editor>
         </div>
         <div class="form-group">
-            <div id="editor" class="form-control h-auto" style="min-height:300px" contenteditable="true">@((MarkupString)post.content)</div>
+            <div id="editor" class="form-control h-auto border-0 bg-light text-dark" style="min-height:300px" contenteditable="true">@((MarkupString)post.content)</div>
         </div>
     </div>
 </div>
-@*</EditForm>*@
 
 @code {
     [Parameter]
