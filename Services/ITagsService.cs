@@ -26,14 +26,10 @@ namespace razorHramBabynino.Services
 
         public List<tag> tags()
         {
-            List<tag> ListTags = new List<tag>();
             using (var context = new ApplicationDbContext(options))
             {                
-                ListTags.AddRange(context.tags);
-                //ListTags.Insert(0, ListTags.Last());
-                //ListTags.RemoveAt(ListTags.Count-1);                
+                return context.tags.OrderBy(t=>t.name).ToList();               
             }
-            return ListTags;
         }
         public async Task add(tag tag)
         {

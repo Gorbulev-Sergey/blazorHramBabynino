@@ -1,4 +1,4 @@
-﻿@inject ICRUD<post> PostsService
+﻿@inject PostsService PostsService
 @inject ITagsService TagsService
 @inject IJSRuntime JSRuntime
 @using razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post
@@ -50,8 +50,8 @@
         {
             switch (Filter.filter1.ToString())
             {
-                case "опубликованы": filtredPosts = posts.Where(p => p.published == true).ToList(); break;
-                case "неопубликованы": filtredPosts = posts.Where(p => p.published == false).ToList(); break;
+                case "опубликованые": filtredPosts = posts.Where(p => p.published == true).ToList(); break;
+                case "неопубликованые": filtredPosts = posts.Where(p => p.published == false).ToList(); break;
             }
 
         }

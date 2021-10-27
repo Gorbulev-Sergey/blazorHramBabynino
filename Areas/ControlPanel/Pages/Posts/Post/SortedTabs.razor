@@ -8,15 +8,6 @@
             }
         </select>
     </div>
-    @*<div class="btn-group btn-group-sm">
-        <div class="btn btn-sm btn-secondary mb-0">тип:</div>
-        <select class="btn btn-sm btn-dark" @bind="filter2">
-            @foreach (var item in Enum.GetValues(typeof(filter2)))
-            {
-                <option>@item</option>
-            }
-        </select>
-    </div>*@
 
     <div class="btn-group btn-group-sm mb-1">
         <div class="btn btn-sm btn-tertiary text-dark mb-0">дата:</div>
@@ -56,16 +47,6 @@
         set
         {
             Filter.filter1 = (filter1)Enum.Parse(typeof(filter1), value);
-            filterChanged.InvokeAsync(Filter);
-        }
-    }
-
-    string filter2
-    {
-        get => Filter.filter2.ToString();
-        set
-        {
-            Filter.filter2 = (filter2)Enum.Parse(typeof(filter2), value);
             filterChanged.InvokeAsync(Filter);
         }
     }

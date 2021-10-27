@@ -31,6 +31,12 @@
     protected override void OnInitialized()
     {
         tags = TagsService.tags();
+        tag объявления = tags.FirstOrDefault(t => t.name == "объявления");
+        tag новости = tags.FirstOrDefault(t => t.name == "новости");
+        tags.Remove(tags.FirstOrDefault(t => t.name == "объявления"));
+        tags.Remove(tags.FirstOrDefault(t => t.name == "новости"));
+        tags.Insert(0, объявления);
+        tags.Insert(1, новости);
         ViewBagService.BackUrl = $"/posts/{Tag.name}";
     }
 
