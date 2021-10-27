@@ -9,13 +9,43 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Services
 {
-    public class PostsService : ICRUD<post>
+    public class PostsService
     {
         DbContextOptions<ApplicationDbContext> options;
+        string Tag;
+        int Page = 1;
+        int Take = 6;
+        public bool canNext = true;
 
         public PostsService(DbContextOptions<ApplicationDbContext> options)
         {
             this.options = options;
+        }
+
+        public List<post> getNext(string tag="объявления")
+        {
+            if (Tag != tag) { Tag = tag; Page = 1; }
+            using (var context = new ApplicationDbContext(options))
+            {
+                var posts = context.posts.Include(p => p.tags).Include(p => p.comments).Include(p => p.likes).OrderByDescending(d=>d.created).Where(p => p.tags.FirstOrDefault(t => t.name == tag).posts.Count > 0);
+
+                if (posts.Count() > 0)
+                {
+                    if (posts.Count() <= Take * Page)
+                    {
+                        canNext = false;
+                    }
+                    else if (posts.Count() > Take * Page)
+                    {
+                        canNext = true;
+                    }
+                    posts = posts.Skip(0).Take(Take*Page);
+                    Page++;
+                    return posts.ToList();
+                }
+                else return new List<post>();
+                             
+            }            
         }
 
         public void add(post item)

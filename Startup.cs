@@ -67,7 +67,7 @@ namespace razorHramBabynino
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddTransient<ICRUD<post>, PostsService>();
+            services.AddTransient<PostsService>();
             services.AddTransient<ITagsService, TagsService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<ILikesService, LikesService>();

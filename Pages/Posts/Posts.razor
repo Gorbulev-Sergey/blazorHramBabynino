@@ -1,7 +1,7 @@
 ﻿@layout Layout
 @page "/"
 @page "/posts/{Tag}"
-@inject ICRUD<post> PostsService
+@inject PostsService PostsService
 
 
 <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
@@ -11,14 +11,26 @@
     }
 </div>
 
+@if (PostsService.canNext) { 
+    <button class="btn btn-light text-dark w-100" @onclick="()=> { posts = null; posts = nextPosts(tag: Tag); }">Загрузить ещё</button>
+}
+    
+
+
+
 @code {
     [Parameter]
     public string Tag { get; set; }
     List<post> posts = new List<post>();
 
-    protected override void OnInitialized()
+    List<post> nextPosts(string tag)
     {
-        posts = PostsService.get().OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
+        return PostsService.getNext(tag: tag).OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
+    }
+
+    protected override void OnParametersSet()
+    {
         if (string.IsNullOrEmpty(Tag)) Tag = "объявления";
+        posts = nextPosts(tag: Tag);
     }
 }
