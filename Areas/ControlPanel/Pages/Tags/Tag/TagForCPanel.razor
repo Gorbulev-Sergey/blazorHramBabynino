@@ -1,13 +1,13 @@
 ﻿@inject ITagsService TagsService 
 
-<div class="btn-group btn-group-sm mr-1 mb-1">
+<div class="btn-group btn-group-sm mr-1 mb-1">    
     <div class="btn bg-light text-dark text-nowrap @collapseDiv">@tag.name</div>
     <div class="btn bg-tertiary text-dark rounded-left @collapseInput" style="cursor:default">Название:</div>
     <input class="btn bg-light text-dark text-left form-control form-control-sm border-0 @collapseInput" style="cursor:text" placeholder="название" @bind="tag.name" />
     <div class="btn bg-tertiary text-dark @collapseInput" style="cursor:default">Описание:</div>
     <input class="btn bg-light text-dark text-left form-control form-control-sm border-0 @collapseInput" style="cursor:text" placeholder="описание" @bind="tag.description" />
     <button class="btn btn-tertiary text-dark @collapseDiv" @onclick="()=>editTag(tag)"><i class="fas fa-pen"></i></button>
-    <button class="btn btn-success text-white @collapseInput" @onclick="()=>editTag(tag)">Сохранить</button>
+    <button class="btn btn-success text-white @collapseInput" @onclick="()=>editTag(tag)">Сохранить</button>    
     <button class="btn btn-tertiary text-dark @collapseInput" @onclick='()=> {collapseDiv = ""; collapseInput = "collapse"; }'>Отмена</button>
     <button class="btn btn-tertiary text-dark rounded-right" data-toggle="dropdown"><i class="fas fa-times"></i></button>
     <div class="dropdown-menu dropdown-menu-right">

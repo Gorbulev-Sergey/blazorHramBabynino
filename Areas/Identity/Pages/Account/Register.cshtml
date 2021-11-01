@@ -28,14 +28,14 @@
             </div>
         </form>
         <div class="form-group">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-start">
                 <button class="btn btn-tertiary text-dark" onclick="$(this).parent().parent().prev().submit()">Зарегистрироваться</button>
                 <div class="flex-grow-1 d-flex justify-content-end">
                     <div class="p-2">Использовать: </div>
                     <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                         @foreach (var provider in Model.ExternalLogins)
                         {
-                            <button type="submit" class="btn btn-tertiary text-dark ml-1" name="provider" value="@provider.Name" title="Используйте для входа в систему @provider.DisplayName">@provider.DisplayName</button>
+                            <button type="submit" class="btn btn-tertiary text-dark ml-1 mb-1 mb-lg-0" name="provider" value="@provider.Name" title="Используйте для входа в систему @provider.DisplayName">@provider.DisplayName</button>
                         }
                     </form>
                 </div>
