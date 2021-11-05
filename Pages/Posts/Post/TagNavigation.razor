@@ -27,8 +27,9 @@
 
     List<tag> tags = new List<tag>();
 
-    protected override void OnInitialized()
-    {
+        protected override void OnParametersSet()
+        {
+            
         Tag = Tag ?? "объявления";
 
         tags = TagsService.tags();

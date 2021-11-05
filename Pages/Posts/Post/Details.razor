@@ -61,7 +61,7 @@
     user user = new user();
     string backurl;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         post = await PostsService.itemByIdAsync(id);
         user = await userIdentity();
