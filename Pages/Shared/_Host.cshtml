@@ -16,9 +16,9 @@
     <meta name="description" content="Сайт храма Вознесения Господня пос. Бабынино Калужской обл." />
     <title>Храм Вознесения Господня</title>
     <base href="~/" />
-    <link id="bootstrap" href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />   
+    <link href="/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link id="bootstrap" rel="stylesheet" />
     <script src="/my_js/loadBootstrap.js"></script>
-    <link href="/font-awesome/css/all.min.css" rel="stylesheet" />    
 </head>
 <body class="bg-secondary">
 
@@ -26,16 +26,13 @@
         <component type="typeof(App)" render-mode="ServerPrerendered" />
     </app>
 
+    <script src="_framework/blazor.server.js"></script>
     <script src="/jquery/jquery.slim.min.js"></script>    
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/font-awesome/js/all.min.js"></script>
-    <script src="_framework/blazor.server.js"></script>
+    <script src="/font-awesome/js/all.min.js"></script>    
     <script src="/my_js/changeBootstrap.js"></script>
     <script src="/my_js/localStorage.js"></script>    
-    <script src="/my_js/modal_album.js"></script>
-    <script src="/my_js/onload.js"></script>
+    <script src="/my_js/modal_album.js"></script>  
     <script src="/my_js/remove_somee.js"></script>
-    
-    @*@await RenderSectionAsync("Scripts", required: false)*@
 </body>
 </html>
