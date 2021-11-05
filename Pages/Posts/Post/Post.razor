@@ -4,7 +4,15 @@
     <div class="card bg-light text-dark h-100 border-0">
         <div class="card-header bg-light text-dark border-0">
             <h5 class="card-title">@post.title</h5>
-            <div class="small text-danger">@post.created.ToString("dd.MM.yyyy")</div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="small text-danger">@post.created.ToString("dd.MM.yyyy")</div>
+                <div>
+                    @foreach (var tag in post.tags)
+                    {
+                        <a class="badge badge-tertiary text-dark p-1 ml-1" href="/posts/@tag.name">@tag.name</a>
+                    }
+                </div>                
+            </div>            
         </div>
         @if (!String.IsNullOrEmpty(post.cover_video))
         {
@@ -43,7 +51,6 @@
 
     void подробнее(int id)
     {
-        Console.WriteLine(id);
-        NavigationManager.NavigateTo($"/posts/details/{id}");
+        NavigationManager.NavigateTo($"/posts/details/{id}?backurl=/{NavigationManager.Uri.Replace(NavigationManager.BaseUri, string.Empty)}");
     }
 }

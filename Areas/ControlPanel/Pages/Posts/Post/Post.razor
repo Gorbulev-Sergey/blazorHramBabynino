@@ -4,13 +4,21 @@
             <h5 class="mb-0">@post.title</h5>
             <div class="text-muted small mb-1">@post.created.ToShortDateString()</div>
             <p>@((MarkupString)post.description)</p>
-        </div>
-        <div class="d-flex align-items-center justify-content-between">            
-            <select class="btn btn-sm btn-light text-dark" @bind="published">
-                <option class="btn btn-light text-dark text-left" value="True">опубликована</option>
-                <option class="btn btn-light text-dark text-left" value="False">неопубликована</option>
-            </select>
-            <div class="d-flex justify-content-center">
+        </div>        
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <select class="btn btn-sm btn-light text-dark" @bind="published">
+                    <option class="btn btn-light text-dark text-left" value="True">опубликована</option>
+                    <option class="btn btn-light text-dark text-left" value="False">неопубликована</option>
+                </select>
+                <div class="ml-3">
+                    @foreach (var tag in post.tags)
+                    {
+                        <span class="badge badge-tertiary text-dark p-1 mr-2">@tag.name</span>
+                    }
+                </div>
+            </div>                       
+            <div class="d-flex justify-content-center align-items-center">                
                 @if (!String.IsNullOrEmpty(post.content))
                 {
                     <a class="btn btn-light text-dark mr-1" href="/cpanel/posts/details/@post.ID"><i class="fas fa-eye"></i></a>

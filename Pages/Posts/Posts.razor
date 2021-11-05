@@ -1,8 +1,10 @@
-﻿@layout Layout
-@page "/"
-@page "/posts/{Tag}"
+﻿@page "/"
+@page "/posts/{Tag?}"
 @inject PostsService PostsService
 
+
+
+<TagNavigation Tag="@Tag"></TagNavigation>
 
 <div class="row mb-3 row-cols-1 row-cols-md-2 row-cols-xl-3">
     @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.name == Tag))))
@@ -11,16 +13,14 @@
     }
 </div>
 
-@if (PostsService.canNext) { 
+@if (PostsService.canNext)
+{
     <button class="btn btn-light text-dark w-100" @onclick="()=> { posts = null; posts = nextPosts(tag: Tag); }">Загрузить ещё</button>
 }
-    
-
 
 
 @code {
-    [Parameter]
-    public string Tag { get; set; }
+    [Parameter] public string Tag { get; set; }
     List<post> posts = new List<post>();
 
     List<post> nextPosts(string tag)
@@ -30,7 +30,7 @@
 
     protected override void OnParametersSet()
     {
-        if (string.IsNullOrEmpty(Tag)) Tag = "объявления";
+        Tag = Tag ?? "объявления";
         posts = nextPosts(tag: Tag);
     }
 }

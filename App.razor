@@ -7,8 +7,10 @@
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(_MainLayout)"/>
         </Found>
         <NotFound>
-            <LayoutView>
-                <p class="alert alert-info">Страница не найдена</p>
+            <LayoutView Layout="typeof(ErrorLayout)">
+                <div class="container mt-3">
+                    <h4 class="text-danger text-center">Страница не найдена</h4>
+                </div>                
             </LayoutView>
         </NotFound>
     </Router>

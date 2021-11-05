@@ -14,10 +14,10 @@
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light text-dark mb-3 align-items-center" style="z-index:100000;">
     <button class="navbar-toggler btn-light text-dark border-0" data-toggle="collapse" data-target=".navbar-collapse"><i class="fas fa-bars"></i></button>
-    <a class="card-link font-weight-bold text-uppercase ml-2 mr-2 mr-lg-4 site-title" href="/posts/@Tag.name" @onclick='()=>Tag.description="Объявления"'><span class="text-danger">ХРАМ</span> <span class="text-dark">ВОЗНЕСЕНИЯ ГОСПОДНЯ</span></a>
+    <a class="card-link font-weight-bold text-uppercase ml-2 mr-2 mr-lg-4 site-title" href="/posts/объявления"><span class="text-danger">ХРАМ</span> <span class="text-dark">ВОЗНЕСЕНИЯ ГОСПОДНЯ</span></a>
     <div class="navbar-collapse collapse">
         <div class="navbar-nav flex-grow-1 mt-1 m-lg-0">
-            <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="/posts/@Tag.name" @onclick='() => Tag.description = "Объявления"'>Публикации</a>
+            <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="/posts/объявления">Публикации</a>
             <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="/schedule">Расписание</a>
             <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="/photos">Фотографии</a>
             <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="/contacts">Контакты</a>
@@ -27,12 +27,10 @@
 </nav>
 
 <div class="container" style="margin-top:5em;">
-    <CascadingValue Name="Tag" Value="Tag">
-        @Body
-    </CascadingValue>
+     @Body
 </div>
 
-<footer class="footer bg-light text-muted" style="margin-top: 4em">
+<footer class="footer bg-light text-muted" style="margin-top: 6em; padding-bottom:1em; font-size:.95em;">
     <div class="text-center p-3 text-wrap">
         <a class="text-muted" target="_blank" href="https://yandex.ru/maps/-/CCUA6Paa~B">ПОС. БАБЫНИНО КАЛУЖСКОЙ ОБЛ.</a>
         <p class="mb-0">
@@ -45,7 +43,7 @@
 </footer>
 
 @code{
-    tag Tag = new tag { description = "Объявления", name = "объявления" };
+    //tag Tag = new tag { description = "Объявления", name = "объявления" };
 }
 
 
