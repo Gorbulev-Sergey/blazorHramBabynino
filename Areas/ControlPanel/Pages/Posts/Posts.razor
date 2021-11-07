@@ -13,10 +13,16 @@
 
 <SortedTabs tags="tags" filterChanged="filter => фильтровать((Filter)filter)"></SortedTabs>
 
-@foreach (var post in filtredPosts)
+
+<Virtualize Items="filtredPosts" Context="post">
+    <razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post post="post" удалить="удалить" обновить="post => обновить((post)post)"></razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post>
+</Virtualize>    
+
+
+@*@foreach (var post in filtredPosts)
 {
     <razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post post="post" удалить="удалить" обновить="post => обновить((post)post)"></razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post>
-}
+}*@
 
 
 

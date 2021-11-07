@@ -24,7 +24,14 @@
                     <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/tags">Теги</a>
                     <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/photos">Фотографии</a>
                     <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/contacts" hidden>Контакты</a>
-                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/settings">Настройки</a>
+                    <AuthorizeView>
+                        <Authorized Context="context">
+                            @if (context.User.IsInRole("администратор"))
+                            {
+                                <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/settings">Настройки</a>
+                            }
+                        </Authorized>
+                    </AuthorizeView>
                 </div>
                 <div class="flex-grow-1 d-flex justify-content-between mt-1 mt-lg-0">
                     <div class="dropdown">
@@ -37,8 +44,14 @@
                                 <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/photos/create">Фотоальбом</a>
                                 <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/tags">Тег</a>
                                 <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/schedule/create">Расписание</a>
-                                <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/contacts/edit" hidden>Контакты</a>
-                                <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/settings/edit">Настройки</a>
+                                <AuthorizeView>
+                                    <Authorized Context="context">
+                                        @if (context.User.IsInRole("администратор"))
+                                        {
+                                            <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/settings/edit">Настройки</a>
+                                        }
+                                    </Authorized>
+                                </AuthorizeView>
                             </div>
                         </div>
                     </div>
