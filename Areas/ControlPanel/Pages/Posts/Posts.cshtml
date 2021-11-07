@@ -1,7 +1,0 @@
-﻿@page "/cpanel/posts"
-@attribute [Authorize(Roles = "администратор, редактор")]
-@{
-    ViewBag.Title = "Публикации";
-}
-
-<component type="typeof(Posts)" render-mode="ServerPrerendered" />

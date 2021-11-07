@@ -1,27 +1,40 @@
-﻿@layout HomeLayout
-@page "/schedule"
+﻿@layout CPanelLayout
+@page "/cpanel/schedule"
+@attribute [Authorize(Roles = "администратор, редактор")]
 @inject ISchedulesService SchedulesService
 
 @if (естьРасписаиниеНаТекущийМесяц)
 {
     if (естьРасписаиниеНаСледующийМесяц)
     {
-        <h3 class="mb-4 text-dark text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(nextDate.Month).ToLower() @nextDate.Year года</h3>
-        <Schedule date="nextDate"></Schedule>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(nextDate.Month).ToLower() @nextDate.Year года</h3>
+            <a class="btn btn-tertiary text-dark" href="/cpanel/schedule/create"><i class="fas fa-pencil-alt" title="Редактировать расписание"></i></a>
+        </div>
+        <razorHramBabynino.Pages.Schedule.Schedule.Schedule date="nextDate" />
         <br />
         <br />
     }
-    <h3 class="mb-4 text-dark text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower() @DateTime.Now.Year года</h3>
-    <Schedule date="DateTime.Now"></Schedule>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="text-dark text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower() @DateTime.Now.Year года</h3>
+    <a class="btn btn-tertiary text-dark" href="/cpanel/schedule/create"><i class="fas fa-pencil-alt" title="Редактировать расписание"></i></a>
+</div>
+    <razorHramBabynino.Pages.Schedule.Schedule.Schedule date="DateTime.Now" />
 }
 else if (естьРасписаиниеНаПредыдущийМесяц)
 {
-    <h3 class="mb-4 text-dark text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(prevDate.Month).ToLower() @prevDate.Year года</h3>
-    <Schedule date="prevDate"></Schedule>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="text-dark text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(prevDate.Month).ToLower() @prevDate.Year года</h3>
+    <a class="btn btn-tertiary text-dark" href="/cpanel/schedule/create"><i class="fas fa-pencil-alt" title="Редактировать расписание"></i></a>
+</div>
+    <razorHramBabynino.Pages.Schedule.Schedule.Schedule date="prevDate" />
 }
 else
 {
+<div class="d-flex justify-content-between align-items-center">
     <div class="alert alert-info"><b>Расписание на данный момент отсутствует</b></div>
+    <a class="btn btn-tertiary text-dark" href="/cpanel/schedule/create"><i class="fas fa-pencil-alt" title="Редактировать расписание"></i></a>
+</div>
 }
 
 

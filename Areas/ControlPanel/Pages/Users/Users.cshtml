@@ -1,7 +1,0 @@
-﻿@page "/cpanel/users"
-@attribute [Authorize(Roles = "администратор")]
-@{
-    ViewBag.Title = "Пользователи";
-}
-
-<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Users.Users.Users)" render-mode="ServerPrerendered" />

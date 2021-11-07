@@ -1,7 +1,0 @@
-﻿@page "/cpanel/settings"
-@attribute [Authorize(Roles = "администратор")]
-@{
-    ViewBag.Title = "Настройки сайта";
-}
-
-<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Settings.Blazor.Settings)" render-mode="ServerPrerendered" />

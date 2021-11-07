@@ -1,6 +1,11 @@
-﻿@inject ICRUD<imageAlbum> PhotosService
+﻿@layout CPanelLayout
+@page "/cpanel/photos"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@inject ICRUD<imageAlbum> PhotosService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
+
+<h3 class="mb-3 text-dark">Фотографии</h3>
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
     @foreach (var album in albums)
@@ -37,7 +42,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        albums = PhotosService.get().OrderBy(a=>a.created).Reverse().ToList();
+        albums = PhotosService.get().OrderBy(a => a.created).Reverse().ToList();
     }
 
     async Task показать(imageAlbum album)

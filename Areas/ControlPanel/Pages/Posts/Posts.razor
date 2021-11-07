@@ -1,8 +1,14 @@
-﻿@inject PostsService PostsService
+﻿@layout CPanelLayout
+@page "/cpanel"
+@page "/cpanel/posts"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@inject PostsService PostsService
 @inject ITagsService TagsService
 @inject IJSRuntime JSRuntime
 @using razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post
 @using Microsoft.AspNetCore.Components.Web.Virtualization
+
+<h3 class="mb-3 text-dark">Публикации</h3>
 
 
 <SortedTabs tags="tags" filterChanged="filter => фильтровать((Filter)filter)"></SortedTabs>

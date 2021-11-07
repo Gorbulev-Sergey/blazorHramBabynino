@@ -1,5 +1,11 @@
-﻿@inject ISchedulesService SchedulesService
+﻿@layout CPanelLayout
+@page "/cpanel/schedule/create"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@inject ISchedulesService SchedulesService
 @inject NavigationManager NavigationManager
+
+
+<h3 class="mb-3 text-dark">Редактировать расписание</h3>
 
 <div class="d-flex justify-content-between mb-3">
     <div>
@@ -7,11 +13,11 @@
     </div>
     <div>
         <button class="btn btn-tertiary text-dark" @onclick="()=>сохранить_данные()">Сохранить</button>
-        <a class="btn btn-secondary text-dark" href="/cpanel/schedule">Отмена</a>        
+        <a class="btn btn-secondary text-dark" href="/cpanel/schedule">Отмена</a>
     </div>
 </div>
 
-<razorHramBabynino.Areas.ControlPanel.Pages.Schedule.Schedule_create.Schedule_create schedule="schedule"></razorHramBabynino.Areas.ControlPanel.Pages.Schedule.Schedule_create.Schedule_create>
+<Schedule_create schedule="schedule" />
 
 
 @code {
@@ -72,6 +78,6 @@
     async Task сохранить_данные()
     {
         await SchedulesService.update_or_create(schedule);
-        NavigationManager.NavigateTo("cpanel/schedule");
+        NavigationManager.NavigateTo("/cpanel/schedule", true);
     }
 }

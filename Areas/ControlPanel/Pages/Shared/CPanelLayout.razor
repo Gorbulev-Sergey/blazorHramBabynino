@@ -1,0 +1,59 @@
+﻿@inherits LayoutComponentBase
+
+
+        <style>
+            /*Уменьшаем размер заголовка сайта для маленьких смартфонов*/
+            .site-title {
+                font-size: 1.25em !important;
+            }
+
+            @@media (max-width: 420px) and (min-width: 0) {
+                .site-title {
+                    font-size: .9em !important;
+                }
+            }
+        </style>
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light text-dark mb-3 align-items-center" style="z-index:100000;">
+            <button class="navbar-toggler btn-light text-dark border-0" data-toggle="collapse" data-target=".navbar-collapse"><i class="fas fa-bars"></i></button>
+            <a class="card-link font-weight-bold text-uppercase ml-2 mr-2 mr-lg-4 site-title" href="cpanel/posts"><span class="text-dark">Панель управления</span></a>
+            <div class="navbar-collapse collapse">
+                <div class="navbar-nav mt-1 m-lg-0">
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/posts/">Публикации</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/schedule">Расписание</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/tags">Теги</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/photos">Фотографии</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/contacts" hidden>Контакты</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/settings">Настройки</a>
+                </div>
+                <div class="flex-grow-1 d-flex justify-content-between mt-1 mt-lg-0">
+                    <div class="dropdown">
+                        <button class="btn btn-light text-dark mr-1" data-toggle="dropdown">
+                            <i class="fas fa-plus-circle" style="font-size:1.1em"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-left bg-light p-0 border-0">
+                            <div class="d-flex flex-column">
+                                <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/posts/create">Публикация</a>
+                                <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/photos/create">Фотоальбом</a>
+                                <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/tags">Тег</a>
+                                <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/schedule/create">Расписание</a>
+                                <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/contacts/edit" hidden>Контакты</a>
+                                <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/settings/edit">Настройки</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <a class="btn btn-light text-dark mr-1" href="/" title="Вернуться на сайт">Сайт</a>
+                        <Login />
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" style="margin-top:5em; margin-bottom: 4em;">
+            @Body
+        </div>
+
+
+
+

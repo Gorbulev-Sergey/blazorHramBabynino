@@ -1,10 +1,14 @@
-﻿@inject PostsService PostsService
+﻿@layout CPanelLayout
+@page "/cpanel/posts/create"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@inject PostsService PostsService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
 @inject NavigationManager NavigationManager
 
+<h3 class="mb-3 text-dark">Создать публикацию</h3>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     @*Заголовок страницы*@
@@ -15,7 +19,7 @@
     @*Кнопки сохранения и отмены*@
     <div class="form-group mb-0">
         <button class="btn btn-tertiary text-dark" @onclick="()=>сохранить()">Сохранить</button>
-        <a class="btn btn-secondary text-dark" href="/cpanel/posts">Отмена</a>        
+        <a class="btn btn-secondary text-dark" href="/cpanel/posts">Отмена</a>
     </div>
 </div>
 

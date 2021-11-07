@@ -1,8 +1,12 @@
-﻿@inject ICRUD<imageAlbum> PhotosService
+﻿@layout CPanelLayout
+@page "/cpanel/photos/edit/{id:int}"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@inject ICRUD<imageAlbum> PhotosService
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
-@inject NavigationManager NavigationManager
+
+<h3 class="mb-3 text-dark">Редактировать фотоальбом</h3>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     @*Заголовок страницы*@
@@ -13,7 +17,7 @@
     @*Кнопки сохранения и отмены*@
     <div class="form-group mb-0">
         <button class="btn btn-tertiary text-dark" @onclick="()=>сохранить()">Сохранить</button>
-        <a class="btn btn-secondary text-dark" href="/cpanel/photos">Отмена</a>        
+        <a class="btn btn-secondary text-dark" href="/cpanel/photos">Отмена</a>
     </div>
 </div>
 
@@ -62,13 +66,14 @@
 
 
 @code {
-    public imageAlbum album = new imageAlbum();
-    user user = new user();
+    [Parameter]
+    public int id { get; set; }
+
+    imageAlbum album = new imageAlbum();
 
     protected override async Task OnInitializedAsync()
     {
-        //album.userId = (await UserManager.FindByNameAsync((await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity.Name)).Id;
-        user = await userIdentity();
+        album = await PhotosService.itemByIdAsync(id);
     }
 
     void добавить()
@@ -83,19 +88,7 @@
 
     async Task сохранить()
     {
-        album.userId = user.Id;
-        await PhotosService.addAsync(album);
+        await PhotosService.updateAsync(album);
         NavigationManager.NavigateTo("/cpanel/photos", true);
-    }
-
-    async Task<user> userIdentity()
-    {
-        var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-
-        if (state.User.Identity.IsAuthenticated)
-        {
-            return await UserManager.FindByNameAsync(state.User.Identity.Name);
-        }
-        else return new user();
     }
 }

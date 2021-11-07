@@ -1,6 +1,11 @@
-﻿@inject PostsService PostsService
+﻿@layout CPanelLayout
+@page "/cpanel/posts/edit/{id:int}"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@inject PostsService PostsService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
+
+<h3 class="mb-3 text-dark">Редактировать публикацию</h3>
 
 
 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -12,7 +17,7 @@
     @*Кнопки сохранения и отмены*@
     <div class="form-group mb-0">
         <button class="btn btn-tertiary text-dark" @onclick="()=>сохранить()">Сохранить</button>
-        <a class="btn btn-secondary" href="/cpanel/posts">Отмена</a>        
+        <a class="btn btn-secondary" href="/cpanel/posts">Отмена</a>
     </div>
 </div>
 
@@ -74,7 +79,7 @@
 
 @code {
     [Parameter]
-    public int ID { get; set; }
+    public int id { get; set; }
 
     public post post = new post();
     string тип_публикации
@@ -91,7 +96,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        post = await PostsService.itemByIdAsync(ID);
+        post = await PostsService.itemByIdAsync(id);
     }
 
     async Task сохранить()

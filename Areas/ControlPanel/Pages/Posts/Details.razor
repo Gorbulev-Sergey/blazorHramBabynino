@@ -1,5 +1,10 @@
-﻿@inject PostsService PostsService
+﻿@layout CPanelLayout
+@page "/cpanel/posts/details/{id:int}"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@inject PostsService PostsService
 @inject NavigationManager NavigationManager
+
+<h3 class="mb-3 text-dark">Подробности</h3>
 
 <div class="card bg-light text-dark border-0">
     <div class="card-header bg-light text-dark d-flex align-items-center justify-content-between border-0">

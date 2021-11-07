@@ -1,7 +1,13 @@
-﻿@inject ICRUD<imageAlbum> PhotosService
+﻿@layout CPanelLayout
+@page "/cpanel/photos/create"
+@attribute [Authorize(Roles = "администратор, редактор")]
+@inject ICRUD<imageAlbum> PhotosService
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
+@inject NavigationManager NavigationManager
+
+<h3 class="mb-3 text-dark">Создать фотоальбом</h3>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     @*Заголовок страницы*@
@@ -61,14 +67,13 @@
 
 
 @code {
-    [Parameter]
-    public int ID { get; set; }
-
-    imageAlbum album = new imageAlbum();
+    public imageAlbum album = new imageAlbum();
+    user user = new user();
 
     protected override async Task OnInitializedAsync()
     {
-        album = await PhotosService.itemByIdAsync(ID);
+        //album.userId = (await UserManager.FindByNameAsync((await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity.Name)).Id;
+        user = await userIdentity();
     }
 
     void добавить()
@@ -83,7 +88,19 @@
 
     async Task сохранить()
     {
-        await PhotosService.updateAsync(album);
+        album.userId = user.Id;
+        await PhotosService.addAsync(album);
         NavigationManager.NavigateTo("/cpanel/photos", true);
+    }
+
+    async Task<user> userIdentity()
+    {
+        var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        if (state.User.Identity.IsAuthenticated)
+        {
+            return await UserManager.FindByNameAsync(state.User.Identity.Name);
+        }
+        else return new user();
     }
 }

@@ -1,7 +1,0 @@
-﻿@page "/cpanel/posts/create"
-@attribute [Authorize(Roles = "администратор, редактор")]
-@{
-    ViewBag.Title = "Новая публикация";
-}
-
-<component type="typeof(razorHramBabynino.Areas.ControlPanel.Pages.Posts.Posts.Create)" render-mode="ServerPrerendered" />

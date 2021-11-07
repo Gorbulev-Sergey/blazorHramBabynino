@@ -1,9 +1,10 @@
-﻿@page "/posts/details/{id:int}"
+﻿@layout HomeLayout
+@page "/posts/details/{id:int}"
 @inject PostsService PostsService
 @inject ICommentsService CommentsService
 @inject ViewBagService ViewBagService  
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
+@inject UserManager<user> UserManager
 @inject NavigationManager Navigation
 
 
