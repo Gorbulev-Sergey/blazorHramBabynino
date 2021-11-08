@@ -3,10 +3,9 @@
 @attribute [Authorize(Roles = "администратор, редактор")]
 @inject PostsService PostsService
 @inject NavigationManager NavigationManager
-@inject IJSRuntime JSRuntime
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JSRuntime
 @inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager
-@inject NavigationManager NavigationManager
 
 <h3 class="mb-3 text-dark">Создать публикацию</h3>
 
