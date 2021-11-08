@@ -55,12 +55,15 @@
             schedule_string.date_and_time = DateTime.Parse(String.Format("{0} {1}", schedule_string.date_and_time.ToShortDateString(), value.ToShortTimeString()));
         }
     }
-
-    protected override void OnInitialized()
+    protected override void OnParametersSet()
     {
         if (schedule_string.date_and_time.DayOfWeek==DayOfWeek.Sunday)
         {
             цвет_фона = "bg-tertiary";
+        }
+        else
+        {
+            цвет_фона = "bg-light";
         }
     }
 }

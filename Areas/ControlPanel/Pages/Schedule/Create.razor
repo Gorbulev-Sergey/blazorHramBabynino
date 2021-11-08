@@ -17,7 +17,9 @@
     </div>
 </div>
 
+
 <Schedule_create schedule="schedule" />
+
 
 
 @code {
@@ -30,15 +32,16 @@
         }
         set
         {
+            schedule = null;
+            schedule = new List<schedule_string>();
             _месяц_и_год_расписания = value;
-            schedule.Clear();
             получение_данных();
         }
     }
 
     List<schedule_string> schedule = new List<schedule_string>();
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnParametersSet()
     {
         месяц_и_год_расписания = DateTime.Now;
     }

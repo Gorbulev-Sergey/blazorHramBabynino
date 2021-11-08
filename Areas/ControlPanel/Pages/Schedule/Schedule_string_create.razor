@@ -45,7 +45,8 @@
     [Parameter]
     public schedule_string schedule_string { get; set; }
 
-    string цвет_фона, цвет_или_формат_праздника;
+    string цвет_или_формат_праздника;
+    string цвет_фона;
     string цвет_пустого_времени = "text-light";
 
     тип_праздника маркер_праздника
@@ -85,12 +86,15 @@
             schedule_string.date_and_time = DateTime.Parse(String.Format("{0} {1}", schedule_string.date_and_time.ToShortDateString(), value.ToShortTimeString()));
         }
     }
-
-    protected override void OnInitialized()
+    protected override void OnParametersSet()
     {
         if (schedule_string.date_and_time.DayOfWeek == DayOfWeek.Sunday)
         {
             цвет_фона = "bg-tertiary";
+        }
+        else
+        {
+            цвет_фона = "bg-light";
         }
         маркер_праздника = schedule_string.тип_праздника;
     }
