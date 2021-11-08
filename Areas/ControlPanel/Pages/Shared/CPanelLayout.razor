@@ -1,18 +1,18 @@
 ﻿@inherits LayoutComponentBase
 
 
-        <style>
-            /*Уменьшаем размер заголовка сайта для маленьких смартфонов*/
-            .site-title {
-                font-size: 1.25em !important;
-            }
+<style>
+    /*Уменьшаем размер заголовка сайта для маленьких смартфонов*/
+    .site-title {
+        font-size: 1.25em !important;
+    }
 
-            @@media (max-width: 420px) and (min-width: 0) {
-                .site-title {
-                    font-size: .9em !important;
-                }
-            }
-        </style>
+    @@media (max-width: 500px) and (min-width: 0) {
+        .site-title {
+            font-size: .88em !important;
+        }
+    }
+</style>
 
         <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light text-dark mb-3 align-items-center" style="z-index:100000;">
             <button class="navbar-toggler btn-light text-dark border-0" data-toggle="collapse" data-target=".navbar-collapse"><i class="fas fa-bars"></i></button>
