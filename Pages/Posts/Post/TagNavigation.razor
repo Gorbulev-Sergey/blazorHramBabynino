@@ -27,9 +27,9 @@
 
     List<tag> tags = new List<tag>();
 
-        protected override void OnParametersSet()
-        {
-            
+    protected override void OnParametersSet()
+    {
+
         Tag = Tag ?? "объявления";
 
         tags = TagsService.tags();
@@ -37,9 +37,12 @@
 
         tag объявления = tags.FirstOrDefault(t => t.name == "объявления");
         tag новости = tags.FirstOrDefault(t => t.name == "новости");
+        tag видео = tags.FirstOrDefault(t => t.name == "видео");
         tags.Remove(tags.FirstOrDefault(t => t.name == "объявления"));
         tags.Remove(tags.FirstOrDefault(t => t.name == "новости"));
+        tags.Remove(tags.FirstOrDefault(t => t.name == "видео"));
         tags.Insert(0, объявления);
         tags.Insert(1, новости);
+        tags.Insert(2, видео);
     }
 }
