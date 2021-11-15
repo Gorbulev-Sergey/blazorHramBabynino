@@ -3,17 +3,17 @@
 <tr class="@цвет_фона">
     @if (date_show)
     {
-        <th scope="row" width="15%" class="mr-1 font-weight-normal">
+        <th scope="row" width="16%" class="mr-1 font-weight-normal">
             <span class="">
-                @schedule_string.date_and_time.Day, @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(schedule_string.date_and_time.DayOfWeek)
+                @schedule_string.date_and_time.Day @schedule_string.date_and_time.ToRusMonth(), @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(schedule_string.date_and_time.DayOfWeek)
             </span>
         </th>
-        <th scope="row" width="60%" class="font-weight-normal"><div class="@маркер_праздника">@schedule_string.description</div></th>
+        <th scope="row" width="59%" class="font-weight-normal"><div class="@маркер_праздника">@schedule_string.description</div></th>
     }
     else
     {
-        <th scope="row" width="15%" class="border-top-0"></th>
-        <th scope="row" width="61%" class="border-top-0 font-weight-normal"><div class="@маркер_праздника">@schedule_string.description</div></th>
+        <th scope="row" width="16%" class="border-top-0"></th>
+        <th scope="row" width="60%" class="border-top-0 font-weight-normal"><div class="@маркер_праздника">@schedule_string.description</div></th>
     }
     <th scope="row" width="20%" class="font-weight-normal text-right">
         <span class="">

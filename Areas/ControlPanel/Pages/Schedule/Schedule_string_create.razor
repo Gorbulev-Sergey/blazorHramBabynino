@@ -2,7 +2,7 @@
 
 
 <tr class="@цвет_фона">
-    <th scope="row" width="15%" rowspan="2"><div class="form-control border-0 font-weight-bold bg-transparent text-dark">@schedule_string.date_and_time.Day, @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(schedule_string.date_and_time.DayOfWeek)</div></th>
+    <th scope="row" width="15%" rowspan="2"><div class="form-control border-0 font-weight-bold bg-transparent text-dark">@schedule_string.date_and_time.Day @schedule_string.date_and_time.ToRusMonth(), @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(schedule_string.date_and_time.DayOfWeek)</div></th>
     <th scope="row" width="45%"><input class="form-control border-0 bg-transparent text-dark h-auto @цвет_или_формат_праздника" @bind="@schedule_string.description" multiple /></th>
     <th scope="row" width="10%">
         @if (время.ToShortTimeString() == "0:00")
