@@ -10,6 +10,7 @@
     <None Include="wwwroot\bootstrap\css\bootstrap-grid.min.css.map" />
     <None Include="wwwroot\bootstrap\css\bootstrap-reboot.css.map" />
     <None Include="wwwroot\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\my_css\style.css" />
   </ItemGroup>
 
   <ItemGroup>
