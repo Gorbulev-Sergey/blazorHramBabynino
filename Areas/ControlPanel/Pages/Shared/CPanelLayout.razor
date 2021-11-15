@@ -5,11 +5,11 @@
             <a class="card-link font-weight-bold text-uppercase ml-2 mr-2 mr-lg-4 site-title" href="cpanel/posts"><span class="text-dark">Панель управления</span></a>
             <div class="navbar-collapse collapse">
                 <div class="navbar-nav mt-1 m-lg-0">
-                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/posts/">Публикации</a>
-                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/schedule">Расписание</a>
-                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/tags">Теги</a>
-                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/photos">Фотографии</a>
-                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/contacts" hidden>Контакты</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/posts/">Публикации</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/schedule">Расписание</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/tags">Теги</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/photos">Фотографии</a>
+                    <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/contacts" hidden>Контакты</a>
                     <AuthorizeView>
                         <Authorized Context="context">
                             @if (context.User.IsInRole("администратор"))
