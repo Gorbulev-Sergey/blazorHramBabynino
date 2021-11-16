@@ -16,9 +16,15 @@
         color: black !important;
     }
 
-    .navbar, .footer, .no-print {
+    .navbar, .no-print {
         display: none;
     }
+    .footer{
+        font-size:.85em!important;
+    }
+        .footer .collapse {
+            display:inline !important;
+        }
 
     .print-table-header {
         justify-content: center !important;
@@ -48,5 +54,12 @@
 
     .bg-tertiary > th {
         box-shadow: inset 0 0 0 1000px rgba(0,0,0,.14) !important;
+    }
+
+    .badge{
+        border:none!important;
+        color:black!important;
+        padding:0;
+        font-size:.95em!important;
     }
 }
