@@ -21,6 +21,8 @@
     }
     .footer{
         font-size:.85em!important;
+        position:fixed;
+        bottom:0;
     }
         .footer .collapse {
             display:inline !important;
