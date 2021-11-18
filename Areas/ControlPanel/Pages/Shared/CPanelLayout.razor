@@ -26,15 +26,15 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-left bg-light p-0 border-0">
                     <div class="d-flex flex-column">
-                        <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/posts/create">Публикация</a>
-                        <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/photos/create">Фотоальбом</a>
-                        <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/tags">Тег</a>
-                        <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/schedule/create">Расписание</a>
+                        <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/posts/create">Публикация</a>
+                        <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/photos/create">Фотоальбом</a>
+                        <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/tags">Тег</a>
+                        <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/schedule/create">Расписание</a>
                         <AuthorizeView>
                             <Authorized Context="context">
                                 @if (context.User.IsInRole("администратор"))
                                 {
-                                    <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" href="cpanel/settings/edit">Настройки</a>
+                                    <a class="btn btn-light text-dark text-left mt-1 mt-lg-0" onclick="$('.navbar-collapse').toggleClass('show')" href="cpanel/settings/edit">Настройки</a>
                                 }
                             </Authorized>
                         </AuthorizeView>
