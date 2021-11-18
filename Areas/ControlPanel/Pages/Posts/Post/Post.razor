@@ -5,23 +5,23 @@
             <div class="text-muted small mb-1">@post.created.ToRus()</div>
             <p>@((MarkupString)post.description)</p>
         </div>        
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <select class="btn btn-sm btn-light text-dark" @bind="published">
+        <div class="d-flex align-items-start align-items-sm-center justify-content-between">
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-center justify-content-sm-start">
+                <select class="btn btn-sm btn-light text-dark mb-1 mb-sm-0" @bind="published">
                     <option class="btn btn-light text-dark text-left" value="True">опубликована</option>
                     <option class="btn btn-light text-dark text-left" value="False">неопубликована</option>
                 </select>
-                <div class="ml-3">
+                <div class="d-flex align-items-center ml-2 ml-sm-3">
                     @foreach (var tag in post.tags)
                     {
                         <span class="badge badge-tertiary text-dark p-1 mr-2">@tag.name</span>
                     }
                 </div>
             </div>                       
-            <div class="d-flex justify-content-center align-items-center">                
+            <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center justify-content-sm-end">                
                 @if (!String.IsNullOrEmpty(post.content))
                 {
-                    <a class="btn btn-light text-dark mr-1" href="/cpanel/posts/details/@post.ID"><i class="fas fa-eye"></i></a>
+                    <a class="btn btn-light text-dark mr-1 mb-0 mb-sm-1" href="/cpanel/posts/details/@post.ID"><i class="fas fa-eye"></i></a>
                 }
                 <a class="btn btn-light text-dark mr-1" title="Изменить" href="/cpanel/posts/edit/@post.ID"><i class="fas fa-pencil-alt"></i></a>
                 <div class="dropdown">
