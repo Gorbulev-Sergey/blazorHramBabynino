@@ -89,7 +89,10 @@
         // Четвёртый фильтр
         if (!String.IsNullOrEmpty(Filter.filter4))
         {
-            filtredPosts = filtredPosts.Where(p => p.tags.Where(t => t.name == Filter.filter4).Count() > 0).ToList();
+            if (Filter.filter4!="все")
+            {
+                filtredPosts = filtredPosts.Where(p => p.tags.Where(t => t.name == Filter.filter4).Count() > 0).ToList();
+            }
         }
     }
 }

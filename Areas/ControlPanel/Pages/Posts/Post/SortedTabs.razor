@@ -22,10 +22,17 @@
     <div class="btn-group btn-group-sm mb-1">
         <div class="btn btn-sm btn-tertiary text-dark mb-0">тег:</div>
         <select class="btn btn-sm btn-light text-dark" @bind="filter4">
-            <option></option>
+            <option class="btn btn-light text-dark text-left">все</option>
             @foreach (var item in tags)
             {
-                <option class="btn btn-light text-dark text-left">@item.name</option>
+                if (item.name=="объявления")
+                {
+                    <option class="btn btn-light text-dark text-left" selected>@item.name</option>
+                }
+                else
+                {
+                    <option class="btn btn-light text-dark text-left">@item.name</option>
+                }
             }
         </select>
     </div>
@@ -69,5 +76,10 @@
             Filter.filter4 = value;
             filterChanged.InvokeAsync(Filter);
         }
+    }
+
+    protected override void OnInitialized()
+    {
+        filter4 = "объявления";
     }
 }
