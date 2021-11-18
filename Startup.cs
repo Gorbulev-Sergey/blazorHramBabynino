@@ -56,15 +56,15 @@ namespace razorHramBabynino
             services.AddServerSideBlazor();
 
             services.AddTransient<PostsService>();
-            services.AddTransient<ITagsService, TagsService>();
-            services.AddTransient<ICommentsService, CommentsService>();
-            services.AddTransient<ILikesService, LikesService>();
-            services.AddTransient<ISchedulesService, ScheduleService>();
-            services.AddTransient<ICRUD<imageAlbum>, PhotosService>();
-            services.AddTransient<ICRUDstringId<user>, UsersService>();
+            services.AddTransient<TagsService>();
+            services.AddTransient<CommentsService>();
+            services.AddTransient<LikesService>();
+            services.AddTransient<ScheduleService>();
+            services.AddTransient<PhotosService>();            
             services.AddSingleton<ViewBagService>();
-            services.AddTransient<IContactsService, ContactsService>();
-            services.AddTransient<IAppSettingsService, AppSettingsService>();
+            services.AddTransient<UsersService>();
+            services.AddTransient<AppSettingsService>();
+            services.AddTransient<ContactsService>();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

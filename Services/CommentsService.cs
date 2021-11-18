@@ -8,15 +8,7 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Services
 {
-    public interface ICommentsService
-    {
-        Task<List<comment>> comments(int postId);
-        void add(comment comment);
-        void delete(comment comment);
-
-    }
-
-    public class CommentsService : ICommentsService
+    public class CommentsService
     {
         DbContextOptions<ApplicationDbContext> options;
         public CommentsService(DbContextOptions<ApplicationDbContext> options)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Services
 {
-    public class UsersService : ICRUDstringId<user>
+    public class UsersService
     {
         UserManager<user> userManager;
 

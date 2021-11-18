@@ -8,16 +8,7 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Pages.Tests
 {
-    public interface IContactsService
-    {
-        contacts contacts { get; set; }
-        void addScheduleString(KeyValuePair<string, string> pare);
-        void addPhonesString(KeyValuePair<string, string> pare);
-        void addSocialsString(KeyValuePair<string, string> pare);
-        void replaceMap(KeyValuePair<string, string> pare);
-    }
-
-    public class ContactsService : IContactsService
+    public class ContactsService
     {
         public contacts contacts
         {

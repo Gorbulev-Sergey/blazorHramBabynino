@@ -8,12 +8,7 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Services
 {
-    public interface IAppSettingsService
-    {
-        appsettings settings { get; set; }
-    }
-
-    public class AppSettingsService : IAppSettingsService
+    public class AppSettingsService
     {
         public appsettings settings {
             get

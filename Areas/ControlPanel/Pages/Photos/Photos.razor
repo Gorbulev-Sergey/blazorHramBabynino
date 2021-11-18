@@ -1,7 +1,7 @@
 ﻿@layout CPanelLayout
 @page "/cpanel/photos"
 @attribute [Authorize(Roles = "администратор, редактор")]
-@inject ICRUD<imageAlbum> PhotosService
+@inject PhotosService PhotosService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 

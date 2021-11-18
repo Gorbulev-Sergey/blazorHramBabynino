@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Services
 {
-    public class PhotosService : ICRUD<imageAlbum>
+    public class PhotosService
     {
         DbContextOptions<ApplicationDbContext> options;
 

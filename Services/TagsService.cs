@@ -8,15 +8,7 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Services
 {
-    interface ITagsService
-    {
-        List<tag> tags();
-        Task add(tag tag);
-        Task edit(tag tag);
-        Task remove(tag tag);
-    }
-
-    public class TagsService : ITagsService
+    public class TagsService
     {
         DbContextOptions<ApplicationDbContext> options;
         public TagsService(DbContextOptions<ApplicationDbContext> options)

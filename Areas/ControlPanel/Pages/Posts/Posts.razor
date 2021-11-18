@@ -3,7 +3,7 @@
 @page "/cpanel/posts"
 @attribute [Authorize(Roles = "администратор, редактор")]
 @inject PostsService PostsService
-@inject ITagsService TagsService
+@inject TagsService TagsService
 @inject IJSRuntime JSRuntime
 @using razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post
 @using Microsoft.AspNetCore.Components.Web.Virtualization

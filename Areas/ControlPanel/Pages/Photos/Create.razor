@@ -1,7 +1,7 @@
 ﻿@layout CPanelLayout
 @page "/cpanel/photos/create"
 @attribute [Authorize(Roles = "администратор, редактор")]
-@inject ICRUD<imageAlbum> PhotosService
+@inject PhotosService PhotosService
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject Microsoft.AspNetCore.Identity.UserManager<user> UserManager

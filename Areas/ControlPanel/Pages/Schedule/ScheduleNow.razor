@@ -1,7 +1,7 @@
 ﻿@layout CPanelLayout
 @page "/cpanel/schedule"
 @attribute [Authorize(Roles = "администратор, редактор")]
-@inject ISchedulesService SchedulesService
+@inject ScheduleService SchedulesService
 
 @if (естьРасписаиниеНаТекущийМесяц)
 {

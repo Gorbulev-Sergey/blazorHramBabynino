@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace razorHramBabynino.Services
 {
     public class ViewBagService
-    {
-        
+    {        
         public string PageTitle { get; set; }
         //public string BackUrl
         //{

@@ -8,14 +8,7 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Services
 {
-    public interface ILikesService
-    {
-        Task<List<like>> likes(int postId);
-        Task add(like like);
-        Task delete(int likeID);
-    }
-
-    public class LikesService : ILikesService
+    public class LikesService
     {
         DbContextOptions<ApplicationDbContext> options;
         public LikesService(DbContextOptions<ApplicationDbContext> options)

@@ -10,15 +10,7 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Services
 {
-    interface ISchedulesService
-    {
-        List<schedule_string> schedule(DateTime schedule_year_and_month);
-        Task update_or_create(List<schedule_string> schedule);
-        Task delete(List<schedule_string> schedule);
-        bool has_schedule_in_this_date(DateTime date);
-    }
-
-    public class ScheduleService : ISchedulesService
+    public class ScheduleService
     {
         //ApplicationDbContext _context;
         DbContextOptions<ApplicationDbContext> _options;
