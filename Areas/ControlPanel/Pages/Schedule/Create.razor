@@ -11,8 +11,8 @@
     <div>
         <input id="select_date" type="month" class="btn btn-light text-dark" placeholder="месяц" @bind="месяц_и_год_расписания" title="Выберите дату" />
     </div>
-    <div>
-        <button class="btn btn-tertiary text-dark" @onclick="()=>сохранить_данные()">Сохранить</button>
+    <div class="text-right">
+        <button class="btn btn-tertiary text-dark mb-1 mb-sm-0" @onclick="()=>сохранить_данные()">Сохранить</button>
         <a class="btn btn-secondary text-dark" href="/cpanel/schedule">Отмена</a>
     </div>
 </div>
