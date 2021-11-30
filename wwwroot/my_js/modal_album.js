@@ -16,7 +16,13 @@ $(document).on('fullscreenchange', function () {
     }
 });
 
-
+function show() {
+    return new Promise(function (resolve, reject){
+        _modal = "modal_album";
+        document.getElementById("modal_album").requestFullscreen();
+        $("#modal_album").modal('show');
+    }
+)};
 
 
 var Show_Ask_remove_album = function (modal_remove) {

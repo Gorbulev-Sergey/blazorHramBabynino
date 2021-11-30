@@ -14,6 +14,7 @@
                 <Authorized Context="context">
                     @if (context.User.IsInRole("администратор"))
                     {
+                        <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/users">Пользователи</a>
                         <a class="btn btn-light text-dark text-left mr-lg-1 mt-1 mt-lg-0" href="cpanel/settings">Настройки</a>
                     }
                 </Authorized>

@@ -1,0 +1,34 @@
+﻿@layout CPanelLayout
+@page "/cpanel/users"
+@attribute [Authorize(Roles = "администратор")]
+@inject UserService UserService
+
+<h3 class="mb-3 text-dark">Пользователи</h3>
+
+@foreach (var user in users)
+{
+<div class="bg-light text-dark p-3 mb-3 rounded">
+    <div class="badge badge-dark text-light">@position(users.IndexOf(user))</div>
+    <div>Имя пользователя: <span class="badge badge-dark text-light">@user.UserName</span></div>
+    <div>Email: <span class="badge badge-dark text-light">@user.Email</span></div>
+    <div>Телефон: <span class="badge badge-dark text-light">@user.PhoneNumber</span></div>
+    <div>Email подтверждён: <span class="badge badge-dark text-light">@user.EmailConfirmed</span></div>
+    <div>
+        Роли:
+        @foreach (var role in UserService.rolesById(user.Id))
+        {
+            <span class="badge badge-dark text-light">@role</span>
+        }
+    </div>
+</div>
+}
+
+@code {
+    List<user> users = new List<user>();
+    int position(int index) => index+1;
+
+    protected override void OnParametersSet()
+    {
+        users = UserService.getAll();
+    }
+}

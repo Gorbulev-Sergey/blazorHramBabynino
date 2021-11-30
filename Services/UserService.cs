@@ -9,67 +9,95 @@ using System.Threading.Tasks;
 
 namespace razorHramBabynino.Services
 {
-    public class UsersService
+    public class UserService
     {
-        UserManager<user> userManager;
+        DbContextOptions<ApplicationDbContext> options;
 
-        public UsersService(UserManager<user> userManager)
+        public UserService(DbContextOptions<ApplicationDbContext> options)
         {
-            this.userManager = userManager;
+            this.options = options;
         }
-        public void add(user item)
+        
+        public List<user> getAll()
         {
-            userManager.CreateAsync(item);
-        }
-
-        public async Task addAsync(user item)
-        {
-            await userManager.CreateAsync(item);
-        }
-
-        public void delete(user item)
-        {
-            userManager.DeleteAsync(item);
-        }
-
-        public async Task deleteAsync(user item)
-        {
-            await userManager.DeleteAsync(item);
-        }
-
-        public List<user> get()
-        {
-            return userManager.Users.ToList();
-        }
-
-        public async Task<List<user>> getAsync()
-        {
-            return await userManager.Users.ToListAsync();
+            List<user> users = new List<user>();
+            using (var context=new ApplicationDbContext(options))
+            {
+                users = context.AspNetUsers.ToList();
+            }
+            return users;
         }
 
         public user itemById(string id)
         {
-            return userManager.FindByIdAsync(id).Result;
+            user user = new user();
+            using (var context = new ApplicationDbContext(options))
+            {
+                user = context.AspNetUsers.FirstOrDefault(u=>u.Id==id);
+            }
+            return user;
         }
 
-        public async Task<user> itemByIdAsync(string id)
+        public List<IdentityRole> rolesAll()
         {
-            return await userManager.FindByIdAsync(id);
+            List<IdentityRole> roles = new List<IdentityRole>();
+            using (var context = new ApplicationDbContext(options))
+            {
+                roles = context.ASPNetRoles.ToList();
+            }
+            return roles;
         }
+
+        public List<string> rolesById(string userId)
+        {
+            List<string> rolesId = new List<string>();
+            List<string> roles = new List<string>();
+            using (var context = new ApplicationDbContext(options))
+            {
+                rolesId = context.ASPNetUserRoles.Where(u => u.UserId == userId).Select(r=>r.RoleId).ToList();
+                foreach(var id in rolesId)
+                {
+                    roles.Add(context.ASPNetRoles.FirstOrDefault(r => r.Id == id).Name);
+                }            
+            }
+            
+            return roles;
+        }
+
+        public void add(user item)
+        {
+            using (var context = new ApplicationDbContext(options))
+            {
+                if (item != null)
+                {
+                    context.AspNetUsers.Add(item);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void delete(user item)
+        {
+            using (var context = new ApplicationDbContext(options))
+            {
+                if (item != null)
+                {
+                    context.AspNetUsers.Remove(item);
+                    context.SaveChanges();
+                }
+            }
+        }            
 
         public void update(user item)
         {
-            userManager.UpdateAsync(item);
-        }
-
-        public async Task updateAsync(user item)
-        {
-            await userManager.UpdateAsync(item);
-        }
-
-        public async Task<List<string>> getUserRolesAsync(user user)
-        {
-            return (await userManager.GetRolesAsync(user)).ToList();
+            using (var context = new ApplicationDbContext(options))
+            {
+                if (item != null)
+                {
+                    context.AspNetUsers.Update(item);
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

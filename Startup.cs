@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -62,9 +63,11 @@ namespace razorHramBabynino
             services.AddTransient<ScheduleService>();
             services.AddTransient<PhotosService>();            
             services.AddSingleton<ViewBagService>();
-            services.AddTransient<UsersService>();
+            services.AddTransient<UserService>();
             services.AddTransient<AppSettingsService>();
-            services.AddTransient<ContactsService>();            
+            services.AddTransient<ContactsService>();
+
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
