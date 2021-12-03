@@ -19,5 +19,7 @@ namespace razorHramBabynino.Models
         public virtual IList<like> likes { get; set; } = new List<like>();
         [PersonalData, Display(Name = "Расписания")]
         public virtual IList<schedule_string> schedule { get; set; }
+
+        //public virtual IList<IdentityRole> ASPNetRoles { get; set; }
     }
 }

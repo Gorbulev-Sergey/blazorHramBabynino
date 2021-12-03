@@ -28,7 +28,7 @@ namespace razorHramBabynino.Services
             return users;
         }
 
-        public user itemById(string id)
+        public user getById(string id)
         {
             user user = new user();
             using (var context = new ApplicationDbContext(options))
@@ -36,32 +36,6 @@ namespace razorHramBabynino.Services
                 user = context.AspNetUsers.FirstOrDefault(u=>u.Id==id);
             }
             return user;
-        }
-
-        public List<IdentityRole> rolesAll()
-        {
-            List<IdentityRole> roles = new List<IdentityRole>();
-            using (var context = new ApplicationDbContext(options))
-            {
-                roles = context.ASPNetRoles.ToList();
-            }
-            return roles;
-        }
-
-        public List<string> rolesById(string userId)
-        {
-            List<string> rolesId = new List<string>();
-            List<string> roles = new List<string>();
-            using (var context = new ApplicationDbContext(options))
-            {
-                rolesId = context.ASPNetUserRoles.Where(u => u.UserId == userId).Select(r=>r.RoleId).ToList();
-                foreach(var id in rolesId)
-                {
-                    roles.Add(context.ASPNetRoles.FirstOrDefault(r => r.Id == id).Name);
-                }            
-            }
-            
-            return roles;
         }
 
         public void add(user item)
@@ -95,6 +69,77 @@ namespace razorHramBabynino.Services
                 if (item != null)
                 {
                     context.AspNetUsers.Update(item);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public List<IdentityRole> getUserRoles(user user)
+        {
+            List<IdentityRole> roles = new List<IdentityRole>();
+            List<IdentityUserRole<string>> allUserRoles = new List<IdentityUserRole<string>>();
+            using (var context = new ApplicationDbContext(options))
+            {
+                allUserRoles = context.ASPNetUserRoles.ToList();
+            }
+            using (var context = new ApplicationDbContext(options))
+            {
+                foreach (var item in allUserRoles)
+                {
+                        if (item.UserId == user.Id)
+                        {
+                            roles.Add(context.ASPNetRoles.FirstOrDefault(r => r.Id == item.RoleId));
+                        }                        
+                }
+            }
+            return roles;
+        }
+
+        public void addRoleToUser(user user, IdentityRole role)
+        {
+            using (var context = new ApplicationDbContext(options))
+            {
+                if (user!=null & role != null & context.AspNetUsers.FirstOrDefault(u=>u.Id==user.Id)!=null)
+                {
+                    if (!context.ASPNetRoles.Contains(role))
+                    {
+                        context.ASPNetRoles.Add(role);
+                        context.SaveChanges();
+                    }
+                    context.ASPNetUserRoles.Add(new IdentityUserRole<string> { UserId=user.Id, RoleId=role.Id });
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void addRoleToUser(user user, string role)
+        {
+            using (var context = new ApplicationDbContext(options))
+            {
+                if (user != null & context.AspNetUsers.FirstOrDefault(u => u.Id == user.Id) != null & !string.IsNullOrEmpty(role))
+                {
+                    if (!context.ASPNetRoles.Contains(context.ASPNetRoles.FirstOrDefault(r => r.Name == role)))
+                    {
+                        context.ASPNetRoles.Add(new IdentityRole { Name = role });
+                        context.SaveChanges();
+                    }
+                    context.ASPNetUserRoles.Add(new IdentityUserRole<string> { UserId = user.Id, RoleId = role });
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void removeRoleFromUser(user user, IdentityRole role)
+        {
+            using (var context = new ApplicationDbContext(options))
+            {
+                if (user != null & role != null & context.AspNetUsers.FirstOrDefault(u => u.Id == user.Id) != null)
+                {
+                    try
+                    {
+                        context.ASPNetUserRoles.Remove(context.ASPNetUserRoles.FirstOrDefault(i => i.UserId == user.Id & i.RoleId == role.Id));
+                    }
+                    catch { }
                     context.SaveChanges();
                 }
             }

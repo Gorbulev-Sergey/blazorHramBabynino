@@ -64,6 +64,7 @@ namespace razorHramBabynino
             services.AddTransient<PhotosService>();            
             services.AddSingleton<ViewBagService>();
             services.AddTransient<UserService>();
+            services.AddTransient<RoleService>();
             services.AddTransient<AppSettingsService>();
             services.AddTransient<ContactsService>();
 
