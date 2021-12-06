@@ -6,32 +6,31 @@
 
 <h3 class="mb-3 text-dark">Пользователи</h3>
 
-@foreach (var user in users)
-{
-<div class="bg-light text-dark p-3 mb-3 rounded">
-    <div class="badge badge-dark text-light">@position(users.IndexOf(user))</div>
-    <div>Имя пользователя: <span class="badge badge-dark text-light">@user.UserName</span></div>
-    <div>Email: <span class="badge badge-dark text-light">@user.Email</span></div>
-    <div>Телефон: <span class="badge badge-dark text-light">@user.PhoneNumber</span></div>
-    <div>Email подтверждён: <span class="badge badge-dark text-light">@user.EmailConfirmed</span></div>
-    <div>
-        Роли:
-        <TaggerIdentityRole itemsAll="new List<IdentityRole>(rolesAll)"
-                            itemsSelected="UserService.getUserRoles(user)"
-                            itemAdded="(item)=>UserService.addRoleToUser(user,item)" 
-                            itemDeleted="(item)=>UserService.removeRoleFromUser(user, item)"/>
-    </div>
-</div>
-}
+<Virtualize Items="users" Context="user">
+        <div class="bg-light text-dark p-3 mb-3 rounded">
+            <div class="badge badge-dark text-light">@position(users.IndexOf(user))</div>
+            <div>Имя пользователя: <span class="badge badge-dark text-light">@user.UserName</span></div>
+            <div>Email: <span class="badge badge-dark text-light">@user.Email</span></div>
+            <div>Телефон: <span class="badge badge-dark text-light">@user.PhoneNumber</span></div>
+            <div>Email подтверждён: <span class="badge badge-dark text-light">@user.EmailConfirmed</span></div>
+            <div>
+                Роли:
+                <TaggerIdentityRole2 itemsAll="new List<IdentityRole>(rolesAll)"
+                                     itemsSelected="UserService.getUserRoles(user)"
+                                     itemToggled="(item)=> { if (item.Value) UserService.addRoleToUser(user, item.Key); else UserService.removeRoleFromUser(user, item.Key); }" />
+            </div>
+        </div>
+</Virtualize>
 
-@code {
-    List<user> users = new List<user>();
-    List<IdentityRole> rolesAll = new List<IdentityRole>();
-    int position(int index) => index + 1;
 
-    protected override void OnInitialized()
-    {
-        users = UserService.getAll();
-        rolesAll = RoleService.getAll();
+    @code {
+        List<user> users = new List<user>();
+        List<IdentityRole> rolesAll = new List<IdentityRole>();
+        int position(int index) => index + 1;
+
+        protected override void OnInitialized()
+        {
+            users = UserService.getAll();
+            rolesAll = RoleService.getAll();
+        }
     }
-}
