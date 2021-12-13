@@ -6,7 +6,7 @@
 
 <h3 class="mb-3 text-dark">Пользователи</h3>
 
-<Virtualize Items="users" Context="user">
+@*<Virtualize Items="users" Context="user">
         <div class="bg-light text-dark p-3 mb-3 rounded">
             <div class="badge badge-dark text-light">@position(users.IndexOf(user))</div>
             <div>Имя пользователя: <span class="badge badge-dark text-light">@user.UserName</span></div>
@@ -20,7 +20,18 @@
                                      itemToggled="(item)=> { if (item.Value) UserService.addRoleToUser(user, item.Key); else UserService.removeRoleFromUser(user, item.Key); }" />
             </div>
         </div>
-</Virtualize>
+</Virtualize>*@
+
+<SortedTable items="users.ToList<object>()" Context="user">
+    <Addons>
+        <div class="mr-3 mb-1">
+            <span class="badge badge-secondary text-dark">Роли:</span>
+            <TaggerIdentityRole2 itemsAll="new List<IdentityRole>(rolesAll)"
+                                 itemsSelected="UserService.getUserRoles((user)user)"
+                                 itemToggled="(item)=> { if (item.Value) UserService.addRoleToUser((user)user, item.Key); else UserService.removeRoleFromUser((user)user, item.Key); }" />
+        </div>
+    </Addons>
+</SortedTable>
 
 
     @code {
