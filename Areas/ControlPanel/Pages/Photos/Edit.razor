@@ -16,7 +16,7 @@
     </div>
     @*Кнопки сохранения и отмены*@
     <div class="form-group mb-0 text-right">
-        <button class="btn btn-tertiary text-dark mb-1 mb-sm-0" @onclick="()=>сохранить()">Сохранить</button>
+        <button class="btn btn-tertiary text-dark mb-1 mb-sm-0" @onclick="() => сохранить()">Сохранить</button>
         <a class="btn btn-secondary text-dark" href="/cpanel/photos">Отмена</a>
     </div>
 </div>
@@ -50,20 +50,14 @@
     @*Содержимое публикации*@
     <div class="tab-pane fade" id="list-images">
         <div class="mb-3">
-            <button class="btn btn-secondary text-dark" @onclick="()=>добавить()">Добавить фотографию <i class="fas fa-plus-circle text-dark"></i></button>
+            <button class="btn btn-secondary text-dark" @onclick="() => добавить()">Добавить фотографию <i class="fas fa-plus-circle text-dark"></i></button>
         </div>
         @foreach (var image in album.images)
         {
-            <razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Photo image="image">
-                <navigation>
-                    <button class="btn btn-light text-danger" @onclick="()=>удалить(image)" title="Удалить изображение"><i class="fas fa-trash"></i></button>
-                </navigation>
-            </razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Photo>
+            <razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Photo image="image" DeleteImage="(sender) => удалить(sender)" />
         }
     </div>
 </div>
-
-
 
 @code {
     [Parameter]
@@ -71,7 +65,7 @@
 
     imageAlbum album = new imageAlbum();
 
-    protected override async Task OnInitializedAsync()
+    protected async override Task OnParametersSetAsync()
     {
         album = await PhotosService.itemByIdAsync(id);
     }
@@ -86,9 +80,9 @@
         album.images.Remove(image);
     }
 
-    async Task сохранить()
+    void сохранить()
     {
-        await PhotosService.updateAsync(album);
+        PhotosService.update(album);
         NavigationManager.NavigateTo("/cpanel/photos", true);
     }
 }

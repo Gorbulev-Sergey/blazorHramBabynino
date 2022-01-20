@@ -54,11 +54,7 @@
         </div>
         @foreach (var image in album.images)
         {
-            <razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Photo image="image">
-                <navigation>
-                    <button class="btn btn-light text-danger" @onclick="()=>удалить(image)" title="Удалить изображение"><i class="fas fa-trash"></i></button>
-                </navigation>
-            </razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Photo>
+            <razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Photo image="image" DeleteImage="(sender)=>удалить(sender)"/>
         }
     </div>
 </div>
@@ -66,7 +62,7 @@
 
 
 @code {
-    public imageAlbum album = new imageAlbum();
+    imageAlbum album = new imageAlbum();
     user user = new user();
 
     protected override async Task OnInitializedAsync()

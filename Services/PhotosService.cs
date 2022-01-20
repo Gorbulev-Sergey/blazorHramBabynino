@@ -20,6 +20,7 @@ namespace razorHramBabynino.Services
 
         public void add(imageAlbum item)
         {
+            item.images = item.images.ToList().Where(i => !string.IsNullOrEmpty(i.url)).ToList();
             using (var context = new ApplicationDbContext(options))
             {
                 context.imageAlbums.Add(item);
@@ -29,6 +30,12 @@ namespace razorHramBabynino.Services
 
         public async Task addAsync(imageAlbum item)
         {
+            item.images = item.images.ToList().Where(i => !string.IsNullOrEmpty(i.url)).ToList();
+            foreach (var i in item.images)
+            {
+                if (string.IsNullOrEmpty(i.url)) item.images.Remove(i);
+            }
+
             using (var context = new ApplicationDbContext(options))
             {
                 context.imageAlbums.Add(item);
@@ -88,20 +95,28 @@ namespace razorHramBabynino.Services
 
         public void update(imageAlbum item)
         {
+            item.images = item.images.ToList().Where(i => !string.IsNullOrEmpty(i.url)).ToList();
             using (var context = new ApplicationDbContext(options))
             {
-                context.Update<imageAlbum>(item);
+                var album = context.imageAlbums.Include(i => i.images).FirstOrDefault(a => a.ID == item.ID);
+                album.images.Clear();
+                context.SaveChanges();
+            }
+
+            using (var context = new ApplicationDbContext(options))
+            {
+                var album = context.imageAlbums.Include(i => i.images).FirstOrDefault(a => a.ID == item.ID);
+                foreach (var i in item.images)
+                {
+                    album.images.Add(i);
+                }
                 context.SaveChanges();
             }
         }
 
         public async Task updateAsync(imageAlbum item)
         {
-            using (var context = new ApplicationDbContext(options))
-            {
-                context.Update<imageAlbum>(item);
-                await context.SaveChangesAsync();
-            }
+            update(item);
         }
     }
 }

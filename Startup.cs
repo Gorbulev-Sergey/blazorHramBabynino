@@ -45,13 +45,13 @@ namespace razorHramBabynino
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "690639073976-4iho06or9f2nhcmh7astsan11lvvdgb9.apps.googleusercontent.com";
-                    options.ClientSecret = "EldG9O1qTxFzACRdFgkag-PZ";
+                    options.ClientId = Configuration["Authentication:Google:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 })
                 .AddVkontakte(options =>
                 {
-                    options.ClientId = "7609221";
-                    options.ClientSecret = "QGB9vZBryvr7gpEXB7vK";
+                    options.ClientId = Configuration["Authentication:Vkontakte:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:Vkontakte:ClientSecret"];
                 });
             services.AddRazorPages();
             services.AddServerSideBlazor();
@@ -71,7 +71,6 @@ namespace razorHramBabynino
             services.AddHttpContextAccessor();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -81,7 +80,6 @@ namespace razorHramBabynino
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
