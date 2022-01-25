@@ -92,15 +92,10 @@
     void вниз(image item)
     {
         int index = album.images.IndexOf(item);
-        if (index < album.images.Count-3)
+        if (index != album.images.Count-1)
         {
-            album.images.Insert(index + 2, item);
-            album.images.RemoveAt(index);
-        }
-        else if (index== album.images.Count - 2)
-        {
-            album.images.Append(item);
-            album.images.RemoveAt(index);
+            album.images.Insert(index, album.images.ElementAt(index + 1));
+            album.images.RemoveAt(index + 2);
         }
     }
 
