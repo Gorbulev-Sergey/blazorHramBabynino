@@ -31,10 +31,10 @@ namespace razorHramBabynino.Services
         public async Task addAsync(imageAlbum item)
         {
             item.images = item.images.ToList().Where(i => !string.IsNullOrEmpty(i.url)).ToList();
-            foreach (var i in item.images)
-            {
-                if (string.IsNullOrEmpty(i.url)) item.images.Remove(i);
-            }
+            //foreach (var i in item.images)
+            //{
+            //    if (string.IsNullOrEmpty(i.url)) item.images.Remove(i);
+            //}
 
             using (var context = new ApplicationDbContext(options))
             {
@@ -65,7 +65,7 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                return context.imageAlbums.Include(i => i.images).ToList();
+                return context.imageAlbums.Include(i => i.images).OrderBy(i=>i.ID).ToList();
             }
         }
 
@@ -73,7 +73,7 @@ namespace razorHramBabynino.Services
         {
             using (var context = new ApplicationDbContext(options))
             {
-                return await context.imageAlbums.Include(i => i.images).ToListAsync();
+                return await context.imageAlbums.Include(i => i.images).OrderBy(i => i.ID).ToListAsync();
             }
         }
 
@@ -95,19 +95,20 @@ namespace razorHramBabynino.Services
 
         public void update(imageAlbum item)
         {
-            item.images = item.images.ToList().Where(i => !string.IsNullOrEmpty(i.url)).ToList();
             using (var context = new ApplicationDbContext(options))
             {
                 var album = context.imageAlbums.Include(i => i.images).FirstOrDefault(a => a.ID == item.ID);
                 album.images.Clear();
                 context.SaveChanges();
             }
-
+            
+            item.images = item.images.ToList().Where(i => !string.IsNullOrEmpty(i.url)).ToList();
             using (var context = new ApplicationDbContext(options))
             {
                 var album = context.imageAlbums.Include(i => i.images).FirstOrDefault(a => a.ID == item.ID);
                 foreach (var i in item.images)
                 {
+                    i.ID = 0;
                     album.images.Add(i);
                 }
                 context.SaveChanges();
@@ -115,7 +116,7 @@ namespace razorHramBabynino.Services
         }
 
         public async Task updateAsync(imageAlbum item)
-        {
+        {            
             update(item);
         }
     }
