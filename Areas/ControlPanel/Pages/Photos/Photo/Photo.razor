@@ -6,11 +6,14 @@
     <div class="col-2">
         <img class="card-img" src="@image.url" />
     </div>
-    <div class="col-1 d-flex flex-column">
-        <button class="btn btn-light text-danger mb-3" @onclick="()=>DeleteImage.InvokeAsync(image)" title="Удалить изображение"><i class="fas fa-trash"></i></button>
-        <button class="btn btn-light text-dark mb-3" @onclick="()=>ImageToTop.InvokeAsync(image)" title="Вверх"><i class="fas fa-angle-up"></i></button>
-        <button class="btn btn-light text-dark" @onclick="()=>ImageToDown.InvokeAsync(image)" title="Вниз"><i class="fas fa-angle-down"></i></button>
-
+    <div class="col-1">
+        <div class="d-flex">
+            <div class="d-flex flex-column mr-1">
+                <button class="btn btn-light text-dark mb-1" @onclick="()=>ImageToTop.InvokeAsync(image)" title="Вверх"><i class="fas fa-angle-up"></i></button>
+                <button class="btn btn-light text-dark" @onclick="()=>ImageToDown.InvokeAsync(image)" title="Вниз"><i class="fas fa-angle-down"></i></button>
+            </div>
+            <button class="btn btn-light text-danger border-danger" @onclick="()=>DeleteImage.InvokeAsync(image)" title="Удалить изображение"><i class="fas fa-trash"></i></button>
+        </div>       
     </div>
 </div>
 
