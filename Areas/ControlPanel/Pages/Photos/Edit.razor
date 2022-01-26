@@ -49,7 +49,7 @@
     @*Содержимое публикации*@
     <div class="tab-pane fade" id="list-images">
         <div class="mb-3">
-            <button class="btn btn-secondary text-dark" @onclick="() => добавить()">Добавить фотографию <i class="fas fa-plus-circle text-dark"></i></button>            
+            <button class="btn btn-secondary text-dark" @onclick="() => добавить()">Добавить фотографию <i class="fas fa-plus-circle text-dark"></i></button>
         </div>
         @foreach (var image in album.images)
         {
@@ -64,9 +64,13 @@
 
     imageAlbum album = new imageAlbum();
 
-    protected async override Task OnParametersSetAsync()
+    protected override void OnInitialized()
     {
-        album = await PhotosService.itemByIdAsync(id);
+        album = PhotosService.itemById(id);
+        foreach (var i in album.images)
+        {
+            i.ID = 0;
+        }
     }
 
     void добавить()
@@ -82,7 +86,7 @@
     void вверх(image item)
     {
         int index = album.images.IndexOf(item);
-        if (index!=0)
+        if (index != 0)
         {
             album.images.Insert(index - 1, item);
             album.images.RemoveAt(index + 1);
@@ -92,7 +96,7 @@
     void вниз(image item)
     {
         int index = album.images.IndexOf(item);
-        if (index != album.images.Count-1)
+        if (index != album.images.Count - 1)
         {
             album.images.Insert(index, album.images.ElementAt(index + 1));
             album.images.RemoveAt(index + 2);

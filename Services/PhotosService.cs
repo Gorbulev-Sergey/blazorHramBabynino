@@ -102,14 +102,19 @@ namespace razorHramBabynino.Services
                 context.SaveChanges();
             }
             
-            item.images = item.images.ToList().Where(i => !string.IsNullOrEmpty(i.url)).ToList();
+            
             using (var context = new ApplicationDbContext(options))
             {
-                var album = context.imageAlbums.Include(i => i.images).FirstOrDefault(a => a.ID == item.ID);
+                var album = context.imageAlbums.FirstOrDefault(a => a.ID == item.ID);
+                album.title = item.title;
+                album.cover_image = item.cover_image;
+                album.description = item.description;
                 foreach (var i in item.images)
                 {
-                    i.ID = 0;
-                    album.images.Add(i);
+                    if (!string.IsNullOrEmpty(i.url))
+                    {
+                        album.images.Add(i);
+                    }                    
                 }
                 context.SaveChanges();
             }
