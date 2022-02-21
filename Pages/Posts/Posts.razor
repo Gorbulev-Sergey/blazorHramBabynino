@@ -5,7 +5,7 @@
 
 <TagNavigation Tag="@Tag"></TagNavigation>
 
-<div class="row mb-2 row-cols-1 row-cols-md-2 row-cols-xl-3">
+<div class="row mb-2 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-start">
     @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.name == Tag))))
     {
         <Post post="post"></Post>
