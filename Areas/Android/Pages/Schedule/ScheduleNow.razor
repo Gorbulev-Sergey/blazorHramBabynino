@@ -6,28 +6,28 @@
 {
     if (естьРасписаиниеНаСледующийМесяц)
     {
-        <div class="d-flex justify-content-between align-items-center mb-4 print-table-header">
-            <h3 class="text-dark text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(nextDate.Month).ToLower() @nextDate.Year года</h3>
+        <div class="d-flex justify-content-center align-items-center mb-1 print-table-header">
+            <h6 class="text-dark">на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(nextDate.Month).ToLower() @nextDate.Year года</h6>
         </div>
         <razorHramBabynino.Pages.Schedule.Schedule.Schedule date="nextDate" />
         <br />
         <br />
     }
-    <div class="d-flex justify-content-between align-items-center mb-4 print-table-header">
-        <h3 class="text-dark text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower() @DateTime.Now.Year года</h3>
+    <div class="d-flex justify-content-center align-items-center mb-1 print-table-header">
+        <h6 class="text-dark">на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower() @DateTime.Now.Year года</h6>
     </div>
     <razorHramBabynino.Pages.Schedule.Schedule.Schedule date="DateTime.Now" />
 }
 else if (естьРасписаиниеНаПредыдущийМесяц)
 {
-    <div class="d-flex justify-content-between align-items-center mb-4 print-table-header">
-        <h3 class="text-dark text-center">Расписание богослужений на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(prevDate.Month).ToLower() @prevDate.Year года</h3>
+    <div class="d-flex justify-content-center align-items-center mb-1 print-table-header">
+        <h6 class="text-dark">на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(prevDate.Month).ToLower() @prevDate.Year года</h6>
     </div>
     <razorHramBabynino.Pages.Schedule.Schedule.Schedule date="prevDate" />
 }
 else
 {
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-center align-items-center">
         <div class="alert alert-info"><b>Расписание на данный момент отсутствует</b></div>
     </div>
 }
