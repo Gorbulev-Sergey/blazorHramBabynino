@@ -6,23 +6,14 @@
 {
     if (естьРасписаиниеНаСледующийМесяц)
     {
-        <div class="d-flex justify-content-center align-items-center mb-1 print-table-header">
-            <h6 class="text-dark">на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(nextDate.Month).ToLower() @nextDate.Year года</h6>
-        </div>
         <razorHramBabynino.Pages.Schedule.Schedule.Schedule date="nextDate" />
         <br />
         <br />
     }
-    <div class="d-flex justify-content-center align-items-center mb-1 print-table-header">
-        <h6 class="text-dark">на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(DateTime.Now.Month).ToLower() @DateTime.Now.Year года</h6>
-    </div>
     <razorHramBabynino.Pages.Schedule.Schedule.Schedule date="DateTime.Now" />
 }
 else if (естьРасписаиниеНаПредыдущийМесяц)
 {
-    <div class="d-flex justify-content-center align-items-center mb-1 print-table-header">
-        <h6 class="text-dark">на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(prevDate.Month).ToLower() @prevDate.Year года</h6>
-    </div>
     <razorHramBabynino.Pages.Schedule.Schedule.Schedule date="prevDate" />
 }
 else

@@ -14,7 +14,9 @@
 
 @if (PostsService.canNext)
 {
-    <button class="btn btn-light text-dark w-100" @onclick="()=> { posts = null; posts = nextPosts(tag: Tag); }">Загрузить ещё</button>
+    <div class="row">
+        <button class="btn btn-light text-dark w-100 ml-2 mr-2 mr-sm-3 ml-sm-3" @onclick="()=> { posts = null; posts = nextPosts(tag: Tag); }">Загрузить ещё</button>
+    </div>
 }
 
 

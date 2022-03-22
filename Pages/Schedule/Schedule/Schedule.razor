@@ -2,7 +2,10 @@
 @inject ScheduleService SchedulesService
 
 <div class="table-responsive border-0" style="border-radius:.25rem">
-    <table class="table table-borderless bg-light text-dark m-0" style="border-radius:.25rem;">
+    <div class="text-dark bg-light pl-3 pt-2 pr-3 pb-1">
+        <h6 class="text-dark m-0 p-0">Расписание на @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(date.Month).ToUpper() @date.Year года</h6>
+    </div>
+    <table class="table table-borderless bg-light text-dark m-0">
         <thead class="no-print">
             <tr class="text-light">
                 <th scope="col" class="mr-1"><span class="badge badge-secondary">Дата</span></th>
