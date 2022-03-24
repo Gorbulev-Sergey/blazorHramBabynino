@@ -77,6 +77,11 @@ namespace razorHramBabynino.Services
             }
         }
 
+        /// <summary>
+        /// Получить альбом по его id
+        /// </summary>
+        /// <param name="id">id альбома</param>
+        /// <returns></returns>
         public imageAlbum itemById(int id)
         {
             using (var context = new ApplicationDbContext(options))
