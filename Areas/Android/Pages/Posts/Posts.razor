@@ -1,22 +1,22 @@
 ﻿@layout razorHramBabynino.Pages.Shared.AndroidLayout
+@page "/android"
 @page "/android/posts/{Tag?}"
-@using razorHramBabynino.Areas.Android.Pages.Posts.Post
 @inject PostsService PostsService
+
 
 <h4 hidden class="mb-3 text-dark text-center">@Tag</h4>
 
 <div class="row mb-2 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-start">
     @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.name == Tag))))
     {
-        <Post post="post"></Post>
+        <razorHramBabynino.Areas.Android.Pages.Posts.Post.Post post="post" />
     }
 </div>
 
 @if (PostsService.canNext)
-{
-    <div class="row">
-        <button class="btn btn-light text-dark w-100 ml-2 mr-2 mr-sm-3 ml-sm-3" @onclick="()=> { posts = null; posts = nextPosts(tag: Tag); }">Загрузить ещё</button>
-    </div>
+{  
+    <button class="btn btn-light text-dark w-100" @onclick="()=> { posts = null; posts = nextPosts(tag: Tag); }">Загрузить ещё</button>
+  
 }
 
 
@@ -29,7 +29,7 @@
         return PostsService.getNext(tag: tag).OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
     }
 
-    protected override async Task OnParametersSetAsync()
+    protected override void OnParametersSet()
     {
         Tag = Tag ?? "объявления";
         posts = nextPosts(tag: Tag);

@@ -28,14 +28,20 @@
 
     async Task показать(imageAlbum album)
     {
+        
+
         selectedAlbum = new imageAlbum();
         await JSRuntime.InvokeAsync<string>("Hidden_album", "modal_album");
+        
+        await JSRuntime.InvokeVoidAsync("showAndroidSystemBars");
         selectedAlbum = album;
         await JSRuntime.InvokeAsync<string>("Show_album", "modal_album");
     }
 
     async Task скрыть()
     {
+        await JSRuntime.InvokeVoidAsync("hideAndroidSystemBars");
+
         selectedAlbum = new imageAlbum();
         await JSRuntime.InvokeAsync<string>("Hidden_album", "modal_album");
     }
