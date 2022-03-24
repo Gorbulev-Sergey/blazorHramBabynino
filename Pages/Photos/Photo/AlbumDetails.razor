@@ -1,16 +1,23 @@
 ﻿@page "/photos/{id:int}"
 @inject PhotosService PhotosService
+@inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
+
+
+@*Кнопка закрыть окно*@
+<button type="button" class="close text-dark rounded p-2 m-2 position-absolute" style="z-index:10; right:0; top:0" @onclick="закрыть_окно">
+    <i class="fas fa-times"></i>
+</button>
 
 @if (album != null)
 {
     <div class="bg-light text-dark">
         <div id="carousel" class="carousel slide" data-interval="0">
             <ol class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li class="bg-dark active" data-target="#carousel" data-slide-to="0"></li>
                 @for (int i = 1; i < album.images.Count; i++)
                 {
-                    <li data-target="#carousel" data-slide-to="i"></li>
+                    <li class="bg-dark" data-target="#carousel" data-slide-to="i"></li>
                 }
             </ol>
             <div class="carousel-inner">
@@ -31,11 +38,11 @@
                 }
             </div>
             <a class="carousel-control-prev" style="height:100vh;" href="#carousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <div class="text-dark rounded pl-4 pt-5 pr-4 pb-5" style="font-size:1.8em;" title="Назад"><i class="fas fa-chevron-left"></i></div>
                 <span class="sr-only">Предыдущий</span>
             </a>
             <a class="carousel-control-next" style="height:100vh;" href="#carousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <div class="text-dark rounded pl-4 pt-5 pr-4 pb-5" style="font-size:1.8em;" title="Вперёд"><i class="fas fa-chevron-right"></i></div>
                 <span class="sr-only">Следующий</span>
             </a>
         </div>
@@ -51,5 +58,10 @@
     {
         base.OnParametersSet();
         album = PhotosService.itemById(id);
+    }
+
+    void закрыть_окно()
+    {
+        NavigationManager.NavigateTo("/");
     }
 }
