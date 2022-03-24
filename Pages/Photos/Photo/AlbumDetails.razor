@@ -38,11 +38,11 @@
                 }
             </div>
             <a class="carousel-control-prev" style="height:100vh;" href="#carousel" role="button" data-slide="prev">
-            <div class="text-dark rounded pl-4 pt-5 pr-4 pb-5" style="font-size:1.8em;" title="Назад"><i class="fas fa-chevron-left"></i></div>
+                <div class="text-dark rounded pl-4 pt-5 pr-4 pb-5" style="font-size:1.8em;" title="Назад"><i class="fas fa-chevron-left"></i></div>
                 <span class="sr-only">Предыдущий</span>
             </a>
             <a class="carousel-control-next" style="height:100vh;" href="#carousel" role="button" data-slide="next">
-            <div class="text-dark rounded pl-4 pt-5 pr-4 pb-5" style="font-size:1.8em;" title="Вперёд"><i class="fas fa-chevron-right"></i></div>
+                <div class="text-dark rounded pl-4 pt-5 pr-4 pb-5" style="font-size:1.8em;" title="Вперёд"><i class="fas fa-chevron-right"></i></div>
                 <span class="sr-only">Следующий</span>
             </a>
         </div>
@@ -52,16 +52,19 @@
 @code {
     [Parameter]
     public int id { get; set; }
+    string backurl;
     imageAlbum album { get; set; } = new imageAlbum();
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
         album = PhotosService.itemById(id);
+        backurl = System.Web.HttpUtility.ParseQueryString(new Uri(NavigationManager.Uri).Query).Get("backurl");
     }
 
     void закрыть_окно()
     {
-        NavigationManager.NavigateTo("/");
+        if (string.IsNullOrEmpty(backurl)) NavigationManager.NavigateTo("/photos");
+        else NavigationManager.NavigateTo(backurl);
     }
 }
