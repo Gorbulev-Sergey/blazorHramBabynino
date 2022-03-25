@@ -54,6 +54,7 @@
     public int id { get; set; }
     string backurl;
     imageAlbum album { get; set; } = new imageAlbum();
+    private DotNetObjectReference<AlbumDetails>? objRef;
 
     protected override void OnParametersSet()
     {

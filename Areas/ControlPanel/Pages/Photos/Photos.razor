@@ -1,5 +1,6 @@
 ﻿@layout CPanelLayout
 @page "/cpanel/photos"
+@using razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo
 @attribute [Authorize(Roles = "администратор, редактор")]
 @inject PhotosService PhotosService
 @inject NavigationManager NavigationManager
@@ -10,7 +11,7 @@
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
     @foreach (var album in albums)
     {
-        <razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Album album="album">
+        <Album album="album">
             <Navigation>
                 <button class="btn btn-light mr-1" @onclick="() => показать(album)"><i class="far fa-eye"></i></button>
                 <button class="btn btn-light mr-1" @onclick="() => изменить(album)"><i class="fas fa-pencil-alt"></i></button>
@@ -27,13 +28,13 @@
                     </div>
                 </div>
             </Navigation>
-        </razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Album>
+        </Album>
     }
 </div>
 
 
-<razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Modal_album album="selectedAlbum" скрыть_окно="()=>скрыть()"></razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Modal_album>
-<razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Modal_remove_album album="selectedAlbum" удалить_фотоальбом="()=>удалить(selectedAlbum)"></razorHramBabynino.Areas.ControlPanel.Pages.Photos.Photo.Modal_remove_album>
+<Modal_album album="selectedAlbum" скрыть_окно="()=>скрыть()"></Modal_album>
+<Modal_remove_album album="selectedAlbum" удалить_фотоальбом="()=>удалить(selectedAlbum)"></Modal_remove_album>
 
 
 @code {

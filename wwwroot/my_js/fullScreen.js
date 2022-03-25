@@ -5,7 +5,7 @@
 });
 
 var enableFullScreen = function () {
-    document.querySelector("body").requestFullscreen();
+    document.body.requestFullscreen();
 };
 
 var disableFullScreen = function () {
