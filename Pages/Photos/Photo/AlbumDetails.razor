@@ -5,7 +5,7 @@
 
 
 @*Кнопка закрыть окно*@
-<button type="button" class="close text-dark rounded p-2 m-2 position-absolute" style="z-index:10; right:0; top:0" @onclick="закрыть_окно">
+<button type="button" class="close text-dark rounded p-2 m-2 position-absolute" style="z-index:10; right:0; top:0" @onclick="closeWindow">
     <i class="fas fa-times"></i>
 </button>
 
@@ -62,8 +62,15 @@
         backurl = System.Web.HttpUtility.ParseQueryString(new Uri(NavigationManager.Uri).Query).Get("backurl");
     }
 
-    void закрыть_окно()
+    protected override void OnAfterRender(bool firstRender)
     {
+        JSRuntime.InvokeVoidAsync("enableFullScreen");
+    }
+
+    [JSInvokable]
+    public void closeWindow()
+    {
+        JSRuntime.InvokeVoidAsync("disableFullScreen");
         if (string.IsNullOrEmpty(backurl)) NavigationManager.NavigateTo("/photos");
         else NavigationManager.NavigateTo(backurl);
     }

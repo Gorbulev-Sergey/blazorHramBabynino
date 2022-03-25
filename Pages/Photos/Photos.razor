@@ -9,12 +9,9 @@
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
     @foreach (var album in albums.OrderByDescending(d => d.created))
     {
-        <Album album="album" onclick="()=>показать(album)"></Album>
+        <Album album="album" onclick='()=>NavigationManager.NavigateTo("/photos/"+album.ID)'></Album>
     }
 </div>
-
-
-<Modal_album album="selectedAlbum" скрыть_окно="()=>скрыть()"></Modal_album>
 
 
 @code {
@@ -24,25 +21,5 @@
     protected override async Task OnInitializedAsync()
     {
         albums = await PhotosService.getAsync();
-    }
-
-    async Task показать(imageAlbum album)
-    {
-        
-
-        selectedAlbum = new imageAlbum();
-        await JSRuntime.InvokeAsync<string>("Hidden_album", "modal_album");
-        
-        await JSRuntime.InvokeVoidAsync("showAndroidSystemBars");
-        selectedAlbum = album;
-        await JSRuntime.InvokeAsync<string>("Show_album", "modal_album");
-    }
-
-    async Task скрыть()
-    {
-        await JSRuntime.InvokeVoidAsync("hideAndroidSystemBars");
-
-        selectedAlbum = new imageAlbum();
-        await JSRuntime.InvokeAsync<string>("Hidden_album", "modal_album");
     }
 }
