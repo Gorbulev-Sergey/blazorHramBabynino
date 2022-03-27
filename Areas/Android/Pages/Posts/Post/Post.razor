@@ -48,10 +48,12 @@
 @code {
     [Parameter]
     public post post { get; set; }
+    [Parameter]
+    public string backurl { get; set; }
     tag Tag = new tag();
 
     public void подробнее(int id)
     {
-        NavigationManager.NavigateTo($"/android/posts/details/{id}?backurl=/{NavigationManager.Uri.Replace(NavigationManager.BaseUri, string.Empty)}");
+        NavigationManager.NavigateTo($"/android/posts/details/{id}?backurl={backurl}");
     }
 }
