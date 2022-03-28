@@ -6,7 +6,7 @@
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
     @foreach (var album in albums.OrderByDescending(d => d.created))
     {
-        <Album album="album" onclick='()=>NavigationManager.NavigateTo($"/photos/{album.ID}?backurl=/android/photos")'></Album>
+        <Album album="album" onclick='()=>NavigationManager.NavigateTo($"/photos/details/{album.ID}?backurl=/android/photos")'></Album>
     }
 </div>
 
