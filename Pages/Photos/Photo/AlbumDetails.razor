@@ -71,7 +71,6 @@
     [JSInvokable]
     public void closeWindow()
     {
-        JSRuntime.InvokeVoidAsync("returnBack");
         JSRuntime.InvokeVoidAsync("disableFullScreen");
         
         if (string.IsNullOrEmpty(backurl)) NavigationManager.NavigateTo("/photos");

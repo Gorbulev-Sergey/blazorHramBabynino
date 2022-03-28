@@ -11,7 +11,7 @@
 </style>
 
 <div class="col mb-3">
-    <div class="card bg-light text-white border-0 shadow-sm my_background" style="border-radius:.25rem !important;" @onclick="GoToFullscreenInAndroid">
+    <div class="tofullscreen card bg-light text-white border-0 shadow-sm my_background" style="border-radius:.25rem !important;" @onclick="onclick">
         <div class="card-img shadow-sm" style="border-radius:.25rem !important; background:url(@album.cover_image); background-size:cover; height:300px"></div>
         <div class="card-img-overlay" style="background-color:rgba(0,0,0,.3); border-radius:.25rem !important">
             <h5>@album.title</h5>
@@ -28,10 +28,4 @@
 
     [Parameter]
     public EventCallback onclick { get; set; }
-
-    void GoToFullscreenInAndroid()
-    {
-        JSRuntime.InvokeVoidAsync("goToFullscreen", album.ID.ToString());
-        onclick.InvokeAsync();
-    }
 }
