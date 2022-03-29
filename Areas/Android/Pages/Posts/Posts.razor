@@ -2,10 +2,12 @@
 @page "/android"
 @page "/android/posts"
 @page "/android/posts/{Tag?}"
+@using Microsoft.AspNetCore.Components.Web
 @using razorHramBabynino.Areas.Android.Pages.Posts.Post
 @inject PostsService PostsService
 @inject NavigationManager NavigationManager
 
+<PageTitle>@(Tag.Substring(0,1).ToUpper() + Tag.Substring(1))</PageTitle>
 
 <div class="row mb-2 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-start">
     @foreach (var post in posts.Where(p => p.tags.Contains(p.tags.FirstOrDefault(t => t.name == Tag))))
