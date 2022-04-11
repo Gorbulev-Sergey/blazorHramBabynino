@@ -29,7 +29,7 @@
         return PostsService.getNext(tag: tag).OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
     }
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
         Tag = Tag ?? "объявления";
         posts = nextPosts(tag: Tag);

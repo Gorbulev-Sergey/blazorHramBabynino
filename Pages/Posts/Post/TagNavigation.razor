@@ -2,7 +2,8 @@
 @inject ViewBagService ViewBagService
 
 <div class="mb-3 d-flex align-items-center">
-    <h3 class="text-dark flex-grow-1 mb-1 text-nowrap" style="padding-right: .5em; white-space: nowrap">@tag.description</h3>
+    <h3 class="text-dark flex-grow-1 mb-1" style="padding-right: .5em; white-space: nowrap; max-width: 75%">@tag.description</h3>
+    
     <div class="btn-group btn-group-sm overflow-hidden">
         @foreach (var tag in tags)
         {
