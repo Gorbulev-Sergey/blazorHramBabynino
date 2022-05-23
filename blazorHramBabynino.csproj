@@ -47,6 +47,13 @@
     <None Include="wwwroot\bootstrap\css\bootstrap-reboot.css.map" />
     <None Include="wwwroot\bootstrap\css\bootstrap-reboot.min.css.map" />
     <None Include="wwwroot\my_css\style.css" />
+    <None Include="wwwroot\my_js\changeBootstrap.js" />
+    <None Include="wwwroot\my_js\editor.js" />
+    <None Include="wwwroot\my_js\fullScreen.js" />
+    <None Include="wwwroot\my_js\loadBootstrap.js" />
+    <None Include="wwwroot\my_js\localStorage.js" />
+    <None Include="wwwroot\my_js\modal_album.js" />
+    <None Include="wwwroot\my_js\remove_somee.js" />
   </ItemGroup>
 
   <ItemGroup>
