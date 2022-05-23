@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using razorHramBabynino.Models;
+using blazorHramBabynino.Models;
 
-namespace razorHramBabynino.Areas.Identity.Pages.Account
+namespace blazorHramBabynino.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel

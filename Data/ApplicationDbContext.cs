@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using razorHramBabynino.Models;
+using blazorHramBabynino.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace razorHramBabynino.Data
+namespace blazorHramBabynino.Data
 {
     public class ApplicationDbContext : IdentityDbContext<user>
     {

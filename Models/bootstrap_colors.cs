@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino.Models
+namespace blazorHramBabynino.Models
 {
     public enum bootstrap_colors
     {

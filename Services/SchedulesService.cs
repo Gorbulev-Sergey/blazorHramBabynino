@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using razorHramBabynino.Data;
-using razorHramBabynino.Models;
+using blazorHramBabynino.Data;
+using blazorHramBabynino.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino.Services
+namespace blazorHramBabynino.Services
 {
     public class ScheduleService
     {

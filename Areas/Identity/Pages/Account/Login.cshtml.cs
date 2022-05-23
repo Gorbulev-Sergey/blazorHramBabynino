@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using razorHramBabynino.Models;
+using blazorHramBabynino.Models;
 
-namespace razorHramBabynino.Areas.Identity.Pages.Account
+namespace blazorHramBabynino.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LoginModel : PageModel

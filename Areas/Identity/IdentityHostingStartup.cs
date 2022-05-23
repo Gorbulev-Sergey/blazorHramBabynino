@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using razorHramBabynino.Data;
-using razorHramBabynino.Models;
+using blazorHramBabynino.Data;
+using blazorHramBabynino.Models;
 
-[assembly: HostingStartup(typeof(razorHramBabynino.Areas.Identity.IdentityHostingStartup))]
-namespace razorHramBabynino.Areas.Identity
+[assembly: HostingStartup(typeof(blazorHramBabynino.Areas.Identity.IdentityHostingStartup))]
+namespace blazorHramBabynino.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

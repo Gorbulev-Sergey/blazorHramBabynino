@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace razorHramBabynino.Data
+namespace blazorHramBabynino.Data
 {
     public static class myDate
     {

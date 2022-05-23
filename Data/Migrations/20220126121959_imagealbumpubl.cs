@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace razorHramBabynino.Migrations
+namespace blazorHramBabynino.Migrations
 {
     public partial class imagealbumpubl : Migration
     {

@@ -8,16 +8,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using razorHramBabynino.Data;
-using razorHramBabynino.Models;
-using razorHramBabynino.Pages.Tests;
-using razorHramBabynino.Services;
+using blazorHramBabynino.Data;
+using blazorHramBabynino.Models;
+using blazorHramBabynino.Pages.Tests;
+using blazorHramBabynino.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino
+namespace blazorHramBabynino
 {
     public class Startup
     {

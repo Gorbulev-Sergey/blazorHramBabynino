@@ -5,7 +5,7 @@
 @inject PostsService PostsService
 @inject TagsService TagsService
 @inject IJSRuntime JSRuntime
-@using razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post
+@using blazorHramBabynino.Areas.ControlPanel.Pages.Posts.Post
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 
 <h3 class="mb-3 text-dark">Публикации</h3>
@@ -15,13 +15,13 @@
 
 
 <Virtualize Items="filtredPosts" Context="post">
-    <razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post post="post" удалить="удалить" обновить="post => обновить((post)post)"></razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post>
+    <blazorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post post="post" удалить="удалить" обновить="post => обновить((post)post)"></blazorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post>
 </Virtualize>    
 
 
 @*@foreach (var post in filtredPosts)
 {
-    <razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post post="post" удалить="удалить" обновить="post => обновить((post)post)"></razorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post>
+    <blazorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post post="post" удалить="удалить" обновить="post => обновить((post)post)"></blazorHramBabynino.Areas.ControlPanel.Pages.Posts.Post.Post>
 }*@
 
 

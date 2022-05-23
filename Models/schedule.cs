@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino.Models
+namespace blazorHramBabynino.Models
 {  
     [Table(name: "schedule")]
     public class schedule_string

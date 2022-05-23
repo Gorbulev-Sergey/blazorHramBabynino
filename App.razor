@@ -1,12 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
-@using razorHramBabynino.Pages.Shared
+@using blazorHramBabynino.Pages.Shared
 
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(Program).Assembly">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(DefaultLayout)">
                 <NotAuthorized>
-                    <razorHramBabynino.Areas.ControlPanel.Pages.Shared.RedirectToLogin />
+                    <blazorHramBabynino.Areas.ControlPanel.Pages.Shared.RedirectToLogin />
                 </NotAuthorized>
             </AuthorizeRouteView>
         </Found>

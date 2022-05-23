@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using razorHramBabynino.Models;
-namespace razorHramBabynino.Areas.Identity.Pages.Account.Manage
+using blazorHramBabynino.Models;
+namespace blazorHramBabynino.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {

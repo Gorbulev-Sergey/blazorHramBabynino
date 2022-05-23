@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using razorHramBabynino.Models;
+using blazorHramBabynino.Models;
 
-namespace razorHramBabynino.Areas.Identity.Pages.Account.Manage
+namespace blazorHramBabynino.Areas.Identity.Pages.Account.Manage
 {
     public class EnableAuthenticatorModel : PageModel
     {
@@ -149,7 +149,7 @@ namespace razorHramBabynino.Areas.Identity.Pages.Account.Manage
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("razorHramBabynino"),
+                _urlEncoder.Encode("blazorHramBabynino"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }

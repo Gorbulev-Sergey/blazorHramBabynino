@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-using razorHramBabynino.Models;
+using blazorHramBabynino.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino.Services
+namespace blazorHramBabynino.Services
 {
     public class AppSettingsService
     {

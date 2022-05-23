@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace razorHramBabynino.Models
+namespace blazorHramBabynino.Models
 {
     [Table(name: "posts")]
     public class post

@@ -1,4 +1,4 @@
-﻿@layout razorHramBabynino.Pages.Shared.AndroidLayout
+﻿@layout blazorHramBabynino.Pages.Shared.AndroidLayout
 @page "/android/posts/details/{id:int}"
 @inject PostsService PostsService
 @inject CommentsService CommentsService
@@ -49,7 +49,7 @@
         </div>
     </div>
     <div id="comments" class="collapse">
-        <razorHramBabynino.Pages.Posts.Post.Comment.Comments userName="@user.UserName" postId="id" comments="post.comments.ToList()" добавить="text=> добавитьКомментарий((string)text)" удалить="comment=>удалитьКомментарий((comment)comment)"></razorHramBabynino.Pages.Posts.Post.Comment.Comments>
+        <blazorHramBabynino.Pages.Posts.Post.Comment.Comments userName="@user.UserName" postId="id" comments="post.comments.ToList()" добавить="text=> добавитьКомментарий((string)text)" удалить="comment=>удалитьКомментарий((comment)comment)"></blazorHramBabynino.Pages.Posts.Post.Comment.Comments>
     </div>
 </div>
 

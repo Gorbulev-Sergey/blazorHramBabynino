@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using razorHramBabynino.Data;
+using blazorHramBabynino.Data;
 
-namespace razorHramBabynino.Migrations
+namespace blazorHramBabynino.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -165,7 +165,7 @@ namespace razorHramBabynino.Migrations
                     b.ToTable("posttag");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.comment", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.comment", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -201,7 +201,7 @@ namespace razorHramBabynino.Migrations
                     b.ToTable("comments");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.image", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.image", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -232,7 +232,7 @@ namespace razorHramBabynino.Migrations
                     b.ToTable("images");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.imageAlbum", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.imageAlbum", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -264,7 +264,7 @@ namespace razorHramBabynino.Migrations
                     b.ToTable("imageAlbums");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.like", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.like", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -294,7 +294,7 @@ namespace razorHramBabynino.Migrations
                     b.ToTable("likes");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.post", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.post", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -336,7 +336,7 @@ namespace razorHramBabynino.Migrations
                     b.ToTable("posts");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.schedule_string", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.schedule_string", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -365,7 +365,7 @@ namespace razorHramBabynino.Migrations
                     b.ToTable("schedule");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.tag", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.tag", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -392,7 +392,7 @@ namespace razorHramBabynino.Migrations
                     b.ToTable("tags");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.user", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.user", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -457,7 +457,7 @@ namespace razorHramBabynino.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.video", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.video", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -491,7 +491,7 @@ namespace razorHramBabynino.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.user", null)
+                    b.HasOne("blazorHramBabynino.Models.user", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -500,7 +500,7 @@ namespace razorHramBabynino.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.user", null)
+                    b.HasOne("blazorHramBabynino.Models.user", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -515,7 +515,7 @@ namespace razorHramBabynino.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("razorHramBabynino.Models.user", null)
+                    b.HasOne("blazorHramBabynino.Models.user", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -524,7 +524,7 @@ namespace razorHramBabynino.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.user", null)
+                    b.HasOne("blazorHramBabynino.Models.user", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -533,89 +533,89 @@ namespace razorHramBabynino.Migrations
 
             modelBuilder.Entity("posttag", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.post", null)
+                    b.HasOne("blazorHramBabynino.Models.post", null)
                         .WithMany()
                         .HasForeignKey("postsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("razorHramBabynino.Models.tag", null)
+                    b.HasOne("blazorHramBabynino.Models.tag", null)
                         .WithMany()
                         .HasForeignKey("tagsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.comment", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.comment", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.imageAlbum", null)
+                    b.HasOne("blazorHramBabynino.Models.imageAlbum", null)
                         .WithMany("comments")
                         .HasForeignKey("imageAlbumID");
 
-                    b.HasOne("razorHramBabynino.Models.post", null)
+                    b.HasOne("blazorHramBabynino.Models.post", null)
                         .WithMany("comments")
                         .HasForeignKey("postID");
 
-                    b.HasOne("razorHramBabynino.Models.user", null)
+                    b.HasOne("blazorHramBabynino.Models.user", null)
                         .WithMany("comments")
                         .HasForeignKey("userId");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.image", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.image", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.imageAlbum", null)
+                    b.HasOne("blazorHramBabynino.Models.imageAlbum", null)
                         .WithMany("images")
                         .HasForeignKey("imageAlbumID");
 
-                    b.HasOne("razorHramBabynino.Models.post", null)
+                    b.HasOne("blazorHramBabynino.Models.post", null)
                         .WithMany("images")
                         .HasForeignKey("postID");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.imageAlbum", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.imageAlbum", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.user", null)
+                    b.HasOne("blazorHramBabynino.Models.user", null)
                         .WithMany("imageAlbums")
                         .HasForeignKey("userId");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.like", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.like", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.imageAlbum", null)
+                    b.HasOne("blazorHramBabynino.Models.imageAlbum", null)
                         .WithMany("likes")
                         .HasForeignKey("imageAlbumID");
 
-                    b.HasOne("razorHramBabynino.Models.post", null)
+                    b.HasOne("blazorHramBabynino.Models.post", null)
                         .WithMany("likes")
                         .HasForeignKey("postID");
 
-                    b.HasOne("razorHramBabynino.Models.user", null)
+                    b.HasOne("blazorHramBabynino.Models.user", null)
                         .WithMany("likes")
                         .HasForeignKey("userId");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.post", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.post", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.user", null)
+                    b.HasOne("blazorHramBabynino.Models.user", null)
                         .WithMany("posts")
                         .HasForeignKey("userId");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.schedule_string", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.schedule_string", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.user", null)
+                    b.HasOne("blazorHramBabynino.Models.user", null)
                         .WithMany("schedule")
                         .HasForeignKey("userId");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.video", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.video", b =>
                 {
-                    b.HasOne("razorHramBabynino.Models.post", null)
+                    b.HasOne("blazorHramBabynino.Models.post", null)
                         .WithMany("videos")
                         .HasForeignKey("postID");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.imageAlbum", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.imageAlbum", b =>
                 {
                     b.Navigation("comments");
 
@@ -624,7 +624,7 @@ namespace razorHramBabynino.Migrations
                     b.Navigation("likes");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.post", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.post", b =>
                 {
                     b.Navigation("comments");
 
@@ -635,7 +635,7 @@ namespace razorHramBabynino.Migrations
                     b.Navigation("videos");
                 });
 
-            modelBuilder.Entity("razorHramBabynino.Models.user", b =>
+            modelBuilder.Entity("blazorHramBabynino.Models.user", b =>
                 {
                     b.Navigation("comments");
 

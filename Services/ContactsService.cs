@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino.Pages.Tests
+namespace blazorHramBabynino.Pages.Tests
 {
     public class ContactsService
     {

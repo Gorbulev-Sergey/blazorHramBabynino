@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino.Models
+namespace blazorHramBabynino.Models
 {
     public class user : IdentityUser
     {

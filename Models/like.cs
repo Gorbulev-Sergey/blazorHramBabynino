@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino.Models
+namespace blazorHramBabynino.Models
 {
     [Table(name: "likes")]
     public class like

@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using razorHramBabynino.Data;
-using razorHramBabynino.Models;
+using blazorHramBabynino.Data;
+using blazorHramBabynino.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace razorHramBabynino.Services
+namespace blazorHramBabynino.Services
 {
     public class RoleService
     {
