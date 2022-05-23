@@ -1,4 +1,5 @@
 ﻿@page "/blazor"
+@using Microsoft.AspNetCore.Components.Web
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
@@ -15,12 +16,13 @@
     <meta name="google-site-verification" content="S6OK-HEPvpJ8qLXQ3S9DnN4KZTMXAX7qbLrb7I7dXwA" /> @*Для Гугл поисковика*@
     <meta name="keywords" content="храм бабынино Вознесения Господня церковь поселок калуга калужская область бабынинский район Вознесение Господне" />
     <meta name="keywords" content="храм бабынино, храм Вознесения Господня, церковь бабынино, храм поселок бабынино, калуга храм, калужская область храм, бабынинский район храм, Вознесение Господне" />
-    <meta name="description" content="Сайт храма Вознесения Господня пос. Бабынино Калужской обл." />
-    <title>Храм Вознесения Господня</title>
+    <meta name="description" content="Сайт храма Вознесения Господня пос. Бабынино Калужской обл." />    
     <base href="~/" />
     <link href="/font-awesome/css/all.min.css" rel="stylesheet" />
     <link href="/my_css/style.css" rel="stylesheet" />
-    <link href="/my_css/print.css" rel="stylesheet" />
+    <link href="/my_css/print.css" rel="stylesheet" />    
+    <title>Храм Вознесения Господня</title>
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
 <body class="bg-secondary">
 

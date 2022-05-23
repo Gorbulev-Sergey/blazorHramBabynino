@@ -3,6 +3,8 @@
 @page "/posts/{Tag?}"
 @inject PostsService PostsService
 
+<PageTitle>@(Tag.Substring(0,1).ToUpper() + Tag.Substring(1))</PageTitle>
+
 <TagNavigation Tag="@Tag"></TagNavigation>
 
 <div class="row mb-2 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-start">
@@ -27,7 +29,7 @@
         return PostsService.getNext(tag: tag).OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
     }
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
         Tag = Tag ?? "объявления";
         posts = nextPosts(tag: Tag);

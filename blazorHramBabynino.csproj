@@ -6,6 +6,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Areas\Android\Pages\Contacts\Contacts.razor" />
+    <None Include="Areas\Android\Pages\Photos\Album.razor" />
+    <None Include="Areas\Android\Pages\Photos\Photos.razor" />
+    <None Include="Areas\Android\Pages\Posts\Posts.razor" />
+    <None Include="Areas\Android\Pages\Posts\Post\Details.razor" />
+    <None Include="Areas\Android\Pages\Posts\Post\Post.razor" />
+    <None Include="Areas\Android\Pages\Schedule\ScheduleNow.razor" />
+    <None Include="Pages\Contacts\Contacts.razor" />
+    <None Include="Pages\Photos\Photos.razor" />
+    <None Include="Pages\Photos\Photo\Album.razor" />
+    <None Include="Pages\Photos\Photo\AlbumDetails.razor" />
+    <None Include="Pages\Photos\Photo\Modal_album.razor" />
+    <None Include="Pages\Photos\Photo\Photo.razor" />
+    <None Include="Pages\Posts\Posts.razor" />
+    <None Include="Pages\Posts\Post\Comment\Comment.razor" />
+    <None Include="Pages\Posts\Post\Comment\Comments.razor" />
+    <None Include="Pages\Posts\Post\Comment\CreateComment.razor" />
+    <None Include="Pages\Posts\Post\Details.razor" />
+    <None Include="Pages\Posts\Post\Post.razor" />
+    <None Include="Pages\Posts\Post\TagNavigation.razor" />
+    <None Include="Pages\Schedule\ScheduleNow.razor" />
+    <None Include="Pages\Schedule\Schedule\Schedule.razor" />
+    <None Include="Pages\Schedule\Schedule\Schedule_string.razor" />
+    <None Include="Pages\Shared\AndroidLayout.razor" />
+    <None Include="Pages\Shared\DefaultLayout.razor" />
+    <None Include="Pages\Shared\ErrorLayout.razor" />
+    <None Include="Pages\Shared\HomeLayout.razor" />
+    <None Include="Pages\Shared\Login.razor" />
+    <None Include="Pages\Shared\_Host.cshtml" />
+    <None Include="Pages\Shared\_IdentityLayout.cshtml" />
+    <None Include="Pages\Shared\_LoginPartial.cshtml" />
+    <None Include="Pages\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Pages\Tests\Test1.razor" />
+    <None Include="Pages\_Imports.razor" />
+    <None Include="Pages\_ViewImports.cshtml" />
+    <None Include="Pages\_ViewStart.cshtml" />
     <None Include="wwwroot\bootstrap\css\bootstrap-grid.css.map" />
     <None Include="wwwroot\bootstrap\css\bootstrap-grid.min.css.map" />
     <None Include="wwwroot\bootstrap\css\bootstrap-reboot.css.map" />
