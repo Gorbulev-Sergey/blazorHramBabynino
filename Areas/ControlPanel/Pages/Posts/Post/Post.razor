@@ -1,7 +1,7 @@
 ﻿<div class="d-flex bg-light text-dark mb-3 rounded">
     <div class="d-flex flex-column m-3 w-75" style="min-height:10em">
         <div class="flex-grow-1">
-            <h5 class="mb-0">@post.title</h5>
+            <h5 class="mb-0">@((MarkupString)@post.title)</h5>
             <div class="text-muted small mb-1">@post.created.ToRus()</div>
             <p>@((MarkupString)post.description)</p>
         </div>        
