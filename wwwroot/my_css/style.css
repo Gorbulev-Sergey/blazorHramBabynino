@@ -13,7 +13,7 @@
     }
 }
 
-@media (max-width: 400px) and (min-width: 0) {
+@media (max-width: 310px) and (min-width: 0) {
     .site-title {
         font-size: .8em !important;
     }
