@@ -3,24 +3,24 @@
 <tr class="@цвет_фона">
     @if (date_show)
     {
-        <th scope="row" width="16%" class="mr-1 font-weight-normal">
-            <span class="">
-                @schedule_string.date_and_time.Day @schedule_string.date_and_time.ToRusMonth(), @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(schedule_string.date_and_time.DayOfWeek)
+        <th scope="row" width="12%" class="mr-1 font-weight-normal text-center">
+            <span class="text-center">
+                <b>@schedule_string.date_and_time.Day @schedule_string.date_and_time.ToRusMonth()</b><br/> @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(schedule_string.date_and_time.DayOfWeek)
             </span>
         </th>
-        <th scope="row" width="59%" class="font-weight-normal"><div class="@маркер_праздника">@schedule_string.description</div></th>
+        <th scope="row" width="63%" class="font-weight-normal"><div class="@маркер_праздника">@schedule_string.description</div></th>
     }
     else
     {
-        <th scope="row" width="16%" class="border-top-0"></th>
-        <th scope="row" width="60%" class="border-top-0 font-weight-normal"><div class="@маркер_праздника">@schedule_string.description</div></th>
+        <th scope="row" width="12%" class="border-top-0"></th>
+        <th scope="row" width="63%" class="border-top-0 font-weight-normal"><div class="@маркер_праздника">@schedule_string.description</div></th>
     }
-    <th scope="row" width="20%" class="font-weight-normal text-right">
-        <span class="">
+    <th scope="row" width="19%" class="font-weight-normal text-right">
+        <i class="">
             @schedule_string.GetDescription(Enum.Parse<тип_службы>(schedule_string.prayer.ToString()))
-        </span>
+        </i>
     </th>    
-    <th scope="row" width="4%" class="font-weight-normal"><div class="text-right mr-1">@schedule_string.date_and_time.ToString("H:mm")</div></th>
+    <th scope="row" width="5%" class="font-weight-normal"><div class="text-right mr-1"><b>@schedule_string.date_and_time.ToString("H:mm")</b></div></th>
 </tr>
 
 

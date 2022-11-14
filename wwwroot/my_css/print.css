@@ -15,12 +15,13 @@
 
         .container * {
             color: black !important;
-            font-size: 1.09em !important;
+            font-size: 1.085em !important;
             font-family: 'Times New Roman';
+            line-height:1.15;
         }
 
         .container h6 {
-            font-size: 1.6em !important;
+            font-size: 1.5em !important;
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
