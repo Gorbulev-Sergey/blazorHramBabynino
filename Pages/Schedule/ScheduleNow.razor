@@ -1,6 +1,7 @@
 ﻿@layout HomeLayout
 @page "/schedule"
 @inject ScheduleService SchedulesService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Расписание</PageTitle>
 
@@ -42,6 +43,8 @@ else
 
     protected override void OnInitialized()
     {
+        NavigationManager.NavigateTo("https://hram-babynino.ru/schedule");
+
         // Текущий месяц
         if (SchedulesService.has_schedule_in_this_date(DateTime.Now)) естьРасписаиниеНаТекущийМесяц = true;
         // Следующий месяц

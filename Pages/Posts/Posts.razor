@@ -2,6 +2,7 @@
 @page "/"
 @page "/posts/{Tag?}"
 @inject PostsService PostsService
+@inject NavigationManager NavigationManager
 
 <PageTitle>@(Tag.Substring(0,1).ToUpper() + Tag.Substring(1))</PageTitle>
 
@@ -27,6 +28,11 @@
     List<post> nextPosts(string tag)
     {
         return PostsService.getNext(tag: tag).OrderBy(p => p.created).Where(p => p.published == true).Reverse().ToList();
+    }
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.NavigateTo("https://hram-babynino.ru/posts");
     }
 
     protected override async Task OnParametersSetAsync()

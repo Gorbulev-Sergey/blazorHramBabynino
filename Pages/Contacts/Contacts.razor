@@ -1,5 +1,6 @@
 ﻿@layout HomeLayout
 @page "/contacts"
+@inject NavigationManager NavigationManager
 
 <PageTitle>Контакты</PageTitle>
 
@@ -110,5 +111,8 @@
 </div>
 
 @code {
-
+    protected override void OnInitialized()
+    {
+        NavigationManager.NavigateTo("https://hram-babynino.ru/contacts");
+    }
 }
